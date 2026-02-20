@@ -1,0 +1,64 @@
+################################################################################
+# Steel-MES  — Cloud Build CI/CD
+# Triggered on push to main branch
+# Required substitutions (set in Cloud Build trigger):
+#   _REGION          e.g. asia-northeast3
+#   _SERVICE         e.g. steel-mes
+#   _CLOUDSQL_INST   e.g. PROJECT_ID:REGION:steel-mes-db
+################################################################################
+
+substitutions:
+  _REGION: asia-northeast3
+  _SERVICE: steel-mes
+  _CLOUDSQL_INST: ${PROJECT_ID}:asia-northeast3:steel-mes-db
+
+steps:
+  # ── 1. Build Docker image ─────────────────────────────────────────────────
+  - name: 'gcr.io/cloud-builders/docker'
+    id: build
+    args:
+      - build
+      - '-t'
+      - 'asia-northeast3-docker.pkg.dev/$PROJECT_ID/steel-mes/app:$COMMIT_SHA'
+      - '-t'
+      - 'asia-northeast3-docker.pkg.dev/$PROJECT_ID/steel-mes/app:latest'
+      - '.'
+
+  # ── 2. Push to Artifact Registry ─────────────────────────────────────────
+  - name: 'gcr.io/cloud-builders/docker'
+    id: push
+    args:
+      - push
+      - '--all-tags'
+      - 'asia-northeast3-docker.pkg.dev/$PROJECT_ID/steel-mes/app'
+
+  # ── 3. Deploy to Cloud Run ────────────────────────────────────────────────
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    id: deploy
+    entrypoint: gcloud
+    args:
+      - run
+      - deploy
+      - '$_SERVICE'
+      - '--image=asia-northeast3-docker.pkg.dev/$PROJECT_ID/steel-mes/app:$COMMIT_SHA'
+      - '--region=$_REGION'
+      - '--platform=managed'
+      - '--allow-unauthenticated'
+      - '--min-instances=1'
+      - '--max-instances=5'
+      - '--memory=512Mi'
+      - '--cpu=1'
+      - '--port=3000'
+      - '--add-cloudsql-instances=$_CLOUDSQL_INST'
+      - >-
+        --set-secrets=
+        DATABASE_URL=steel-mes-db-url:latest,
+        NEXTAUTH_SECRET=steel-mes-nextauth-secret:latest,
+        NEXTAUTH_URL=steel-mes-nextauth-url:latest
+
+images:
+  - 'asia-northeast3-docker.pkg.dev/$PROJECT_ID/steel-mes/app:$COMMIT_SHA'
+  - 'asia-northeast3-docker.pkg.dev/$PROJECT_ID/steel-mes/app:latest'
+
+options:
+  logging: CLOUD_LOGGING_ONLY
