@@ -27,33 +27,54 @@ export async function GET() {
   if (!session) return new Response('Unauthorized', { status: 401 });
 
   const encoder = new TextEncoder();
+  let closed = false;
+  let interval: ReturnType<typeof setInterval> | null = null;
+  let timeout:  ReturnType<typeof setTimeout>  | null = null;
+
+  const cleanup = () => {
+    if (interval) { clearInterval(interval); interval = null; }
+    if (timeout)  { clearTimeout(timeout);   timeout  = null; }
+  };
+
   const stream = new ReadableStream({
     async start(controller) {
       const send = async () => {
+        if (closed) return;
         try {
           const data = await getProductionData();
-          controller.enqueue(encoder.encode(`data: ${JSON.stringify(data)}\n\n`));
+          if (!closed) controller.enqueue(encoder.encode(`data: ${JSON.stringify(data)}\n\n`));
         } catch {
-          controller.close();
+          if (!closed) {
+            closed = true;
+            cleanup();
+            controller.close();
+          }
         }
       };
 
       await send();
-      const interval = setInterval(send, 10000); // 10초마다 갱신
+      interval = setInterval(send, 10_000);
 
-      // 클린업 (60초 후 종료 — 클라이언트에서 재연결)
-      setTimeout(() => {
-        clearInterval(interval);
-        controller.close();
-      }, 60000);
+      // 60초 후 종료 — 클라이언트에서 재연결
+      timeout = setTimeout(() => {
+        if (!closed) {
+          closed = true;
+          cleanup();
+          controller.close();
+        }
+      }, 60_000);
+    },
+    cancel() {
+      closed = true;
+      cleanup();
     },
   });
 
   return new Response(stream, {
     headers: {
-      'Content-Type': 'text/event-stream',
+      'Content-Type':  'text/event-stream',
       'Cache-Control': 'no-cache',
-      Connection: 'keep-alive',
+      'Connection':    'keep-alive',
     },
   });
 }

@@ -21,6 +21,10 @@ export async function GET(req: NextRequest) {
 
   const items = await prisma.material.findMany({
     where: search ? { OR: [{ name: { contains: search } }, { code: { contains: search } }] } : {},
+    include: {
+      inventory: { select: { qty: true } },
+      _count: { select: { lots: true } },
+    },
     orderBy: { code: 'asc' },
   });
 

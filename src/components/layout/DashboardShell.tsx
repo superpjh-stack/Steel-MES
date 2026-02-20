@@ -3,7 +3,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { usePathname } from 'next/navigation';
 import { signOut } from 'next-auth/react';
-import { Menu, Bell, Search, LogOut } from 'lucide-react';
+import { Menu, Bell, Search, LogOut, PanelLeftClose, PanelLeftOpen } from 'lucide-react';
 import Sidebar from '@/components/layout/Sidebar';
 import TabBar from '@/components/layout/TabBar';
 import PageTransition from '@/components/layout/PageTransition';
@@ -57,8 +57,22 @@ interface DashboardShellProps {
 }
 
 export default function DashboardShell({ children, userName, role }: DashboardShellProps) {
-  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [sidebarOpen,      setSidebarOpen]      = useState(false);
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const pathname = usePathname();
+
+  // localStorage에서 접힘 상태 복원
+  useEffect(() => {
+    if (localStorage.getItem('sidebar-collapsed') === 'true') setSidebarCollapsed(true);
+  }, []);
+
+  const toggleCollapse = () => {
+    setSidebarCollapsed((prev) => {
+      const next = !prev;
+      localStorage.setItem('sidebar-collapsed', String(next));
+      return next;
+    });
+  };
 
   // 라우트 변경 시 드로어 자동 닫기
   useEffect(() => {
@@ -101,10 +115,11 @@ export default function DashboardShell({ children, userName, role }: DashboardSh
         className={[
           'fixed inset-y-0 left-0 lg:relative lg:inset-auto',
           'z-50 lg:z-auto',
-          'transition-transform duration-300 ease-in-out',
-          // 스크린리더: 닫힌 드로어 숨김(invisible), 데스크톱 항상 표시(lg:visible)
+          'transition-all duration-300 ease-in-out',
           'invisible lg:visible',
           sidebarOpen ? 'translate-x-0 !visible' : '-translate-x-full lg:translate-x-0',
+          // 데스크톱 접힘: 너비 0으로 축소
+          sidebarCollapsed ? 'lg:w-0 lg:overflow-hidden' : 'lg:w-52',
         ].join(' ')}
       >
         <Sidebar
@@ -130,6 +145,16 @@ export default function DashboardShell({ children, userName, role }: DashboardSh
             onClick={() => setSidebarOpen((prev) => !prev)}
           >
             <Menu size={20} />
+          </button>
+
+          {/* 사이드바 접기/펼치기 버튼 — lg 이상에서만 노출 */}
+          <button
+            type="button"
+            className="hidden lg:flex min-w-[44px] min-h-[44px] items-center justify-center text-slate-400 hover:text-white hover:bg-slate-700 rounded-md transition-colors shrink-0"
+            aria-label={sidebarCollapsed ? '메뉴 펼치기' : '메뉴 접기'}
+            onClick={toggleCollapse}
+          >
+            {sidebarCollapsed ? <PanelLeftOpen size={20} /> : <PanelLeftClose size={20} />}
           </button>
 
           {/* 로고 텍스트 */}
