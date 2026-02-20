@@ -30,8 +30,9 @@ export const GET = withErrorHandler(
       prisma.workOrder.findMany({
         where,
         include: {
-          product:  { select: { name: true, code: true } },
-          customer: { select: { name: true } },
+          product:   { select: { name: true, code: true } },
+          customer:  { select: { name: true } },
+          createdBy: { select: { name: true } },
         },
         orderBy: [{ priority: 'asc' }, { dueDate: 'asc' }],
         skip,

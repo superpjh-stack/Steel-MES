@@ -5,8 +5,8 @@ import SpcPageClient from './SpcPageClient';
 export default async function SpcPage() {
   await auth();
 
-  // 특성 목록과 WO 목록 조회
-  const [characteristics, workOrders] = await Promise.all([
+  // 특성 목록, WO 목록, 공정 목록 조회
+  const [characteristics, workOrders, processes] = await Promise.all([
     prisma.spcMeasurement.findMany({
       distinct: ['characteristic'],
       select: { characteristic: true },
@@ -18,6 +18,10 @@ export default async function SpcPage() {
       orderBy: { createdAt: 'desc' },
       take: 30,
     }),
+    prisma.process.findMany({
+      select: { id: true, name: true },
+      orderBy: { seq: 'asc' },
+    }),
   ]);
 
   return (
@@ -26,6 +30,7 @@ export default async function SpcPage() {
       <SpcPageClient
         characteristics={characteristics.map((c) => c.characteristic)}
         workOrders={workOrders.map((wo) => ({ id: wo.id, label: `${wo.woNo} — ${wo.product.name}` }))}
+        processes={processes}
       />
     </div>
   );

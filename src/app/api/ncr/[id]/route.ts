@@ -3,6 +3,19 @@ import { auth } from '@/auth';
 import { prisma } from '@/lib/prisma';
 import { z } from 'zod';
 
+export async function DELETE(_req: NextRequest, { params }: { params: { id: string } }) {
+  const session = await auth();
+  if (!session) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+
+  const role = (session.user as any).role;
+  if (role !== 'admin') {
+    return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
+  }
+
+  await prisma.nonconformanceReport.delete({ where: { id: params.id } });
+  return NextResponse.json({ ok: true });
+}
+
 const updateSchema = z.object({
   status:      z.enum(['open', 'under_review', 'approved', 'closed']).optional(),
   disposition: z.string().optional(),
