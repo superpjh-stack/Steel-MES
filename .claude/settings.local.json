@@ -1,0 +1,42 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:www.kspre.co.kr)",
+      "WebSearch",
+      "Skill(bkit:pdca)",
+      "Bash(npx prisma migrate dev:*)",
+      "Bash(npm install:*)",
+      "Bash(./node_modules/.bin/prisma migrate:*)",
+      "Bash(docker info:*)",
+      "Bash(./node_modules/.bin/tsc:*)",
+      "Bash(cmd.exe /c \"docker ps 2>&1\")",
+      "Bash(cmd.exe /c \"docker ps\")",
+      "Bash(echo:*)",
+      "Bash(powershell.exe -Command \"docker ps\")",
+      "Bash(powershell.exe -Command \"Get-Command docker -ErrorAction SilentlyContinue | Select-Object -ExpandProperty Source; Get-ChildItem ''C:\\\\Program Files\\\\Docker'' -Recurse -Filter ''docker.exe'' -ErrorAction SilentlyContinue | Select-Object FullName -First 5\")",
+      "Bash(docker compose:*)",
+      "Bash(taskkill:*)",
+      "Bash(./node_modules/.bin/prisma db seed:*)",
+      "Bash(node -e:*)",
+      "WebFetch(domain:kspre.co.kr)",
+      "Bash(curl:*)",
+      "Bash(iconv:*)",
+      "Bash(# 제품명 텍스트 추출 - 다른 방법으로 시도 curl -k \"\"http://kspre.co.kr/product/list.html?pid=16\"\" | iconv -f EUC-KR -t UTF-8)",
+      "Bash(# 제품 상세 링크 추출 후 첫번째 상세 페이지 접근 curl -k \"\"http://kspre.co.kr/product/list.html?pid=16\"\" | iconv -f EUC-KR -t UTF-8)",
+      "Bash(# 제품 상세 페이지 원본 HTML 구조 파악 curl -k \"\"http://kspre.co.kr/product/view.html?pid=16&no=89\"\" | iconv -f EUC-KR -t UTF-8)",
+      "Bash(node prisma/seed-kwangsung.mjs:*)",
+      "Bash(ls:*)",
+      "Bash(python3:*)",
+      "WebFetch(domain:wmes.weaverloft.com)",
+      "Bash(netstat:*)",
+      "Bash(npx kill-port:*)",
+      "Bash(npm run dev:*)",
+      "Bash(./node_modules/.bin/prisma generate:*)",
+      "mcp__ide__getDiagnostics",
+      "Bash(./node_modules/.bin/prisma db execute:*)",
+      "Bash(node prisma/seed-full.mjs:*)",
+      "Bash(git init:*)",
+      "Bash(git add:*)"
+    ]
+  }
+}

@@ -1,0 +1,501 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+// UserRole: operator | qc | me | supervisor | manager | admin
+// WoStatus: draft | issued | in_progress | completed | cancelled
+// EquipStatus: running | stopped | maintenance | breakdown
+// InspType: incoming | in_process | outgoing
+// DefectDisp: rework | scrap | use_as_is | return
+// ShipStatus: planned | packed | shipped | delivered
+// MovementType: receipt | issue | return | adjustment | shipment
+
+model User {
+  id           String    @id @default(uuid())
+  email        String    @unique
+  name         String
+  passwordHash String    @map("password_hash")
+  role         String    // UserRole
+  department   String?
+  shift        String?
+  isActive     Boolean   @default(true) @map("is_active")
+  lastLoginAt  DateTime? @map("last_login_at")
+  createdAt    DateTime  @default(now()) @map("created_at")
+  updatedAt    DateTime  @updatedAt @map("updated_at")
+
+  workOrders     WorkOrder[]
+  productionLogs ProductionLog[]
+  inspections    InspectionRecord[]
+  maintenances   MaintenanceRecord[]
+  salesOrders    SalesOrder[]
+  systemLogs     SystemLog[]
+
+  @@map("users")
+}
+
+model Customer {
+  id        String   @id @default(uuid())
+  code      String   @unique
+  name      String
+  contact   String?
+  otdTarget Float    @default(98) @map("otd_target")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  products     Product[]
+  workOrders   WorkOrder[]
+  shipments    Shipment[]
+  salesOrders  SalesOrder[]
+
+  @@map("customers")
+}
+
+model Product {
+  id          String   @id @default(uuid())
+  code        String   @unique
+  name        String
+  category    String
+  unit        String   @default("EA")
+  customerId  String   @map("customer_id")
+  drawingNo   String?  @map("drawing_no")
+  stdCycleSec Int?     @map("std_cycle_sec")
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  customer    Customer          @relation(fields: [customerId], references: [id])
+  processes   Process[]
+  workOrders  WorkOrder[]
+  inventory   Inventory[]
+  shipments   Shipment[]
+  lots        LotTraceability[]
+  salesOrders SalesOrder[]
+
+  @@map("products")
+}
+
+model Equipment {
+  id           String    @id @default(uuid())
+  code         String    @unique
+  name         String
+  type         String
+  location     String?
+  manufacturer String?
+  installDate  DateTime? @map("install_date")
+  pmCycleDays  Int?      @map("pm_cycle_days")
+  lastPmDate   DateTime? @map("last_pm_date")
+  status       String    @default("running") // EquipStatus
+  createdAt    DateTime  @default(now()) @map("created_at")
+  updatedAt    DateTime  @updatedAt @map("updated_at")
+
+  processes       Process[]
+  productionLogs  ProductionLog[]
+  equipmentLogs   EquipmentLog[]
+  maintenances    MaintenanceRecord[]
+  spcMeasurements SpcMeasurement[]
+
+  @@map("equipment")
+}
+
+model Process {
+  id          String   @id @default(uuid())
+  code        String   @unique
+  name        String
+  seq         Int
+  productId   String?  @map("product_id")
+  equipmentId String?  @map("equipment_id")
+  createdAt   DateTime @default(now()) @map("created_at")
+
+  product    Product?   @relation(fields: [productId], references: [id])
+  equipment  Equipment? @relation(fields: [equipmentId], references: [id])
+
+  productionLogs  ProductionLog[]
+  inspections     InspectionRecord[]
+  spcMeasurements SpcMeasurement[]
+
+  @@map("processes")
+}
+
+model Material {
+  id          String   @id @default(uuid())
+  code        String   @unique
+  name        String
+  unit        String   @default("KG")
+  spec        String?
+  supplier    String?
+  safetyStock Float    @default(0) @map("safety_stock")
+  createdAt   DateTime @default(now()) @map("created_at")
+
+  lots      LotTraceability[]
+  inventory Inventory[]
+
+  @@map("materials")
+}
+
+model WorkOrder {
+  id           String    @id @default(uuid())
+  woNo         String    @unique @map("wo_no")
+  productId    String    @map("product_id")
+  customerId   String    @map("customer_id")
+  plannedQty   Int       @map("planned_qty")
+  producedQty  Int       @default(0) @map("produced_qty")
+  defectQty    Int       @default(0) @map("defect_qty")
+  status       String    @default("draft") // WoStatus
+  plannedStart DateTime  @map("planned_start")
+  plannedEnd   DateTime  @map("planned_end")
+  actualStart  DateTime? @map("actual_start")
+  actualEnd    DateTime? @map("actual_end")
+  dueDate      DateTime  @map("due_date")
+  priority     Int       @default(5)
+  notes        String?
+  createdById  String    @map("created_by")
+  createdAt    DateTime  @default(now()) @map("created_at")
+  updatedAt    DateTime  @updatedAt @map("updated_at")
+
+  product   Product  @relation(fields: [productId], references: [id])
+  customer  Customer @relation(fields: [customerId], references: [id])
+  createdBy User     @relation(fields: [createdById], references: [id])
+
+  productionLogs ProductionLog[]
+  inspections    InspectionRecord[]
+  lots           LotTraceability[]
+  shipments      Shipment[]
+
+  @@map("work_orders")
+}
+
+model ProductionLog {
+  id           String    @id @default(uuid())
+  workOrderId  String    @map("work_order_id")
+  processId    String    @map("process_id")
+  equipmentId  String    @map("equipment_id")
+  operatorId   String    @map("operator_id")
+  lotNo        String    @map("lot_no")
+  plannedQty   Int       @map("planned_qty")
+  goodQty      Int       @map("good_qty")
+  defectQty    Int       @default(0) @map("defect_qty")
+  scrapQty     Int       @default(0) @map("scrap_qty")
+  startTime    DateTime  @map("start_time")
+  endTime      DateTime? @map("end_time")
+  cycleTimeSec Int?      @map("cycle_time_sec")
+  notes        String?
+  createdAt    DateTime  @default(now()) @map("created_at")
+
+  workOrder WorkOrder @relation(fields: [workOrderId], references: [id])
+  process   Process   @relation(fields: [processId], references: [id])
+  equipment Equipment @relation(fields: [equipmentId], references: [id])
+  operator  User      @relation(fields: [operatorId], references: [id])
+
+  defects DefectLog[]
+
+  @@map("production_logs")
+}
+
+model InspectionRecord {
+  id             String   @id @default(uuid())
+  type           String   // InspType
+  workOrderId    String   @map("work_order_id")
+  lotNo          String   @map("lot_no")
+  processId      String?  @map("process_id")
+  inspectorId    String   @map("inspector_id")
+  sampleQty      Int      @map("sample_qty")
+  passQty        Int      @map("pass_qty")
+  failQty        Int      @map("fail_qty")
+  result         String
+  inspectionDate DateTime @map("inspection_date")
+  notes          String?
+  createdAt      DateTime @default(now()) @map("created_at")
+
+  workOrder  WorkOrder  @relation(fields: [workOrderId], references: [id])
+  process    Process?   @relation(fields: [processId], references: [id])
+  inspector  User       @relation(fields: [inspectorId], references: [id])
+
+  defects DefectLog[]
+  ncrs    NonconformanceReport[]
+
+  @@map("inspection_records")
+}
+
+model DefectLog {
+  id               String   @id @default(uuid())
+  productionLogId  String?  @map("production_log_id")
+  inspectionId     String?  @map("inspection_id")
+  defectCode       String   @map("defect_code")
+  defectName       String   @map("defect_name")
+  qty              Int
+  disposition      String   // DefectDisp
+  rootCause        String?  @map("root_cause")
+  correctiveAction String?  @map("corrective_action")
+  createdById      String   @map("created_by")
+  createdAt        DateTime @default(now()) @map("created_at")
+
+  productionLog ProductionLog?    @relation(fields: [productionLogId], references: [id])
+  inspection    InspectionRecord? @relation(fields: [inspectionId], references: [id])
+
+  @@map("defect_logs")
+}
+
+model SpcMeasurement {
+  id             String   @id @default(uuid())
+  workOrderId    String   @map("work_order_id")
+  processId      String   @map("process_id")
+  equipmentId    String?  @map("equipment_id")
+  operatorId     String   @map("operator_id")
+  characteristic String
+  usl            Float
+  lsl            Float
+  nominal        Float
+  measuredValue  Float    @map("measured_value")
+  measuredAt     DateTime @map("measured_at")
+  subgroupNo     Int      @map("subgroup_no")
+
+  process   Process    @relation(fields: [processId], references: [id])
+  equipment Equipment? @relation(fields: [equipmentId], references: [id])
+
+  @@map("spc_measurements")
+}
+
+model NonconformanceReport {
+  id           String    @id @default(uuid())
+  ncrNo        String    @unique @map("ncr_no")
+  inspectionId String    @map("inspection_id")
+  disposition  String
+  approverId   String?   @map("approver_id")
+  approvedAt   DateTime? @map("approved_at")
+  status       String    @default("open")
+  createdAt    DateTime  @default(now()) @map("created_at")
+
+  inspection InspectionRecord @relation(fields: [inspectionId], references: [id])
+
+  @@map("nonconformance_reports")
+}
+
+model EquipmentLog {
+  id             String   @id @default(uuid())
+  equipmentId    String   @map("equipment_id")
+  logDate        DateTime @map("log_date")
+  shift          String
+  plannedTimeMin Int      @map("planned_time_min")
+  actualTimeMin  Int      @map("actual_time_min")
+  breakdownMin   Int      @default(0) @map("breakdown_min")
+  setupMin       Int      @default(0) @map("setup_min")
+  plannedQty     Int      @map("planned_qty")
+  actualQty      Int      @map("actual_qty")
+  goodQty        Int      @map("good_qty")
+  createdAt      DateTime @default(now()) @map("created_at")
+
+  equipment Equipment @relation(fields: [equipmentId], references: [id])
+
+  @@map("equipment_logs")
+}
+
+model MaintenanceRecord {
+  id           String    @id @default(uuid())
+  equipmentId  String    @map("equipment_id")
+  type         String
+  description  String
+  technicianId String    @map("technician_id")
+  startTime    DateTime  @map("start_time")
+  endTime      DateTime? @map("end_time")
+  partsUsed    String?   @map("parts_used") // JSON string (SQLite has no Json type)
+  cost         Float?
+  nextPmDate   DateTime? @map("next_pm_date")
+  createdAt    DateTime  @default(now()) @map("created_at")
+
+  equipment  Equipment @relation(fields: [equipmentId], references: [id])
+  technician User      @relation(fields: [technicianId], references: [id])
+
+  @@map("maintenance_records")
+}
+
+model LotTraceability {
+  id          String   @id @default(uuid())
+  lotNo       String   @unique @map("lot_no")
+  materialId  String?  @map("material_id")
+  materialLot String?  @map("material_lot")
+  workOrderId String   @map("work_order_id")
+  productId   String   @map("product_id")
+  qty         Float
+  status      String   @default("wip")
+  createdAt   DateTime @default(now()) @map("created_at")
+
+  material  Material?  @relation(fields: [materialId], references: [id])
+  workOrder WorkOrder  @relation(fields: [workOrderId], references: [id])
+  product   Product    @relation(fields: [productId], references: [id])
+
+  @@map("lot_traceability")
+}
+
+model Inventory {
+  id         String   @id @default(uuid())
+  materialId String?  @map("material_id")
+  productId  String?  @map("product_id")
+  lotNo      String?  @map("lot_no")
+  qty        Float
+  location   String?
+  status     String   @default("available")
+  updatedAt  DateTime @updatedAt @map("updated_at")
+
+  material  Material?           @relation(fields: [materialId], references: [id])
+  product   Product?            @relation(fields: [productId], references: [id])
+  movements InventoryMovement[]
+
+  @@map("inventory")
+}
+
+model InventoryMovement {
+  id           String   @id @default(uuid())
+  inventoryId  String   @map("inventory_id")
+  movementType String   @map("movement_type") // MovementType
+  qty          Float
+  workOrderId  String?  @map("work_order_id")
+  referenceNo  String?  @map("reference_no")
+  createdById  String   @map("created_by")
+  createdAt    DateTime @default(now()) @map("created_at")
+
+  inventory Inventory @relation(fields: [inventoryId], references: [id])
+
+  @@map("inventory_movements")
+}
+
+model Shipment {
+  id          String    @id @default(uuid())
+  shipmentNo  String    @unique @map("shipment_no")
+  customerId  String    @map("customer_id")
+  workOrderId String    @map("work_order_id")
+  productId   String    @map("product_id")
+  lotNo       String?   @map("lot_no")
+  shippedQty  Int       @map("shipped_qty")
+  plannedDate DateTime  @map("planned_date")
+  actualDate  DateTime? @map("actual_date")
+  status      String    @default("planned") // ShipStatus
+  createdById String    @map("created_by")
+  createdAt   DateTime  @default(now()) @map("created_at")
+
+  customer  Customer  @relation(fields: [customerId], references: [id])
+  workOrder WorkOrder @relation(fields: [workOrderId], references: [id])
+  product   Product   @relation(fields: [productId], references: [id])
+
+  @@map("shipments")
+}
+
+// SoStatus: received | confirmed | in_production | completed | cancelled
+model SalesOrder {
+  id          String    @id @default(uuid())
+  soNo        String    @unique @map("so_no")
+  customerId  String    @map("customer_id")
+  productId   String    @map("product_id")
+  orderedQty  Int       @map("ordered_qty")
+  dueDate     DateTime  @map("due_date")
+  status      String    @default("received") // SoStatus
+  notes       String?
+  createdById String    @map("created_by")
+  createdAt   DateTime  @default(now()) @map("created_at")
+  updatedAt   DateTime  @updatedAt @map("updated_at")
+
+  customer  Customer @relation(fields: [customerId], references: [id])
+  product   Product  @relation(fields: [productId], references: [id])
+  createdBy User     @relation(fields: [createdById], references: [id])
+
+  requirements      CustomerRequirement[]
+  contractDocuments ContractDocument[]
+
+  @@map("sales_orders")
+}
+
+// CommonCode groupCode examples: UNIT, MATERIAL_TYPE, PROCESS_TYPE, etc.
+model CommonCode {
+  id          String   @id @default(uuid())
+  groupCode   String   @map("group_code")
+  groupName   String   @map("group_name")
+  code        String
+  codeName    String   @map("code_name")
+  sortOrder   Int      @default(0) @map("sort_order")
+  isActive    Boolean  @default(true) @map("is_active")
+  description String?
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  @@unique([groupCode, code])
+  @@map("common_codes")
+}
+
+// SystemLogAction: LOGIN | LOGOUT | CREATE | UPDATE | DELETE
+model SystemLog {
+  id        String   @id @default(uuid())
+  userId    String?  @map("user_id")
+  userName  String?  @map("user_name")
+  action    String                       // SystemLogAction
+  resource  String?                      // 대상 리소스 (예: User, WorkOrder)
+  detail    String?                      // 상세 내용
+  ipAddress String?  @map("ip_address")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  user User? @relation(fields: [userId], references: [id], onDelete: SetNull)
+
+  @@map("system_logs")
+}
+
+// InterfaceDevType: barcode_reader | plc | scale | rfid | sensor | other
+// InterfaceProto:   tcp | serial | modbus | opc_ua | http | mqtt
+model InterfaceDevice {
+  id          String    @id @default(uuid())
+  name        String
+  devType     String    @map("dev_type")   // InterfaceDevType
+  protocol    String                        // InterfaceProto
+  host        String?
+  port        Int?
+  description String?
+  isActive    Boolean   @default(true) @map("is_active")
+  createdAt   DateTime  @default(now()) @map("created_at")
+  updatedAt   DateTime  @updatedAt @map("updated_at")
+
+  @@map("interface_devices")
+}
+
+// 고객요구사항: 점도·압력·진공·부식성 등 고객 공정 조건
+model CustomerRequirement {
+  id           String   @id @default(uuid())
+  salesOrderId String   @map("sales_order_id")
+  category     String   // viscosity | pressure | vacuum | corrosion | temperature | other
+  item         String   // 요구 항목명
+  value        String   // 요구 값
+  unit         String?  // 단위 (예: bar, ℃, mPa·s)
+  notes        String?
+  createdById  String   @map("created_by")
+  createdAt    DateTime @default(now()) @map("created_at")
+  updatedAt    DateTime @updatedAt @map("updated_at")
+
+  salesOrder SalesOrder @relation(fields: [salesOrderId], references: [id])
+
+  @@map("customer_requirements")
+}
+
+// 견적/계약 문서 첨부
+model ContractDocument {
+  id           String   @id @default(uuid())
+  salesOrderId String   @map("sales_order_id")
+  docType      String   // quotation | contract | po | amendment | other
+  fileName     String   @map("file_name")
+  fileUrl      String   @map("file_url")   // 실제 환경에서는 파일 서버 경로
+  fileSize     Int?     @map("file_size")  // bytes
+  notes        String?
+  createdById  String   @map("created_by")
+  createdAt    DateTime @default(now()) @map("created_at")
+
+  salesOrder SalesOrder @relation(fields: [salesOrderId], references: [id])
+
+  @@map("contract_documents")
+}
+
+// Sequential ID counter — prevents race conditions in WO/NCR/SHP number generation
+model Sequence {
+  prefix     String @id
+  currentVal Int    @default(0) @map("current_val")
+  lastDate   String @map("last_date")
+
+  @@map("sequences")
+}

@@ -1,0 +1,37 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+/* 페이지 전환 애니메이션 */
+@keyframes pageFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.page-fade-in {
+  animation: pageFadeIn 0.22s ease-out forwards;
+}
+
+/* 탭바 스크롤바 숨김 */
+.tab-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.tab-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

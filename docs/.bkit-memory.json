@@ -1,0 +1,14 @@
+{
+  "sessionCount": 13,
+  "lastSession": {
+    "startedAt": "2026-02-20T17:14:14.002Z",
+    "platform": "claude",
+    "level": "Enterprise"
+  },
+  "primaryFeature": "responsive-web",
+  "phase": "completed",
+  "matchRate": 90,
+  "previousFeature": "automotive-parts-mes",
+  "previousPhase": "archived",
+  "previousMatchRate": 95
+}

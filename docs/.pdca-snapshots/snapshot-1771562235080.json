@@ -1,0 +1,1425 @@
+{
+  "timestamp": "2026-02-20T04:37:15.077Z",
+  "reason": "compaction",
+  "status": {
+    "version": "2.0",
+    "lastUpdated": "2026-02-20T04:36:35.220Z",
+    "activeFeatures": [
+      "automotive-parts-mes",
+      "prisma",
+      "Steel-MES",
+      "work-orders",
+      "status",
+      "production-logs",
+      "production",
+      "inspections",
+      "equipment",
+      "oee",
+      "login",
+      "(dashboard)",
+      "dashboard",
+      "(operator)",
+      "operator",
+      "input",
+      "monitor",
+      "users",
+      "ui",
+      "products",
+      "[id]",
+      "processes",
+      "customers",
+      "materials",
+      "charts",
+      "reports",
+      "defects",
+      "measurements",
+      "chart",
+      "ncr",
+      "quality",
+      "logs",
+      "maintenance",
+      "pm-due",
+      "spc",
+      "start",
+      "sop",
+      "defect",
+      "inventory",
+      "movements",
+      "alerts",
+      "trace",
+      "shipments",
+      "delivery",
+      "pm-schedule",
+      "[lot_no]",
+      "delivery-status",
+      "defect-codes",
+      "api",
+      "config",
+      "sequence.service.ts"
+    ],
+    "primaryFeature": "automotive-parts-mes",
+    "features": {
+      "automotive-parts-mes": {
+        "phase": "archived",
+        "matchRate": 95,
+        "iterationCount": 0,
+        "startedAt": "2026-02-20T09:00:00.000Z",
+        "archivedAt": "2026-02-20T02:25:00.000Z",
+        "archivedTo": "docs/archive/2026-02/automotive-parts-mes/"
+      },
+      "prisma": {
+        "phase": "do",
+        "phaseNumber": 3,
+        "matchRate": null,
+        "iterationCount": 0,
+        "requirements": [],
+        "documents": {},
+        "timestamps": {
+          "started": "2026-02-20T00:47:03.630Z",
+          "lastUpdated": "2026-02-20T00:47:03.630Z"
+        },
+        "lastFile": "C:/gerardo/01 SmallSF/Steel-MES/prisma/seed.ts"
+      },
+      "Steel-MES": {
+        "phase": "do",
+        "phaseNumber": 3,
+        "matchRate": null,
+        "iterationCount": 0,
+        "requirements": [],
+        "documents": {},
+        "timestamps": {
+          "started": "2026-02-20T00:47:09.699Z",
+          "lastUpdated": "2026-02-20T04:35:23.670Z"
+        },
+        "lastFile": "C:/gerardo/01 SmallSF/Steel-MES/src/lib/designTokens.ts"
+      },
+      "work-orders": {
+        "phase": "do",
+        "phaseNumber": 3,
+        "matchRate": null,
+        "iterationCount": 0,
+        "requirements": [],
+        "documents": {},
+        "timestamps": {
+          "started": "2026-02-20T00:47:56.999Z",
+          "lastUpdated": "2026-02-20T04:33:18.505Z"
+        },
+        "lastFile": "C:/gerardo/01 SmallSF/Steel-MES/src/app/api/work-orders/route.ts"
+      },
+      "status": {
+        "phase": "do",
+        "phaseNumber": 3,
+        "matchRate": null,
+        "iterationCount": 0,
+        "requirements": [],
+        "documents": {},
+        "timestamps": {
+          "started": "2026-02-20T00:48:04.399Z",
+          "lastUpdated": "2026-02-20T04:33:35.038Z"
+        },
+        "lastFile": "C:/gerardo/01 SmallSF/Steel-MES/src/app/api/work-orders/[id]/status/route.ts"
+      },
+      "production-logs": {
+        "phase": "do",
+        "phaseNumber": 3,
+        "matchRate": null,
+        "iterationCount": 0,
+        "requirements": [],
+        "documents": {},
+        "timestamps": {
+          "started": "2026-02-20T00:48:17.507Z",
+          "lastUpdated": "2026-02-20T00:48:17.507Z"
+        },
+        "lastFile": "C:/gerardo/01 SmallSF/Steel-MES/src/app/api/production-logs/route.ts"
+      },
+      "production": {
+        "phase": "do",
+        "phaseNumber": 3,
+        "matchRate": null,
+        "iterationCount": 0,
+        "requirements": [],
+        "documents": {},
+        "timestamps": {
+          "started": "2026-02-20T00:48:26.647Z",
+          "lastUpdated": "2026-02-20T01:51:24.986Z"
+        },
+        "lastFile": "C:\\gerardo\\01 SmallSF\\Steel-MES\\src\\app\\api\\reports\\production\\route.ts"
+      },
+      "inspections": {
+        "phase": "do",
+        "phaseNumber": 3,
+        "matchRate": null,
+        "iterationCount": 0,
+        "requirements": [],
+        "documents": {},
+        "timestamps": {
+          "started": "2026-02-20T00:48:47.894Z",
+          "lastUpdated": "2026-02-20T00:51:36.117Z"
+        },
+        "lastFile": "C:/gerardo/01 SmallSF/Steel-MES/src/app/(dashboard)/quality/inspections/page.tsx"
+      },
+      "equipment": {
+        "phase": "do",
+        "phaseNumber": 3,
+        "matchRate": null,
+        "iterationCount": 0,
+        "requirements": [],
+        "documents": {},
+        "timestamps": {
+          "started": "2026-02-20T00:48:55.698Z",
+          "lastUpdated": "2026-02-20T02:11:04.286Z"
+        },
+        "lastFile": "C:/gerardo/01 SmallSF/Steel-MES/src/app/(dashboard)/admin/equipment/page.tsx"
+      },
+      "oee": {
+        "phase": "do",
+        "phaseNumber": 3,
+        "matchRate": null,
+        "iterationCount": 0,
+        "requirements": [],
+        "documents": {},
+        "timestamps": {
+          "started": "2026-02-20T00:49:04.431Z",
+          "lastUpdated": "2026-02-20T00:49:04.431Z"
+        },
+        "lastFile": "C:/gerardo/01 SmallSF/Steel-MES/src/app/api/equipment/[id]/oee/route.ts"
+      },
+      "login": {
+        "phase": "do",
+        "phaseNumber": 3,
+        "matchRate": null,
+        "iterationCount": 0,
+        "requirements": [],
+        "documents": {},
+        "timestamps": {
+          "started": "2026-02-20T00:49:16.753Z",
+          "lastUpdated": "2026-02-20T00:49:16.753Z"
+        },
+        "lastFile": "C:/gerardo/01 SmallSF/Steel-MES/src/app/login/page.tsx"
+      },
+      "(dashboard)": {
+        "phase": "do",
+        "phaseNumber": 3,
+        "matchRate": null,
+        "iterationCount": 0,
+        "requirements": [],
+        "documents": {},
+        "timestamps": {
+          "started": "2026-02-20T00:49:37.574Z",
+          "lastUpdated": "2026-02-20T00:49:37.574Z"
+        },
+        "lastFile": "C:/gerardo/01 SmallSF/Steel-MES/src/app/(dashboard)/layout.tsx"
+      },
+      "dashboard": {
+        "phase": "do",
+        "phaseNumber": 3,
+        "matchRate": null,
+        "iterationCount": 0,
+        "requirements": [],
+        "documents": {},
+        "timestamps": {
+          "started": "2026-02-20T00:50:08.142Z",
+          "lastUpdated": "2026-02-20T04:34:42.559Z"
+        },
+        "lastFile": "C:/gerardo/01 SmallSF/Steel-MES/src/app/(dashboard)/dashboard/page.tsx"
+      },
+      "(operator)": {
+        "phase": "do",
+        "phaseNumber": 3,
+        "matchRate": null,
+        "iterationCount": 0,
+        "requirements": [],
+        "documents": {},
+        "timestamps": {
+          "started": "2026-02-20T00:50:32.987Z",
+          "lastUpdated": "2026-02-20T00:50:32.987Z"
+        },
+        "lastFile": "C:/gerardo/01 SmallSF/Steel-MES/src/app/(operator)/layout.tsx"
+      },
+      "operator": {
+        "phase": "do",
+        "phaseNumber": 3,
+        "matchRate": null,
+        "iterationCount": 0,
+        "requirements": [],
+        "documents": {},
+        "timestamps": {
+          "started": "2026-02-20T00:50:47.498Z",
+          "lastUpdated": "2026-02-20T04:36:35.220Z"
+        },
+        "lastFile": "C:/gerardo/01 SmallSF/Steel-MES/src/components/operator/BarcodeScanner.tsx"
+      },
+      "input": {
+        "phase": "do",
+        "phaseNumber": 3,
+        "matchRate": null,
+        "iterationCount": 0,
+        "requirements": [],
+        "documents": {},
+        "timestamps": {
+          "started": "2026-02-20T00:51:09.518Z",
+          "lastUpdated": "2026-02-20T01:52:12.664Z"
+        },
+        "lastFile": "C:\\gerardo\\01 SmallSF\\Steel-MES\\src\\app\\(operator)\\operator\\[woId]\\input\\page.tsx"
+      },
+      "monitor": {
+        "phase": "do",
+        "phaseNumber": 3,
+        "matchRate": null,
+        "iterationCount": 0,
+        "requirements": [],
+        "documents": {},
+        "timestamps": {
+          "started": "2026-02-20T00:51:55.768Z",
+          "lastUpdated": "2026-02-20T00:51:55.768Z"
+        },
+        "lastFile": "C:/gerardo/01 SmallSF/Steel-MES/src/app/(dashboard)/production/monitor/page.tsx"
+      },
+      "users": {
+        "phase": "do",
+        "phaseNumber": 3,
+        "matchRate": null,
+        "iterationCount": 0,
+        "requirements": [],
+        "documents": {},
+        "timestamps": {
+          "started": "2026-02-20T00:52:09.792Z",
+          "lastUpdated": "2026-02-20T00:52:09.792Z"
+        },
+        "lastFile": "C:/gerardo/01 SmallSF/Steel-MES/src/app/(dashboard)/admin/users/page.tsx"
+      },
+      "ui": {
+        "phase": "do",
+        "phaseNumber": 3,
+        "matchRate": null,
+        "iterationCount": 0,
+        "requirements": [],
+        "documents": {},
+        "timestamps": {
+          "started": "2026-02-20T01:38:05.935Z",
+          "lastUpdated": "2026-02-20T04:35:30.268Z"
+        },
+        "lastFile": "C:/gerardo/01 SmallSF/Steel-MES/src/components/ui/EquipBadge.tsx"
+      },
+      "products": {
+        "phase": "do",
+        "phaseNumber": 3,
+        "matchRate": null,
+        "iterationCount": 0,
+        "requirements": [],
+        "documents": {},
+        "timestamps": {
+          "started": "2026-02-20T01:38:48.998Z",
+          "lastUpdated": "2026-02-20T02:10:43.156Z"
+        },
+        "lastFile": "C:/gerardo/01 SmallSF/Steel-MES/src/app/(dashboard)/admin/products/page.tsx"
+      },
+      "[id]": {
+        "phase": "do",
+        "phaseNumber": 3,
+        "matchRate": null,
+        "iterationCount": 0,
+        "requirements": [],
+        "documents": {},
+        "timestamps": {
+          "started": "2026-02-20T01:38:56.931Z",
+          "lastUpdated": "2026-02-20T02:06:03.746Z"
+        },
+        "lastFile": "C:\\gerardo\\01 SmallSF\\Steel-MES\\src\\app\\api\\equipment\\[id]\\route.ts"
+      },
+      "processes": {
+        "phase": "do",
+        "phaseNumber": 3,
+        "matchRate": null,
+        "iterationCount": 0,
+        "requirements": [],
+        "documents": {},
+        "timestamps": {
+          "started": "2026-02-20T01:39:04.992Z",
+          "lastUpdated": "2026-02-20T02:10:53.056Z"
+        },
+        "lastFile": "C:/gerardo/01 SmallSF/Steel-MES/src/app/(dashboard)/admin/processes/page.tsx"
+      },
+      "customers": {
+        "phase": "do",
+        "phaseNumber": 3,
+        "matchRate": null,
+        "iterationCount": 0,
+        "requirements": [],
+        "documents": {},
+        "timestamps": {
+          "started": "2026-02-20T01:39:12.277Z",
+          "lastUpdated": "2026-02-20T02:11:14.796Z"
+        },
+        "lastFile": "C:/gerardo/01 SmallSF/Steel-MES/src/app/(dashboard)/admin/customers/page.tsx"
+      },
+      "materials": {
+        "phase": "do",
+        "phaseNumber": 3,
+        "matchRate": null,
+        "iterationCount": 0,
+        "requirements": [],
+        "documents": {},
+        "timestamps": {
+          "started": "2026-02-20T01:39:19.413Z",
+          "lastUpdated": "2026-02-20T02:11:26.489Z"
+        },
+        "lastFile": "C:/gerardo/01 SmallSF/Steel-MES/src/app/(dashboard)/admin/materials/page.tsx"
+      },
+      "charts": {
+        "phase": "do",
+        "phaseNumber": 3,
+        "matchRate": null,
+        "iterationCount": 0,
+        "requirements": [],
+        "documents": {},
+        "timestamps": {
+          "started": "2026-02-20T01:45:18.037Z",
+          "lastUpdated": "2026-02-20T04:35:46.982Z"
+        },
+        "lastFile": "C:/gerardo/01 SmallSF/Steel-MES/src/components/charts/DefectPareto.tsx"
+      },
+      "reports": {
+        "phase": "do",
+        "phaseNumber": 3,
+        "matchRate": null,
+        "iterationCount": 0,
+        "requirements": [],
+        "documents": {},
+        "timestamps": {
+          "started": "2026-02-20T01:51:44.939Z",
+          "lastUpdated": "2026-02-20T01:59:10.128Z"
+        },
+        "lastFile": "C:\\gerardo\\01 SmallSF\\Steel-MES\\src\\app\\(dashboard)\\quality\\reports\\page.tsx"
+      },
+      "defects": {
+        "phase": "do",
+        "phaseNumber": 3,
+        "matchRate": null,
+        "iterationCount": 0,
+        "requirements": [],
+        "documents": {},
+        "timestamps": {
+          "started": "2026-02-20T01:55:36.385Z",
+          "lastUpdated": "2026-02-20T01:58:06.214Z"
+        },
+        "lastFile": "C:\\gerardo\\01 SmallSF\\Steel-MES\\src\\app\\(dashboard)\\quality\\defects\\page.tsx"
+      },
+      "measurements": {
+        "phase": "do",
+        "phaseNumber": 3,
+        "matchRate": null,
+        "iterationCount": 0,
+        "requirements": [],
+        "documents": {},
+        "timestamps": {
+          "started": "2026-02-20T01:55:43.265Z",
+          "lastUpdated": "2026-02-20T01:55:43.265Z"
+        },
+        "lastFile": "C:\\gerardo\\01 SmallSF\\Steel-MES\\src\\app\\api\\spc\\measurements\\route.ts"
+      },
+      "chart": {
+        "phase": "do",
+        "phaseNumber": 3,
+        "matchRate": null,
+        "iterationCount": 0,
+        "requirements": [],
+        "documents": {},
+        "timestamps": {
+          "started": "2026-02-20T01:55:55.632Z",
+          "lastUpdated": "2026-02-20T01:55:55.632Z"
+        },
+        "lastFile": "C:\\gerardo\\01 SmallSF\\Steel-MES\\src\\app\\api\\spc\\chart\\route.ts"
+      },
+      "ncr": {
+        "phase": "do",
+        "phaseNumber": 3,
+        "matchRate": null,
+        "iterationCount": 0,
+        "requirements": [],
+        "documents": {},
+        "timestamps": {
+          "started": "2026-02-20T01:56:08.800Z",
+          "lastUpdated": "2026-02-20T04:33:53.863Z"
+        },
+        "lastFile": "C:/gerardo/01 SmallSF/Steel-MES/src/app/api/ncr/route.ts"
+      },
+      "quality": {
+        "phase": "do",
+        "phaseNumber": 3,
+        "matchRate": null,
+        "iterationCount": 0,
+        "requirements": [],
+        "documents": {},
+        "timestamps": {
+          "started": "2026-02-20T01:56:23.608Z",
+          "lastUpdated": "2026-02-20T01:56:23.608Z"
+        },
+        "lastFile": "C:\\gerardo\\01 SmallSF\\Steel-MES\\src\\app\\api\\dashboard\\quality\\route.ts"
+      },
+      "logs": {
+        "phase": "do",
+        "phaseNumber": 3,
+        "matchRate": null,
+        "iterationCount": 0,
+        "requirements": [],
+        "documents": {},
+        "timestamps": {
+          "started": "2026-02-20T01:56:34.319Z",
+          "lastUpdated": "2026-02-20T01:56:34.319Z"
+        },
+        "lastFile": "C:\\gerardo\\01 SmallSF\\Steel-MES\\src\\app\\api\\equipment\\logs\\route.ts"
+      },
+      "maintenance": {
+        "phase": "do",
+        "phaseNumber": 3,
+        "matchRate": null,
+        "iterationCount": 0,
+        "requirements": [],
+        "documents": {},
+        "timestamps": {
+          "started": "2026-02-20T01:56:44.018Z",
+          "lastUpdated": "2026-02-20T02:06:21.555Z"
+        },
+        "lastFile": "C:\\gerardo\\01 SmallSF\\Steel-MES\\src\\app\\(dashboard)\\equipment\\maintenance\\page.tsx"
+      },
+      "pm-due": {
+        "phase": "do",
+        "phaseNumber": 3,
+        "matchRate": null,
+        "iterationCount": 0,
+        "requirements": [],
+        "documents": {},
+        "timestamps": {
+          "started": "2026-02-20T01:56:50.022Z",
+          "lastUpdated": "2026-02-20T01:56:50.022Z"
+        },
+        "lastFile": "C:\\gerardo\\01 SmallSF\\Steel-MES\\src\\app\\api\\equipment\\pm-due\\route.ts"
+      },
+      "spc": {
+        "phase": "do",
+        "phaseNumber": 3,
+        "matchRate": null,
+        "iterationCount": 0,
+        "requirements": [],
+        "documents": {},
+        "timestamps": {
+          "started": "2026-02-20T01:58:34.289Z",
+          "lastUpdated": "2026-02-20T01:58:47.321Z"
+        },
+        "lastFile": "C:\\gerardo\\01 SmallSF\\Steel-MES\\src\\app\\(dashboard)\\quality\\spc\\SpcPageClient.tsx"
+      },
+      "start": {
+        "phase": "do",
+        "phaseNumber": 3,
+        "matchRate": null,
+        "iterationCount": 0,
+        "requirements": [],
+        "documents": {},
+        "timestamps": {
+          "started": "2026-02-20T01:59:22.178Z",
+          "lastUpdated": "2026-02-20T01:59:33.741Z"
+        },
+        "lastFile": "C:\\gerardo\\01 SmallSF\\Steel-MES\\src\\app\\(operator)\\operator\\[woId]\\start\\WorkStartClient.tsx"
+      },
+      "sop": {
+        "phase": "do",
+        "phaseNumber": 3,
+        "matchRate": null,
+        "iterationCount": 0,
+        "requirements": [],
+        "documents": {},
+        "timestamps": {
+          "started": "2026-02-20T01:59:46.210Z",
+          "lastUpdated": "2026-02-20T01:59:46.210Z"
+        },
+        "lastFile": "C:\\gerardo\\01 SmallSF\\Steel-MES\\src\\app\\(operator)\\operator\\[woId]\\sop\\page.tsx"
+      },
+      "defect": {
+        "phase": "do",
+        "phaseNumber": 3,
+        "matchRate": null,
+        "iterationCount": 0,
+        "requirements": [],
+        "documents": {},
+        "timestamps": {
+          "started": "2026-02-20T02:00:10.694Z",
+          "lastUpdated": "2026-02-20T02:00:10.694Z"
+        },
+        "lastFile": "C:\\gerardo\\01 SmallSF\\Steel-MES\\src\\app\\(operator)\\operator\\defect\\page.tsx"
+      },
+      "inventory": {
+        "phase": "do",
+        "phaseNumber": 3,
+        "matchRate": null,
+        "iterationCount": 0,
+        "requirements": [],
+        "documents": {},
+        "timestamps": {
+          "started": "2026-02-20T02:04:06.761Z",
+          "lastUpdated": "2026-02-20T02:07:05.481Z"
+        },
+        "lastFile": "C:\\gerardo\\01 SmallSF\\Steel-MES\\src\\app\\(dashboard)\\inventory\\page.tsx"
+      },
+      "movements": {
+        "phase": "do",
+        "phaseNumber": 3,
+        "matchRate": null,
+        "iterationCount": 0,
+        "requirements": [],
+        "documents": {},
+        "timestamps": {
+          "started": "2026-02-20T02:04:13.966Z",
+          "lastUpdated": "2026-02-20T02:07:15.189Z"
+        },
+        "lastFile": "C:\\gerardo\\01 SmallSF\\Steel-MES\\src\\app\\(dashboard)\\inventory\\movements\\page.tsx"
+      },
+      "alerts": {
+        "phase": "do",
+        "phaseNumber": 3,
+        "matchRate": null,
+        "iterationCount": 0,
+        "requirements": [],
+        "documents": {},
+        "timestamps": {
+          "started": "2026-02-20T02:04:18.255Z",
+          "lastUpdated": "2026-02-20T02:07:29.946Z"
+        },
+        "lastFile": "C:\\gerardo\\01 SmallSF\\Steel-MES\\src\\app\\(dashboard)\\inventory\\alerts\\page.tsx"
+      },
+      "trace": {
+        "phase": "do",
+        "phaseNumber": 3,
+        "matchRate": null,
+        "iterationCount": 0,
+        "requirements": [],
+        "documents": {},
+        "timestamps": {
+          "started": "2026-02-20T02:04:27.700Z",
+          "lastUpdated": "2026-02-20T02:04:27.700Z"
+        },
+        "lastFile": "C:\\gerardo\\01 SmallSF\\Steel-MES\\src\\app\\api\\lot\\[lot_no]\\trace\\route.ts"
+      },
+      "shipments": {
+        "phase": "do",
+        "phaseNumber": 3,
+        "matchRate": null,
+        "iterationCount": 0,
+        "requirements": [],
+        "documents": {},
+        "timestamps": {
+          "started": "2026-02-20T02:04:37.736Z",
+          "lastUpdated": "2026-02-20T02:09:53.668Z"
+        },
+        "lastFile": "C:/gerardo/01 SmallSF/Steel-MES/src/app/(dashboard)/shipments/page.tsx"
+      },
+      "delivery": {
+        "phase": "do",
+        "phaseNumber": 3,
+        "matchRate": null,
+        "iterationCount": 0,
+        "requirements": [],
+        "documents": {},
+        "timestamps": {
+          "started": "2026-02-20T02:04:59.160Z",
+          "lastUpdated": "2026-02-20T02:04:59.160Z"
+        },
+        "lastFile": "C:\\gerardo\\01 SmallSF\\Steel-MES\\src\\app\\api\\dashboard\\delivery\\route.ts"
+      },
+      "pm-schedule": {
+        "phase": "do",
+        "phaseNumber": 3,
+        "matchRate": null,
+        "iterationCount": 0,
+        "requirements": [],
+        "documents": {},
+        "timestamps": {
+          "started": "2026-02-20T02:06:37.907Z",
+          "lastUpdated": "2026-02-20T02:06:37.907Z"
+        },
+        "lastFile": "C:\\gerardo\\01 SmallSF\\Steel-MES\\src\\app\\(dashboard)\\equipment\\pm-schedule\\page.tsx"
+      },
+      "[lot_no]": {
+        "phase": "do",
+        "phaseNumber": 3,
+        "matchRate": null,
+        "iterationCount": 0,
+        "requirements": [],
+        "documents": {},
+        "timestamps": {
+          "started": "2026-02-20T02:07:50.540Z",
+          "lastUpdated": "2026-02-20T02:07:50.540Z"
+        },
+        "lastFile": "C:\\gerardo\\01 SmallSF\\Steel-MES\\src\\app\\(dashboard)\\inventory\\lot\\[lot_no]\\page.tsx"
+      },
+      "delivery-status": {
+        "phase": "do",
+        "phaseNumber": 3,
+        "matchRate": null,
+        "iterationCount": 0,
+        "requirements": [],
+        "documents": {},
+        "timestamps": {
+          "started": "2026-02-20T02:10:31.731Z",
+          "lastUpdated": "2026-02-20T02:10:31.731Z"
+        },
+        "lastFile": "C:/gerardo/01 SmallSF/Steel-MES/src/app/(dashboard)/shipments/delivery-status/page.tsx"
+      },
+      "defect-codes": {
+        "phase": "do",
+        "phaseNumber": 3,
+        "matchRate": null,
+        "iterationCount": 0,
+        "requirements": [],
+        "documents": {},
+        "timestamps": {
+          "started": "2026-02-20T02:11:43.657Z",
+          "lastUpdated": "2026-02-20T02:11:43.657Z"
+        },
+        "lastFile": "C:/gerardo/01 SmallSF/Steel-MES/src/app/(dashboard)/admin/defect-codes/page.tsx"
+      },
+      "api": {
+        "phase": "do",
+        "phaseNumber": 3,
+        "matchRate": null,
+        "iterationCount": 0,
+        "requirements": [],
+        "documents": {},
+        "timestamps": {
+          "started": "2026-02-20T04:31:45.806Z",
+          "lastUpdated": "2026-02-20T04:32:12.010Z"
+        },
+        "lastFile": "C:/gerardo/01 SmallSF/Steel-MES/src/lib/api/with-error-handler.ts"
+      },
+      "config": {
+        "phase": "do",
+        "phaseNumber": 3,
+        "matchRate": null,
+        "iterationCount": 0,
+        "requirements": [],
+        "documents": {},
+        "timestamps": {
+          "started": "2026-02-20T04:32:20.708Z",
+          "lastUpdated": "2026-02-20T04:32:20.708Z"
+        },
+        "lastFile": "C:/gerardo/01 SmallSF/Steel-MES/src/lib/config/env.ts"
+      },
+      "sequence.service.ts": {
+        "phase": "do",
+        "phaseNumber": 3,
+        "matchRate": null,
+        "iterationCount": 0,
+        "requirements": [],
+        "documents": {},
+        "timestamps": {
+          "started": "2026-02-20T04:32:43.156Z",
+          "lastUpdated": "2026-02-20T04:32:43.156Z"
+        },
+        "lastFile": "C:/gerardo/01 SmallSF/Steel-MES/src/lib/services/sequence.service.ts"
+      }
+    },
+    "pipeline": {
+      "currentPhase": 2,
+      "level": "Dynamic",
+      "phaseHistory": [
+        "plan",
+        "design"
+      ]
+    },
+    "session": {
+      "startedAt": "2026-02-20T00:06:31.571Z",
+      "onboardingCompleted": true,
+      "lastActivity": "2026-02-20T04:36:35.220Z"
+    },
+    "history": [
+      {
+        "action": "plan_created",
+        "feature": "automotive-parts-mes",
+        "timestamp": "2026-02-20T09:00:00.000Z"
+      },
+      {
+        "action": "design_created",
+        "feature": "automotive-parts-mes",
+        "timestamp": "2026-02-20T09:30:00.000Z"
+      },
+      {
+        "timestamp": "2026-02-20T00:47:03.630Z",
+        "feature": "prisma",
+        "phase": "do",
+        "action": "updated"
+      },
+      {
+        "timestamp": "2026-02-20T00:47:09.699Z",
+        "feature": "Steel-MES",
+        "phase": "do",
+        "action": "updated"
+      },
+      {
+        "timestamp": "2026-02-20T00:47:19.595Z",
+        "feature": "Steel-MES",
+        "phase": "do",
+        "action": "updated"
+      },
+      {
+        "timestamp": "2026-02-20T00:47:28.951Z",
+        "feature": "Steel-MES",
+        "phase": "do",
+        "action": "updated"
+      },
+      {
+        "timestamp": "2026-02-20T00:47:38.703Z",
+        "feature": "Steel-MES",
+        "phase": "do",
+        "action": "updated"
+      },
+      {
+        "timestamp": "2026-02-20T00:47:56.999Z",
+        "feature": "work-orders",
+        "phase": "do",
+        "action": "updated"
+      },
+      {
+        "timestamp": "2026-02-20T00:48:04.399Z",
+        "feature": "status",
+        "phase": "do",
+        "action": "updated"
+      },
+      {
+        "timestamp": "2026-02-20T00:48:17.507Z",
+        "feature": "production-logs",
+        "phase": "do",
+        "action": "updated"
+      },
+      {
+        "timestamp": "2026-02-20T00:48:26.647Z",
+        "feature": "production",
+        "phase": "do",
+        "action": "updated"
+      },
+      {
+        "timestamp": "2026-02-20T00:48:36.761Z",
+        "feature": "production",
+        "phase": "do",
+        "action": "updated"
+      },
+      {
+        "timestamp": "2026-02-20T00:48:47.894Z",
+        "feature": "inspections",
+        "phase": "do",
+        "action": "updated"
+      },
+      {
+        "timestamp": "2026-02-20T00:48:55.698Z",
+        "feature": "equipment",
+        "phase": "do",
+        "action": "updated"
+      },
+      {
+        "timestamp": "2026-02-20T00:49:04.431Z",
+        "feature": "oee",
+        "phase": "do",
+        "action": "updated"
+      },
+      {
+        "timestamp": "2026-02-20T00:49:16.753Z",
+        "feature": "login",
+        "phase": "do",
+        "action": "updated"
+      },
+      {
+        "timestamp": "2026-02-20T00:49:22.477Z",
+        "feature": "Steel-MES",
+        "phase": "do",
+        "action": "updated"
+      },
+      {
+        "timestamp": "2026-02-20T00:49:37.574Z",
+        "feature": "(dashboard)",
+        "phase": "do",
+        "action": "updated"
+      },
+      {
+        "timestamp": "2026-02-20T00:50:08.142Z",
+        "feature": "dashboard",
+        "phase": "do",
+        "action": "updated"
+      },
+      {
+        "timestamp": "2026-02-20T00:50:25.141Z",
+        "feature": "work-orders",
+        "phase": "do",
+        "action": "updated"
+      },
+      {
+        "timestamp": "2026-02-20T00:50:32.987Z",
+        "feature": "(operator)",
+        "phase": "do",
+        "action": "updated"
+      },
+      {
+        "timestamp": "2026-02-20T00:50:47.498Z",
+        "feature": "operator",
+        "phase": "do",
+        "action": "updated"
+      },
+      {
+        "timestamp": "2026-02-20T00:51:09.518Z",
+        "feature": "input",
+        "phase": "do",
+        "action": "updated"
+      },
+      {
+        "timestamp": "2026-02-20T00:51:21.056Z",
+        "feature": "equipment",
+        "phase": "do",
+        "action": "updated"
+      },
+      {
+        "timestamp": "2026-02-20T00:51:36.117Z",
+        "feature": "inspections",
+        "phase": "do",
+        "action": "updated"
+      },
+      {
+        "timestamp": "2026-02-20T00:51:55.768Z",
+        "feature": "monitor",
+        "phase": "do",
+        "action": "updated"
+      },
+      {
+        "timestamp": "2026-02-20T00:52:09.792Z",
+        "feature": "users",
+        "phase": "do",
+        "action": "updated"
+      },
+      {
+        "timestamp": "2026-02-20T00:52:16.220Z",
+        "feature": "Steel-MES",
+        "phase": "do",
+        "action": "updated"
+      },
+      {
+        "timestamp": "2026-02-20T01:38:05.935Z",
+        "feature": "ui",
+        "phase": "do",
+        "action": "updated"
+      },
+      {
+        "timestamp": "2026-02-20T01:38:12.797Z",
+        "feature": "ui",
+        "phase": "do",
+        "action": "updated"
+      },
+      {
+        "timestamp": "2026-02-20T01:38:21.546Z",
+        "feature": "ui",
+        "phase": "do",
+        "action": "updated"
+      },
+      {
+        "timestamp": "2026-02-20T01:38:37.514Z",
+        "feature": "ui",
+        "phase": "do",
+        "action": "updated"
+      },
+      {
+        "timestamp": "2026-02-20T01:38:48.998Z",
+        "feature": "products",
+        "phase": "do",
+        "action": "updated"
+      },
+      {
+        "timestamp": "2026-02-20T01:38:56.931Z",
+        "feature": "[id]",
+        "phase": "do",
+        "action": "updated"
+      },
+      {
+        "timestamp": "2026-02-20T01:39:04.992Z",
+        "feature": "processes",
+        "phase": "do",
+        "action": "updated"
+      },
+      {
+        "timestamp": "2026-02-20T01:39:12.277Z",
+        "feature": "customers",
+        "phase": "do",
+        "action": "updated"
+      },
+      {
+        "timestamp": "2026-02-20T01:39:19.414Z",
+        "feature": "materials",
+        "phase": "do",
+        "action": "updated"
+      },
+      {
+        "timestamp": "2026-02-20T01:39:30.785Z",
+        "feature": "equipment",
+        "phase": "do",
+        "action": "updated"
+      },
+      {
+        "timestamp": "2026-02-20T01:39:38.227Z",
+        "feature": "[id]",
+        "phase": "do",
+        "action": "updated"
+      },
+      {
+        "timestamp": "2026-02-20T01:40:06.799Z",
+        "feature": "work-orders",
+        "phase": "do",
+        "action": "updated"
+      },
+      {
+        "timestamp": "2026-02-20T01:45:18.037Z",
+        "feature": "charts",
+        "phase": "do",
+        "action": "updated"
+      },
+      {
+        "timestamp": "2026-02-20T01:49:37.771Z",
+        "feature": "operator",
+        "phase": "do",
+        "action": "updated"
+      },
+      {
+        "timestamp": "2026-02-20T01:49:52.314Z",
+        "feature": "operator",
+        "phase": "do",
+        "action": "updated"
+      },
+      {
+        "timestamp": "2026-02-20T01:50:15.241Z",
+        "feature": "operator",
+        "phase": "do",
+        "action": "updated"
+      },
+      {
+        "timestamp": "2026-02-20T01:50:56.407Z",
+        "feature": "[id]",
+        "phase": "do",
+        "action": "updated"
+      },
+      {
+        "timestamp": "2026-02-20T01:51:09.357Z",
+        "feature": "[id]",
+        "phase": "do",
+        "action": "updated"
+      },
+      {
+        "timestamp": "2026-02-20T01:51:24.986Z",
+        "feature": "production",
+        "phase": "do",
+        "action": "updated"
+      },
+      {
+        "timestamp": "2026-02-20T01:51:44.939Z",
+        "feature": "reports",
+        "phase": "do",
+        "action": "updated"
+      },
+      {
+        "timestamp": "2026-02-20T01:52:02.697Z",
+        "feature": "reports",
+        "phase": "do",
+        "action": "updated"
+      },
+      {
+        "timestamp": "2026-02-20T01:52:12.664Z",
+        "feature": "input",
+        "phase": "do",
+        "action": "updated"
+      },
+      {
+        "timestamp": "2026-02-20T01:55:36.385Z",
+        "feature": "defects",
+        "phase": "do",
+        "action": "updated"
+      },
+      {
+        "timestamp": "2026-02-20T01:55:43.265Z",
+        "feature": "measurements",
+        "phase": "do",
+        "action": "updated"
+      },
+      {
+        "timestamp": "2026-02-20T01:55:55.632Z",
+        "feature": "chart",
+        "phase": "do",
+        "action": "updated"
+      },
+      {
+        "timestamp": "2026-02-20T01:56:08.800Z",
+        "feature": "ncr",
+        "phase": "do",
+        "action": "updated"
+      },
+      {
+        "timestamp": "2026-02-20T01:56:12.580Z",
+        "feature": "[id]",
+        "phase": "do",
+        "action": "updated"
+      },
+      {
+        "timestamp": "2026-02-20T01:56:23.608Z",
+        "feature": "quality",
+        "phase": "do",
+        "action": "updated"
+      },
+      {
+        "timestamp": "2026-02-20T01:56:34.319Z",
+        "feature": "logs",
+        "phase": "do",
+        "action": "updated"
+      },
+      {
+        "timestamp": "2026-02-20T01:56:44.018Z",
+        "feature": "maintenance",
+        "phase": "do",
+        "action": "updated"
+      },
+      {
+        "timestamp": "2026-02-20T01:56:50.022Z",
+        "feature": "pm-due",
+        "phase": "do",
+        "action": "updated"
+      },
+      {
+        "timestamp": "2026-02-20T01:57:12.711Z",
+        "feature": "charts",
+        "phase": "do",
+        "action": "updated"
+      },
+      {
+        "timestamp": "2026-02-20T01:57:23.314Z",
+        "feature": "charts",
+        "phase": "do",
+        "action": "updated"
+      },
+      {
+        "timestamp": "2026-02-20T01:57:40.764Z",
+        "feature": "operator",
+        "phase": "do",
+        "action": "updated"
+      },
+      {
+        "timestamp": "2026-02-20T01:58:06.214Z",
+        "feature": "defects",
+        "phase": "do",
+        "action": "updated"
+      },
+      {
+        "timestamp": "2026-02-20T01:58:19.820Z",
+        "feature": "ncr",
+        "phase": "do",
+        "action": "updated"
+      },
+      {
+        "timestamp": "2026-02-20T01:58:29.476Z",
+        "feature": "ncr",
+        "phase": "do",
+        "action": "updated"
+      },
+      {
+        "timestamp": "2026-02-20T01:58:34.289Z",
+        "feature": "spc",
+        "phase": "do",
+        "action": "updated"
+      },
+      {
+        "timestamp": "2026-02-20T01:58:47.321Z",
+        "feature": "spc",
+        "phase": "do",
+        "action": "updated"
+      },
+      {
+        "timestamp": "2026-02-20T01:59:10.128Z",
+        "feature": "reports",
+        "phase": "do",
+        "action": "updated"
+      },
+      {
+        "timestamp": "2026-02-20T01:59:22.178Z",
+        "feature": "start",
+        "phase": "do",
+        "action": "updated"
+      },
+      {
+        "timestamp": "2026-02-20T01:59:33.741Z",
+        "feature": "start",
+        "phase": "do",
+        "action": "updated"
+      },
+      {
+        "timestamp": "2026-02-20T01:59:46.210Z",
+        "feature": "sop",
+        "phase": "do",
+        "action": "updated"
+      },
+      {
+        "timestamp": "2026-02-20T02:00:10.694Z",
+        "feature": "defect",
+        "phase": "do",
+        "action": "updated"
+      },
+      {
+        "timestamp": "2026-02-20T02:03:58.700Z",
+        "feature": "status",
+        "phase": "do",
+        "action": "updated"
+      },
+      {
+        "timestamp": "2026-02-20T02:04:06.761Z",
+        "feature": "inventory",
+        "phase": "do",
+        "action": "updated"
+      },
+      {
+        "timestamp": "2026-02-20T02:04:13.966Z",
+        "feature": "movements",
+        "phase": "do",
+        "action": "updated"
+      },
+      {
+        "timestamp": "2026-02-20T02:04:18.255Z",
+        "feature": "alerts",
+        "phase": "do",
+        "action": "updated"
+      },
+      {
+        "timestamp": "2026-02-20T02:04:27.701Z",
+        "feature": "trace",
+        "phase": "do",
+        "action": "updated"
+      },
+      {
+        "timestamp": "2026-02-20T02:04:37.736Z",
+        "feature": "shipments",
+        "phase": "do",
+        "action": "updated"
+      },
+      {
+        "timestamp": "2026-02-20T02:04:40.947Z",
+        "feature": "status",
+        "phase": "do",
+        "action": "updated"
+      },
+      {
+        "timestamp": "2026-02-20T02:04:59.160Z",
+        "feature": "delivery",
+        "phase": "do",
+        "action": "updated"
+      },
+      {
+        "timestamp": "2026-02-20T02:05:07.807Z",
+        "feature": "alerts",
+        "phase": "do",
+        "action": "updated"
+      },
+      {
+        "timestamp": "2026-02-20T02:05:46.208Z",
+        "feature": "[id]",
+        "phase": "do",
+        "action": "updated"
+      },
+      {
+        "timestamp": "2026-02-20T02:05:58.873Z",
+        "feature": "[id]",
+        "phase": "do",
+        "action": "updated"
+      },
+      {
+        "timestamp": "2026-02-20T02:06:03.746Z",
+        "feature": "[id]",
+        "phase": "do",
+        "action": "updated"
+      },
+      {
+        "timestamp": "2026-02-20T02:06:21.555Z",
+        "feature": "maintenance",
+        "phase": "do",
+        "action": "updated"
+      },
+      {
+        "timestamp": "2026-02-20T02:06:37.907Z",
+        "feature": "pm-schedule",
+        "phase": "do",
+        "action": "updated"
+      },
+      {
+        "timestamp": "2026-02-20T02:07:05.481Z",
+        "feature": "inventory",
+        "phase": "do",
+        "action": "updated"
+      },
+      {
+        "timestamp": "2026-02-20T02:07:15.189Z",
+        "feature": "movements",
+        "phase": "do",
+        "action": "updated"
+      },
+      {
+        "timestamp": "2026-02-20T02:07:29.946Z",
+        "feature": "alerts",
+        "phase": "do",
+        "action": "updated"
+      },
+      {
+        "timestamp": "2026-02-20T02:07:50.540Z",
+        "feature": "[lot_no]",
+        "phase": "do",
+        "action": "updated"
+      },
+      {
+        "timestamp": "2026-02-20T02:09:53.668Z",
+        "feature": "shipments",
+        "phase": "do",
+        "action": "updated"
+      },
+      {
+        "timestamp": "2026-02-20T02:10:31.731Z",
+        "feature": "delivery-status",
+        "phase": "do",
+        "action": "updated"
+      },
+      {
+        "timestamp": "2026-02-20T02:10:43.156Z",
+        "feature": "products",
+        "phase": "do",
+        "action": "updated"
+      },
+      {
+        "timestamp": "2026-02-20T02:10:53.056Z",
+        "feature": "processes",
+        "phase": "do",
+        "action": "updated"
+      },
+      {
+        "timestamp": "2026-02-20T02:11:04.286Z",
+        "feature": "equipment",
+        "phase": "do",
+        "action": "updated"
+      },
+      {
+        "timestamp": "2026-02-20T02:11:14.796Z",
+        "feature": "customers",
+        "phase": "do",
+        "action": "updated"
+      },
+      {
+        "timestamp": "2026-02-20T02:11:26.489Z",
+        "feature": "materials",
+        "phase": "do",
+        "action": "updated"
+      },
+      {
+        "timestamp": "2026-02-20T02:11:43.657Z",
+        "feature": "defect-codes",
+        "phase": "do",
+        "action": "updated"
+      },
+      {
+        "timestamp": "2026-02-20T02:20:09.730Z",
+        "feature": "automotive-parts-mes",
+        "phase": "report",
+        "action": "updated"
+      },
+      {
+        "timestamp": "2026-02-20T04:31:45.806Z",
+        "feature": "api",
+        "phase": "do",
+        "action": "updated"
+      },
+      {
+        "timestamp": "2026-02-20T04:31:58.079Z",
+        "feature": "api",
+        "phase": "do",
+        "action": "updated"
+      },
+      {
+        "timestamp": "2026-02-20T04:32:12.010Z",
+        "feature": "api",
+        "phase": "do",
+        "action": "updated"
+      },
+      {
+        "timestamp": "2026-02-20T04:32:20.708Z",
+        "feature": "config",
+        "phase": "do",
+        "action": "updated"
+      },
+      {
+        "timestamp": "2026-02-20T04:32:43.156Z",
+        "feature": "sequence.service.ts",
+        "phase": "do",
+        "action": "updated"
+      },
+      {
+        "timestamp": "2026-02-20T04:33:18.505Z",
+        "feature": "work-orders",
+        "phase": "do",
+        "action": "updated"
+      },
+      {
+        "timestamp": "2026-02-20T04:33:35.038Z",
+        "feature": "status",
+        "phase": "do",
+        "action": "updated"
+      },
+      {
+        "timestamp": "2026-02-20T04:33:53.863Z",
+        "feature": "ncr",
+        "phase": "do",
+        "action": "updated"
+      },
+      {
+        "timestamp": "2026-02-20T04:34:09.993Z",
+        "feature": "Steel-MES",
+        "phase": "do",
+        "action": "updated"
+      },
+      {
+        "timestamp": "2026-02-20T04:34:42.559Z",
+        "feature": "dashboard",
+        "phase": "do",
+        "action": "updated"
+      },
+      {
+        "timestamp": "2026-02-20T04:35:09.598Z",
+        "feature": "Steel-MES",
+        "phase": "do",
+        "action": "updated"
+      },
+      {
+        "timestamp": "2026-02-20T04:35:23.670Z",
+        "feature": "Steel-MES",
+        "phase": "do",
+        "action": "updated"
+      },
+      {
+        "timestamp": "2026-02-20T04:35:30.268Z",
+        "feature": "ui",
+        "phase": "do",
+        "action": "updated"
+      },
+      {
+        "timestamp": "2026-02-20T04:35:46.982Z",
+        "feature": "charts",
+        "phase": "do",
+        "action": "updated"
+      },
+      {
+        "timestamp": "2026-02-20T04:36:10.950Z",
+        "feature": "operator",
+        "phase": "do",
+        "action": "updated"
+      },
+      {
+        "timestamp": "2026-02-20T04:36:35.220Z",
+        "feature": "operator",
+        "phase": "do",
+        "action": "updated"
+      }
+    ]
+  }
+}

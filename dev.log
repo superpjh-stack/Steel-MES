@@ -1,0 +1,1136 @@
+
+> automotive-parts-mes@0.1.0 dev
+> next dev
+
+  ▲ Next.js 14.2.0
+  - Local:        http://localhost:3000
+  - Environments: .env.local, .env
+
+ ✓ Starting...
+ ✓ Ready in 5.3s
+ ○ Compiling /src/middleware ...
+ ✓ Compiled /src/middleware in 505ms (218 modules)
+ ○ Compiling /dashboard ...
+ ✓ Compiled /dashboard in 8.2s (778 modules)
+ ✓ Compiled in 1018ms (297 modules)
+prisma:query SELECT `main`.`work_orders`.`id`, `main`.`work_orders`.`wo_no`, `main`.`work_orders`.`product_id`, `main`.`work_orders`.`customer_id`, `main`.`work_orders`.`planned_qty`, `main`.`work_orders`.`produced_qty`, `main`.`work_orders`.`defect_qty`, `main`.`work_orders`.`status`, `main`.`work_orders`.`planned_start`, `main`.`work_orders`.`planned_end`, `main`.`work_orders`.`actual_start`, `main`.`work_orders`.`actual_end`, `main`.`work_orders`.`due_date`, `main`.`work_orders`.`priority`, `main`.`work_orders`.`notes`, `main`.`work_orders`.`created_by`, `main`.`work_orders`.`created_at`, `main`.`work_orders`.`updated_at` FROM `main`.`work_orders` WHERE `main`.`work_orders`.`status` = ? ORDER BY `main`.`work_orders`.`priority` ASC LIMIT ? OFFSET ?
+prisma:query SELECT SUM(`good_qty`), SUM(`defect_qty`), SUM(`planned_qty`) FROM (SELECT `main`.`production_logs`.`good_qty`, `main`.`production_logs`.`defect_qty`, `main`.`production_logs`.`planned_qty` FROM `main`.`production_logs` WHERE (`main`.`production_logs`.`created_at` >= ? AND `main`.`production_logs`.`created_at` <= ?) LIMIT ? OFFSET ?) AS `sub`
+prisma:query SELECT `main`.`equipment`.`id`, `main`.`equipment`.`code`, `main`.`equipment`.`name`, `main`.`equipment`.`last_pm_date`, `main`.`equipment`.`pm_cycle_days` FROM `main`.`equipment` WHERE (`main`.`equipment`.`pm_cycle_days` IS NOT NULL AND `main`.`equipment`.`last_pm_date` < ?) ORDER BY `main`.`equipment`.`id` ASC LIMIT ? OFFSET ?
+prisma:query SELECT COUNT(`main`.`equipment`.`status`), `main`.`equipment`.`status` FROM `main`.`equipment` WHERE 1=1 GROUP BY `main`.`equipment`.`status` LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`nonconformance_reports`.`id`, `main`.`nonconformance_reports`.`ncr_no`, `main`.`nonconformance_reports`.`disposition`, `main`.`nonconformance_reports`.`status` FROM `main`.`nonconformance_reports` WHERE `main`.`nonconformance_reports`.`status` IN (?,?) ORDER BY `main`.`nonconformance_reports`.`created_at` DESC LIMIT ? OFFSET ?
+ GET /dashboard 200 in 9508ms
+ GET /dashboard 200 in 9475ms
+ ○ Compiling /api/auth/[...nextauth] ...
+ ✓ Compiled /api/auth/[...nextauth] in 3.2s (476 modules)
+ GET /api/auth/session 200 in 4507ms
+ GET /api/auth/session 200 in 68ms
+ GET /api/auth/session 200 in 42ms
+ GET /api/auth/session 200 in 40ms
+ GET /api/auth/session 200 in 44ms
+ GET /api/auth/session 200 in 38ms
+ GET /api/auth/session 200 in 69ms
+ GET /api/auth/session 200 in 46ms
+ GET /api/auth/session 200 in 48ms
+ ○ Compiling /sales-orders ...
+ ✓ Compiled /sales-orders in 595ms (777 modules)
+ ✓ Compiled /api/products in 503ms (534 modules)
+ ✓ Compiled (538 modules)
+prisma:query SELECT 1
+prisma:query SELECT `main`.`customers`.`id`, `main`.`customers`.`code`, `main`.`customers`.`name`, `main`.`customers`.`contact`, `main`.`customers`.`otd_target`, `main`.`customers`.`created_at` FROM `main`.`customers` WHERE 1=1 ORDER BY `main`.`customers`.`code` ASC LIMIT ? OFFSET ?
+prisma:query SELECT 1
+ GET /api/customers?limit=200 200 in 930ms
+ GET /api/customers?limit=200 200 in 882ms
+prisma:query SELECT `main`.`products`.`id`, `main`.`products`.`code`, `main`.`products`.`name`, `main`.`products`.`category`, `main`.`products`.`unit`, `main`.`products`.`customer_id`, `main`.`products`.`drawing_no`, `main`.`products`.`std_cycle_sec`, `main`.`products`.`created_at`, `main`.`products`.`updated_at` FROM `main`.`products` WHERE 1=1 ORDER BY `main`.`products`.`code` ASC LIMIT ? OFFSET ?
+prisma:query SELECT COUNT(*) FROM (SELECT `main`.`products`.`id` FROM `main`.`products` WHERE 1=1 LIMIT ? OFFSET ?) AS `sub`
+prisma:query SELECT `main`.`customers`.`id`, `main`.`customers`.`name`, `main`.`customers`.`code` FROM `main`.`customers` WHERE `main`.`customers`.`id` IN (?,?,?,?,?) LIMIT ? OFFSET ?
+ GET /api/products?limit=200 200 in 936ms
+ GET /api/products?limit=200 200 in 887ms
+prisma:query SELECT COUNT(*) FROM (SELECT `main`.`sales_orders`.`id` FROM `main`.`sales_orders` WHERE 1=1 LIMIT ? OFFSET ?) AS `sub`
+prisma:query SELECT `main`.`sales_orders`.`id`, `main`.`sales_orders`.`so_no`, `main`.`sales_orders`.`customer_id`, `main`.`sales_orders`.`product_id`, `main`.`sales_orders`.`ordered_qty`, `main`.`sales_orders`.`due_date`, `main`.`sales_orders`.`status`, `main`.`sales_orders`.`notes`, `main`.`sales_orders`.`created_by`, `main`.`sales_orders`.`created_at`, `main`.`sales_orders`.`updated_at` FROM `main`.`sales_orders` WHERE 1=1 ORDER BY `main`.`sales_orders`.`created_at` DESC LIMIT ? OFFSET ?
+ GET /api/sales-orders?page=1&limit=20 200 in 943ms
+ GET /api/sales-orders?page=1&limit=20 200 in 895ms
+prisma:query SELECT `main`.`customers`.`id`, `main`.`customers`.`code`, `main`.`customers`.`name`, `main`.`customers`.`contact`, `main`.`customers`.`otd_target`, `main`.`customers`.`created_at` FROM `main`.`customers` WHERE 1=1 ORDER BY `main`.`customers`.`code` ASC LIMIT ? OFFSET ?
+ GET /api/customers?limit=200 200 in 129ms
+ GET /api/customers?limit=200 200 in 91ms
+prisma:query SELECT COUNT(*) FROM (SELECT `main`.`products`.`id` FROM `main`.`products` WHERE 1=1 LIMIT ? OFFSET ?) AS `sub`
+prisma:query SELECT `main`.`products`.`id`, `main`.`products`.`code`, `main`.`products`.`name`, `main`.`products`.`category`, `main`.`products`.`unit`, `main`.`products`.`customer_id`, `main`.`products`.`drawing_no`, `main`.`products`.`std_cycle_sec`, `main`.`products`.`created_at`, `main`.`products`.`updated_at` FROM `main`.`products` WHERE 1=1 ORDER BY `main`.`products`.`code` ASC LIMIT ? OFFSET ?
+prisma:query SELECT 1
+prisma:query SELECT COUNT(*) FROM (SELECT `main`.`sales_orders`.`id` FROM `main`.`sales_orders` WHERE 1=1 LIMIT ? OFFSET ?) AS `sub`
+prisma:query SELECT `main`.`customers`.`id`, `main`.`customers`.`name`, `main`.`customers`.`code` FROM `main`.`customers` WHERE `main`.`customers`.`id` IN (?,?,?,?,?) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`sales_orders`.`id`, `main`.`sales_orders`.`so_no`, `main`.`sales_orders`.`customer_id`, `main`.`sales_orders`.`product_id`, `main`.`sales_orders`.`ordered_qty`, `main`.`sales_orders`.`due_date`, `main`.`sales_orders`.`status`, `main`.`sales_orders`.`notes`, `main`.`sales_orders`.`created_by`, `main`.`sales_orders`.`created_at`, `main`.`sales_orders`.`updated_at` FROM `main`.`sales_orders` WHERE 1=1 ORDER BY `main`.`sales_orders`.`created_at` DESC LIMIT ? OFFSET ?
+ GET /api/products?limit=200 200 in 139ms
+ GET /api/products?limit=200 200 in 100ms
+ GET /api/sales-orders?page=1&limit=20 200 in 140ms
+ GET /api/sales-orders?page=1&limit=20 200 in 101ms
+ ✓ Compiled /production/work-orders in 480ms (831 modules)
+prisma:query SELECT `main`.`work_orders`.`id`, `main`.`work_orders`.`wo_no`, `main`.`work_orders`.`product_id`, `main`.`work_orders`.`customer_id`, `main`.`work_orders`.`planned_qty`, `main`.`work_orders`.`produced_qty`, `main`.`work_orders`.`defect_qty`, `main`.`work_orders`.`status`, `main`.`work_orders`.`planned_start`, `main`.`work_orders`.`planned_end`, `main`.`work_orders`.`actual_start`, `main`.`work_orders`.`actual_end`, `main`.`work_orders`.`due_date`, `main`.`work_orders`.`priority`, `main`.`work_orders`.`notes`, `main`.`work_orders`.`created_by`, `main`.`work_orders`.`created_at`, `main`.`work_orders`.`updated_at` FROM `main`.`work_orders` WHERE 1=1 ORDER BY `main`.`work_orders`.`priority` ASC, `main`.`work_orders`.`due_date` ASC LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`products`.`id`, `main`.`products`.`name`, `main`.`products`.`code` FROM `main`.`products` WHERE `main`.`products`.`id` IN (?) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`customers`.`id`, `main`.`customers`.`name` FROM `main`.`customers` WHERE `main`.`customers`.`id` IN (?) LIMIT ? OFFSET ?
+ GET /production/work-orders?_rsc=6nwg7 200 in 113ms
+ GET /production/work-orders?_rsc=6nwg7 200 in 92ms
+ ✓ Compiled /quality/ncr in 402ms (838 modules)
+prisma:query SELECT `main`.`nonconformance_reports`.`id`, `main`.`nonconformance_reports`.`ncr_no`, `main`.`nonconformance_reports`.`inspection_id`, `main`.`nonconformance_reports`.`disposition`, `main`.`nonconformance_reports`.`approver_id`, `main`.`nonconformance_reports`.`approved_at`, `main`.`nonconformance_reports`.`status`, `main`.`nonconformance_reports`.`created_at` FROM `main`.`nonconformance_reports` WHERE 1=1 ORDER BY `main`.`nonconformance_reports`.`created_at` DESC LIMIT ? OFFSET ?
+ GET /quality/ncr?_rsc=l7oj2 200 in 97ms
+ GET /quality/ncr?_rsc=l7oj2 200 in 74ms
+ ○ Compiling /quality/spc ...
+ ✓ Compiled /quality/spc in 3.5s (1907 modules)
+prisma:query SELECT 1
+prisma:query SELECT 1
+prisma:query SELECT `main`.`spc_measurements`.`id`, `main`.`spc_measurements`.`characteristic` FROM `main`.`spc_measurements` WHERE 1=1 ORDER BY `main`.`spc_measurements`.`characteristic` ASC LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`work_orders`.`id`, `main`.`work_orders`.`wo_no`, `main`.`work_orders`.`product_id` FROM `main`.`work_orders` WHERE `main`.`work_orders`.`status` IN (?,?) ORDER BY `main`.`work_orders`.`created_at` DESC LIMIT ? OFFSET ?
+ GET /quality/spc?_rsc=1ir04 200 in 92ms
+ GET /quality/spc?_rsc=1ir04 200 in 71ms
+ ✓ Compiled /quality/reports in 431ms (1915 modules)
+prisma:query SELECT 1
+prisma:query SELECT 1
+prisma:query SELECT COUNT(`main`.`inspection_records`.`id`), SUM(`main`.`inspection_records`.`sample_qty`), SUM(`main`.`inspection_records`.`pass_qty`), SUM(`main`.`inspection_records`.`fail_qty`), `main`.`inspection_records`.`result` FROM `main`.`inspection_records` WHERE (`main`.`inspection_records`.`inspection_date` >= ? AND `main`.`inspection_records`.`inspection_date` <= ?) GROUP BY `main`.`inspection_records`.`result` LIMIT ? OFFSET ?
+prisma:query SELECT COUNT(`id`), SUM(`qty`) FROM (SELECT `main`.`defect_logs`.`id`, `main`.`defect_logs`.`qty` FROM `main`.`defect_logs` WHERE (`main`.`defect_logs`.`created_at` >= ? AND `main`.`defect_logs`.`created_at` <= ?) LIMIT ? OFFSET ?) AS `sub`
+prisma:query SELECT SUM(`main`.`defect_logs`.`qty`), `main`.`defect_logs`.`defect_code`, `main`.`defect_logs`.`defect_name` FROM `main`.`defect_logs` WHERE (`main`.`defect_logs`.`created_at` >= ? AND `main`.`defect_logs`.`created_at` <= ?) GROUP BY `main`.`defect_logs`.`defect_code`, `main`.`defect_logs`.`defect_name` ORDER BY SUM(`main`.`defect_logs`.`qty`) DESC LIMIT ? OFFSET ?
+prisma:query SELECT COUNT(`main`.`nonconformance_reports`.`id`), `main`.`nonconformance_reports`.`status` FROM `main`.`nonconformance_reports` WHERE 1=1 GROUP BY `main`.`nonconformance_reports`.`status` LIMIT ? OFFSET ?
+ GET /quality/reports?_rsc=6wdet 200 in 112ms
+ GET /quality/reports?_rsc=6wdet 200 in 95ms
+ ✓ Compiled /quality/defects in 462ms (1917 modules)
+ ✓ Compiled /quality/inspections in 486ms (1919 modules)
+prisma:query SELECT `main`.`inspection_records`.`id`, `main`.`inspection_records`.`type`, `main`.`inspection_records`.`work_order_id`, `main`.`inspection_records`.`lot_no`, `main`.`inspection_records`.`process_id`, `main`.`inspection_records`.`inspector_id`, `main`.`inspection_records`.`sample_qty`, `main`.`inspection_records`.`pass_qty`, `main`.`inspection_records`.`fail_qty`, `main`.`inspection_records`.`result`, `main`.`inspection_records`.`inspection_date`, `main`.`inspection_records`.`notes`, `main`.`inspection_records`.`created_at` FROM `main`.`inspection_records` WHERE 1=1 ORDER BY `main`.`inspection_records`.`created_at` DESC LIMIT ? OFFSET ?
+ ✓ Compiled /equipment/maintenance in 453ms (1921 modules)
+prisma:query SELECT `main`.`maintenance_records`.`id`, `main`.`maintenance_records`.`equipment_id`, `main`.`maintenance_records`.`type`, `main`.`maintenance_records`.`description`, `main`.`maintenance_records`.`technician_id`, `main`.`maintenance_records`.`start_time`, `main`.`maintenance_records`.`end_time`, `main`.`maintenance_records`.`parts_used`, `main`.`maintenance_records`.`cost`, `main`.`maintenance_records`.`next_pm_date`, `main`.`maintenance_records`.`created_at` FROM `main`.`maintenance_records` WHERE 1=1 ORDER BY `main`.`maintenance_records`.`start_time` DESC LIMIT ? OFFSET ?
+ GET /equipment/maintenance?_rsc=1dxn2 200 in 88ms
+ GET /equipment/maintenance?_rsc=1dxn2 200 in 72ms
+ ✓ Compiled /equipment/pm-schedule in 476ms (1928 modules)
+prisma:query SELECT `main`.`equipment`.`id`, `main`.`equipment`.`code`, `main`.`equipment`.`name`, `main`.`equipment`.`type`, `main`.`equipment`.`location`, `main`.`equipment`.`manufacturer`, `main`.`equipment`.`install_date`, `main`.`equipment`.`pm_cycle_days`, `main`.`equipment`.`last_pm_date`, `main`.`equipment`.`status`, `main`.`equipment`.`created_at`, `main`.`equipment`.`updated_at` FROM `main`.`equipment` WHERE `main`.`equipment`.`pm_cycle_days` IS NOT NULL ORDER BY `main`.`equipment`.`code` ASC LIMIT ? OFFSET ?
+ GET /equipment/pm-schedule?_rsc=18fwu 200 in 102ms
+ GET /equipment/pm-schedule?_rsc=18fwu 200 in 86ms
+ GET /api/auth/session 200 in 64ms
+ GET /api/auth/session 200 in 44ms
+ GET /api/auth/session 200 in 38ms
+ ✓ Compiled in 1443ms (1852 modules)
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+prisma:query SELECT 1
+prisma:query SELECT `main`.`equipment`.`id`, `main`.`equipment`.`code`, `main`.`equipment`.`name`, `main`.`equipment`.`type`, `main`.`equipment`.`location`, `main`.`equipment`.`manufacturer`, `main`.`equipment`.`install_date`, `main`.`equipment`.`pm_cycle_days`, `main`.`equipment`.`last_pm_date`, `main`.`equipment`.`status`, `main`.`equipment`.`created_at`, `main`.`equipment`.`updated_at` FROM `main`.`equipment` WHERE `main`.`equipment`.`pm_cycle_days` IS NOT NULL ORDER BY `main`.`equipment`.`code` ASC LIMIT ? OFFSET ?
+ GET /equipment/pm-schedule?_rsc=n8laj 200 in 285ms
+ GET /equipment/pm-schedule?_rsc=n8laj 200 in 254ms
+prisma:query SELECT `main`.`equipment`.`id`, `main`.`equipment`.`code`, `main`.`equipment`.`name`, `main`.`equipment`.`type`, `main`.`equipment`.`location`, `main`.`equipment`.`manufacturer`, `main`.`equipment`.`install_date`, `main`.`equipment`.`pm_cycle_days`, `main`.`equipment`.`last_pm_date`, `main`.`equipment`.`status`, `main`.`equipment`.`created_at`, `main`.`equipment`.`updated_at` FROM `main`.`equipment` WHERE `main`.`equipment`.`pm_cycle_days` IS NOT NULL ORDER BY `main`.`equipment`.`code` ASC LIMIT ? OFFSET ?
+ GET /equipment/pm-schedule 200 in 371ms
+ GET /equipment/pm-schedule 200 in 329ms
+ ✓ Compiled /api/auth/[...nextauth] in 302ms (1014 modules)
+ GET /api/auth/session 200 in 543ms
+ GET /api/auth/session 200 in 53ms
+ GET /api/auth/session 200 in 50ms
+ GET /api/auth/session 200 in 46ms
+ GET /api/auth/session 200 in 48ms
+ GET /api/auth/session 200 in 45ms
+ GET /api/auth/session 200 in 74ms
+ GET /api/auth/session 200 in 55ms
+ GET /api/auth/session 200 in 59ms
+ GET /api/auth/session 200 in 53ms
+ GET /api/auth/session 200 in 53ms
+ GET /api/auth/session 200 in 62ms
+ GET /api/auth/session 200 in 75ms
+ GET /api/auth/session 200 in 62ms
+ GET /api/auth/session 200 in 57ms
+ GET /api/auth/session 200 in 44ms
+ GET /api/auth/session 200 in 52ms
+ GET /api/auth/session 200 in 69ms
+ GET /api/auth/session 200 in 81ms
+ GET /api/auth/session 200 in 52ms
+prisma:query SELECT 1
+prisma:query SELECT `main`.`equipment`.`id`, `main`.`equipment`.`code`, `main`.`equipment`.`name`, `main`.`equipment`.`type`, `main`.`equipment`.`location`, `main`.`equipment`.`manufacturer`, `main`.`equipment`.`install_date`, `main`.`equipment`.`pm_cycle_days`, `main`.`equipment`.`last_pm_date`, `main`.`equipment`.`status`, `main`.`equipment`.`created_at`, `main`.`equipment`.`updated_at` FROM `main`.`equipment` WHERE `main`.`equipment`.`pm_cycle_days` IS NOT NULL ORDER BY `main`.`equipment`.`code` ASC LIMIT ? OFFSET ?
+ GET /equipment/pm-schedule 200 in 256ms
+ GET /equipment/pm-schedule 200 in 235ms
+ GET /api/auth/session 200 in 85ms
+ GET /api/auth/session 200 in 58ms
+ GET /api/auth/session 200 in 56ms
+ GET /api/auth/session 200 in 54ms
+ ○ Compiling /master/customers ...
+ ✓ Compiled /master/customers in 1365ms (1854 modules)
+ ✓ Compiled /api/customers in 267ms (1033 modules)
+prisma:query SELECT `main`.`customers`.`id`, `main`.`customers`.`code`, `main`.`customers`.`name`, `main`.`customers`.`contact`, `main`.`customers`.`otd_target`, `main`.`customers`.`created_at` FROM `main`.`customers` WHERE 1=1 ORDER BY `main`.`customers`.`code` ASC LIMIT ? OFFSET ?
+ GET /api/customers 200 in 487ms
+ GET /api/customers 200 in 467ms
+prisma:query SELECT `main`.`customers`.`id`, `main`.`customers`.`code`, `main`.`customers`.`name`, `main`.`customers`.`contact`, `main`.`customers`.`otd_target`, `main`.`customers`.`created_at` FROM `main`.`customers` WHERE 1=1 ORDER BY `main`.`customers`.`code` ASC LIMIT ? OFFSET ?
+ GET /api/customers 200 in 76ms
+ GET /api/customers 200 in 59ms
+ ✓ Compiled in 1236ms (1875 modules)
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ GET /master/customers?_rsc=mb87s 200 in 181ms
+ GET /master/customers?_rsc=mb87s 200 in 151ms
+ GET /master/customers 200 in 281ms
+ GET /master/customers 200 in 236ms
+ GET /api/auth/session 200 in 108ms
+prisma:query SELECT 1
+prisma:query SELECT `main`.`customers`.`id`, `main`.`customers`.`code`, `main`.`customers`.`name`, `main`.`customers`.`contact`, `main`.`customers`.`otd_target`, `main`.`customers`.`created_at` FROM `main`.`customers` WHERE 1=1 ORDER BY `main`.`customers`.`code` ASC LIMIT ? OFFSET ?
+ GET /api/customers 200 in 191ms
+ GET /api/customers 200 in 144ms
+ GET /api/auth/session 200 in 97ms
+prisma:query SELECT `main`.`customers`.`id`, `main`.`customers`.`code`, `main`.`customers`.`name`, `main`.`customers`.`contact`, `main`.`customers`.`otd_target`, `main`.`customers`.`created_at` FROM `main`.`customers` WHERE 1=1 ORDER BY `main`.`customers`.`code` ASC LIMIT ? OFFSET ?
+ GET /api/customers 200 in 122ms
+ GET /api/customers 200 in 92ms
+ GET /api/auth/session 200 in 82ms
+ GET /api/auth/session 200 in 48ms
+ ○ Compiling /equipment ...
+ ✓ Compiled /equipment in 572ms (1863 modules)
+prisma:query SELECT `main`.`equipment`.`id`, `main`.`equipment`.`code`, `main`.`equipment`.`name`, `main`.`equipment`.`type`, `main`.`equipment`.`location`, `main`.`equipment`.`manufacturer`, `main`.`equipment`.`install_date`, `main`.`equipment`.`pm_cycle_days`, `main`.`equipment`.`last_pm_date`, `main`.`equipment`.`status`, `main`.`equipment`.`created_at`, `main`.`equipment`.`updated_at` FROM `main`.`equipment` WHERE 1=1 ORDER BY `main`.`equipment`.`code` ASC LIMIT ? OFFSET ?
+ ✓ Compiled /equipment/maintenance in 304ms (1031 modules)
+prisma:query SELECT `main`.`maintenance_records`.`id`, `main`.`maintenance_records`.`equipment_id`, `main`.`maintenance_records`.`type`, `main`.`maintenance_records`.`description`, `main`.`maintenance_records`.`technician_id`, `main`.`maintenance_records`.`start_time`, `main`.`maintenance_records`.`end_time`, `main`.`maintenance_records`.`parts_used`, `main`.`maintenance_records`.`cost`, `main`.`maintenance_records`.`next_pm_date`, `main`.`maintenance_records`.`created_at` FROM `main`.`maintenance_records` WHERE 1=1 ORDER BY `main`.`maintenance_records`.`start_time` DESC LIMIT ? OFFSET ?
+ GET /equipment/maintenance?_rsc=1v8gt 200 in 105ms
+ GET /equipment/maintenance?_rsc=1v8gt 200 in 82ms
+prisma:query SELECT `main`.`equipment`.`id`, `main`.`equipment`.`code`, `main`.`equipment`.`name`, `main`.`equipment`.`type`, `main`.`equipment`.`location`, `main`.`equipment`.`manufacturer`, `main`.`equipment`.`install_date`, `main`.`equipment`.`pm_cycle_days`, `main`.`equipment`.`last_pm_date`, `main`.`equipment`.`status`, `main`.`equipment`.`created_at`, `main`.`equipment`.`updated_at` FROM `main`.`equipment` WHERE `main`.`equipment`.`pm_cycle_days` IS NOT NULL ORDER BY `main`.`equipment`.`code` ASC LIMIT ? OFFSET ?
+ GET /equipment/pm-schedule?_rsc=18fwu 200 in 89ms
+ GET /equipment/pm-schedule?_rsc=18fwu 200 in 70ms
+ ✓ Compiled in 924ms (1879 modules)
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+prisma:query SELECT 1
+prisma:query SELECT `main`.`equipment`.`id`, `main`.`equipment`.`code`, `main`.`equipment`.`name`, `main`.`equipment`.`type`, `main`.`equipment`.`location`, `main`.`equipment`.`manufacturer`, `main`.`equipment`.`install_date`, `main`.`equipment`.`pm_cycle_days`, `main`.`equipment`.`last_pm_date`, `main`.`equipment`.`status`, `main`.`equipment`.`created_at`, `main`.`equipment`.`updated_at` FROM `main`.`equipment` WHERE `main`.`equipment`.`pm_cycle_days` IS NOT NULL ORDER BY `main`.`equipment`.`code` ASC LIMIT ? OFFSET ?
+ GET /equipment/pm-schedule?_rsc=n8laj 200 in 179ms
+ GET /equipment/pm-schedule?_rsc=n8laj 200 in 154ms
+prisma:query SELECT `main`.`equipment`.`id`, `main`.`equipment`.`code`, `main`.`equipment`.`name`, `main`.`equipment`.`type`, `main`.`equipment`.`location`, `main`.`equipment`.`manufacturer`, `main`.`equipment`.`install_date`, `main`.`equipment`.`pm_cycle_days`, `main`.`equipment`.`last_pm_date`, `main`.`equipment`.`status`, `main`.`equipment`.`created_at`, `main`.`equipment`.`updated_at` FROM `main`.`equipment` WHERE `main`.`equipment`.`pm_cycle_days` IS NOT NULL ORDER BY `main`.`equipment`.`code` ASC LIMIT ? OFFSET ?
+ GET /equipment/pm-schedule 200 in 279ms
+ GET /equipment/pm-schedule 200 in 237ms
+ GET /api/auth/session 200 in 69ms
+ GET /api/auth/session 200 in 47ms
+ GET /api/auth/session 200 in 60ms
+ GET /api/auth/session 200 in 66ms
+ ✓ Compiled in 487ms (848 modules)
+prisma:query SELECT 1
+prisma:query SELECT `main`.`equipment`.`id`, `main`.`equipment`.`code`, `main`.`equipment`.`name`, `main`.`equipment`.`type`, `main`.`equipment`.`location`, `main`.`equipment`.`manufacturer`, `main`.`equipment`.`install_date`, `main`.`equipment`.`pm_cycle_days`, `main`.`equipment`.`last_pm_date`, `main`.`equipment`.`status`, `main`.`equipment`.`created_at`, `main`.`equipment`.`updated_at` FROM `main`.`equipment` WHERE `main`.`equipment`.`pm_cycle_days` IS NOT NULL ORDER BY `main`.`equipment`.`code` ASC LIMIT ? OFFSET ?
+ GET /equipment/pm-schedule?_rsc=9hl56 200 in 133ms
+ GET /equipment/pm-schedule?_rsc=9hl56 200 in 101ms
+ ✓ Compiled in 1847ms (2063 modules)
+prisma:query SELECT 1
+prisma:query SELECT `main`.`equipment`.`id`, `main`.`equipment`.`code`, `main`.`equipment`.`name`, `main`.`equipment`.`type`, `main`.`equipment`.`location`, `main`.`equipment`.`manufacturer`, `main`.`equipment`.`install_date`, `main`.`equipment`.`pm_cycle_days`, `main`.`equipment`.`last_pm_date`, `main`.`equipment`.`status`, `main`.`equipment`.`created_at`, `main`.`equipment`.`updated_at` FROM `main`.`equipment` WHERE `main`.`equipment`.`pm_cycle_days` IS NOT NULL ORDER BY `main`.`equipment`.`code` ASC LIMIT ? OFFSET ?
+ GET /equipment/pm-schedule?_rsc=9hl56 200 in 1656ms
+ GET /equipment/pm-schedule?_rsc=9hl56 200 in 1471ms
+prisma:query SELECT `main`.`equipment`.`id`, `main`.`equipment`.`code`, `main`.`equipment`.`name`, `main`.`equipment`.`type`, `main`.`equipment`.`location`, `main`.`equipment`.`manufacturer`, `main`.`equipment`.`install_date`, `main`.`equipment`.`pm_cycle_days`, `main`.`equipment`.`last_pm_date`, `main`.`equipment`.`status`, `main`.`equipment`.`created_at`, `main`.`equipment`.`updated_at` FROM `main`.`equipment` WHERE `main`.`equipment`.`pm_cycle_days` IS NOT NULL ORDER BY `main`.`equipment`.`code` ASC LIMIT ? OFFSET ?
+ GET /equipment/pm-schedule?_rsc=9hl56 200 in 126ms
+ GET /equipment/pm-schedule?_rsc=9hl56 200 in 97ms
+ ✓ Compiled in 1453ms (2063 modules)
+prisma:query SELECT 1
+prisma:query SELECT `main`.`equipment`.`id`, `main`.`equipment`.`code`, `main`.`equipment`.`name`, `main`.`equipment`.`type`, `main`.`equipment`.`location`, `main`.`equipment`.`manufacturer`, `main`.`equipment`.`install_date`, `main`.`equipment`.`pm_cycle_days`, `main`.`equipment`.`last_pm_date`, `main`.`equipment`.`status`, `main`.`equipment`.`created_at`, `main`.`equipment`.`updated_at` FROM `main`.`equipment` WHERE `main`.`equipment`.`pm_cycle_days` IS NOT NULL ORDER BY `main`.`equipment`.`code` ASC LIMIT ? OFFSET ?
+ GET /equipment/pm-schedule?_rsc=9hl56 200 in 1305ms
+ GET /equipment/pm-schedule?_rsc=9hl56 200 in 1142ms
+prisma:query SELECT `main`.`equipment`.`id`, `main`.`equipment`.`code`, `main`.`equipment`.`name`, `main`.`equipment`.`type`, `main`.`equipment`.`location`, `main`.`equipment`.`manufacturer`, `main`.`equipment`.`install_date`, `main`.`equipment`.`pm_cycle_days`, `main`.`equipment`.`last_pm_date`, `main`.`equipment`.`status`, `main`.`equipment`.`created_at`, `main`.`equipment`.`updated_at` FROM `main`.`equipment` WHERE `main`.`equipment`.`pm_cycle_days` IS NOT NULL ORDER BY `main`.`equipment`.`code` ASC LIMIT ? OFFSET ?
+ GET /equipment/pm-schedule?_rsc=9hl56 200 in 147ms
+ GET /equipment/pm-schedule?_rsc=9hl56 200 in 104ms
+ ✓ Compiled in 1398ms (2063 modules)
+prisma:query SELECT 1
+prisma:query SELECT `main`.`equipment`.`id`, `main`.`equipment`.`code`, `main`.`equipment`.`name`, `main`.`equipment`.`type`, `main`.`equipment`.`location`, `main`.`equipment`.`manufacturer`, `main`.`equipment`.`install_date`, `main`.`equipment`.`pm_cycle_days`, `main`.`equipment`.`last_pm_date`, `main`.`equipment`.`status`, `main`.`equipment`.`created_at`, `main`.`equipment`.`updated_at` FROM `main`.`equipment` WHERE `main`.`equipment`.`pm_cycle_days` IS NOT NULL ORDER BY `main`.`equipment`.`code` ASC LIMIT ? OFFSET ?
+ GET /equipment/pm-schedule?_rsc=9hl56 200 in 1151ms
+ GET /equipment/pm-schedule?_rsc=9hl56 200 in 976ms
+prisma:query SELECT `main`.`equipment`.`id`, `main`.`equipment`.`code`, `main`.`equipment`.`name`, `main`.`equipment`.`type`, `main`.`equipment`.`location`, `main`.`equipment`.`manufacturer`, `main`.`equipment`.`install_date`, `main`.`equipment`.`pm_cycle_days`, `main`.`equipment`.`last_pm_date`, `main`.`equipment`.`status`, `main`.`equipment`.`created_at`, `main`.`equipment`.`updated_at` FROM `main`.`equipment` WHERE `main`.`equipment`.`pm_cycle_days` IS NOT NULL ORDER BY `main`.`equipment`.`code` ASC LIMIT ? OFFSET ?
+ GET /equipment/pm-schedule?_rsc=9hl56 200 in 129ms
+ GET /equipment/pm-schedule?_rsc=9hl56 200 in 97ms
+ ✓ Compiled in 1591ms (1859 modules)
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+prisma:query SELECT `main`.`equipment`.`id`, `main`.`equipment`.`code`, `main`.`equipment`.`name`, `main`.`equipment`.`type`, `main`.`equipment`.`location`, `main`.`equipment`.`manufacturer`, `main`.`equipment`.`install_date`, `main`.`equipment`.`pm_cycle_days`, `main`.`equipment`.`last_pm_date`, `main`.`equipment`.`status`, `main`.`equipment`.`created_at`, `main`.`equipment`.`updated_at` FROM `main`.`equipment` WHERE `main`.`equipment`.`pm_cycle_days` IS NOT NULL ORDER BY `main`.`equipment`.`code` ASC LIMIT ? OFFSET ?
+ GET /equipment/pm-schedule?_rsc=9hl56 200 in 276ms
+ GET /equipment/pm-schedule?_rsc=9hl56 200 in 230ms
+prisma:query SELECT `main`.`equipment`.`id`, `main`.`equipment`.`code`, `main`.`equipment`.`name`, `main`.`equipment`.`type`, `main`.`equipment`.`location`, `main`.`equipment`.`manufacturer`, `main`.`equipment`.`install_date`, `main`.`equipment`.`pm_cycle_days`, `main`.`equipment`.`last_pm_date`, `main`.`equipment`.`status`, `main`.`equipment`.`created_at`, `main`.`equipment`.`updated_at` FROM `main`.`equipment` WHERE `main`.`equipment`.`pm_cycle_days` IS NOT NULL ORDER BY `main`.`equipment`.`code` ASC LIMIT ? OFFSET ?
+ GET /equipment/pm-schedule 200 in 488ms
+ GET /equipment/pm-schedule 200 in 426ms
+ ✓ Compiled /api/auth/[...nextauth] in 487ms (1015 modules)
+ GET /api/auth/session 200 in 806ms
+ GET /api/auth/session 200 in 82ms
+ GET /api/auth/session 200 in 84ms
+ GET /api/auth/session 200 in 84ms
+ ✓ Compiled in 1521ms (1865 modules)
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+prisma:query SELECT 1
+prisma:query SELECT `main`.`equipment`.`id`, `main`.`equipment`.`code`, `main`.`equipment`.`name`, `main`.`equipment`.`type`, `main`.`equipment`.`location`, `main`.`equipment`.`manufacturer`, `main`.`equipment`.`install_date`, `main`.`equipment`.`pm_cycle_days`, `main`.`equipment`.`last_pm_date`, `main`.`equipment`.`status`, `main`.`equipment`.`created_at`, `main`.`equipment`.`updated_at` FROM `main`.`equipment` WHERE `main`.`equipment`.`pm_cycle_days` IS NOT NULL ORDER BY `main`.`equipment`.`code` ASC LIMIT ? OFFSET ?
+ GET /equipment/pm-schedule?_rsc=9hl56 200 in 254ms
+ GET /equipment/pm-schedule?_rsc=9hl56 200 in 221ms
+prisma:query SELECT `main`.`equipment`.`id`, `main`.`equipment`.`code`, `main`.`equipment`.`name`, `main`.`equipment`.`type`, `main`.`equipment`.`location`, `main`.`equipment`.`manufacturer`, `main`.`equipment`.`install_date`, `main`.`equipment`.`pm_cycle_days`, `main`.`equipment`.`last_pm_date`, `main`.`equipment`.`status`, `main`.`equipment`.`created_at`, `main`.`equipment`.`updated_at` FROM `main`.`equipment` WHERE `main`.`equipment`.`pm_cycle_days` IS NOT NULL ORDER BY `main`.`equipment`.`code` ASC LIMIT ? OFFSET ?
+ GET /equipment/pm-schedule 200 in 376ms
+ GET /equipment/pm-schedule 200 in 328ms
+ GET /api/auth/session 200 in 90ms
+ GET /api/auth/session 200 in 66ms
+ GET /api/auth/session 200 in 73ms
+ GET /api/auth/session 200 in 67ms
+ ✓ Compiled in 1038ms (1867 modules)
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+prisma:query SELECT `main`.`equipment`.`id`, `main`.`equipment`.`code`, `main`.`equipment`.`name`, `main`.`equipment`.`type`, `main`.`equipment`.`location`, `main`.`equipment`.`manufacturer`, `main`.`equipment`.`install_date`, `main`.`equipment`.`pm_cycle_days`, `main`.`equipment`.`last_pm_date`, `main`.`equipment`.`status`, `main`.`equipment`.`created_at`, `main`.`equipment`.`updated_at` FROM `main`.`equipment` WHERE `main`.`equipment`.`pm_cycle_days` IS NOT NULL ORDER BY `main`.`equipment`.`code` ASC LIMIT ? OFFSET ?
+ GET /equipment/pm-schedule?_rsc=9hl56 200 in 273ms
+ GET /equipment/pm-schedule?_rsc=9hl56 200 in 227ms
+prisma:query SELECT `main`.`equipment`.`id`, `main`.`equipment`.`code`, `main`.`equipment`.`name`, `main`.`equipment`.`type`, `main`.`equipment`.`location`, `main`.`equipment`.`manufacturer`, `main`.`equipment`.`install_date`, `main`.`equipment`.`pm_cycle_days`, `main`.`equipment`.`last_pm_date`, `main`.`equipment`.`status`, `main`.`equipment`.`created_at`, `main`.`equipment`.`updated_at` FROM `main`.`equipment` WHERE `main`.`equipment`.`pm_cycle_days` IS NOT NULL ORDER BY `main`.`equipment`.`code` ASC LIMIT ? OFFSET ?
+ GET /equipment/pm-schedule 200 in 400ms
+ GET /equipment/pm-schedule 200 in 252ms
+ GET /api/auth/session 200 in 96ms
+ GET /api/auth/session 200 in 68ms
+ GET /api/auth/session 200 in 62ms
+ GET /api/auth/session 200 in 68ms
+ ✓ Compiled in 132ms (218 modules)
+ GET /api/auth/session 200 in 69ms
+ GET /api/auth/session 200 in 57ms
+prisma:query SELECT 1
+prisma:query SELECT `main`.`equipment`.`id`, `main`.`equipment`.`code`, `main`.`equipment`.`name`, `main`.`equipment`.`type`, `main`.`equipment`.`location`, `main`.`equipment`.`manufacturer`, `main`.`equipment`.`install_date`, `main`.`equipment`.`pm_cycle_days`, `main`.`equipment`.`last_pm_date`, `main`.`equipment`.`status`, `main`.`equipment`.`created_at`, `main`.`equipment`.`updated_at` FROM `main`.`equipment` WHERE `main`.`equipment`.`pm_cycle_days` IS NOT NULL ORDER BY `main`.`equipment`.`code` ASC LIMIT ? OFFSET ?
+ GET /equipment/pm-schedule 200 in 321ms
+ GET /equipment/pm-schedule 200 in 121ms
+ GET /api/auth/session 200 in 65ms
+ GET /api/auth/session 200 in 39ms
+ GET /api/auth/session 200 in 41ms
+ GET /api/auth/session 200 in 46ms
+ GET /api/auth/session 200 in 54ms
+ GET /api/auth/session 200 in 40ms
+ GET /api/auth/session 200 in 57ms
+ GET /api/auth/session 200 in 39ms
+prisma:query SELECT `main`.`equipment`.`id`, `main`.`equipment`.`code`, `main`.`equipment`.`name`, `main`.`equipment`.`type`, `main`.`equipment`.`location`, `main`.`equipment`.`manufacturer`, `main`.`equipment`.`install_date`, `main`.`equipment`.`pm_cycle_days`, `main`.`equipment`.`last_pm_date`, `main`.`equipment`.`status`, `main`.`equipment`.`created_at`, `main`.`equipment`.`updated_at` FROM `main`.`equipment` WHERE `main`.`equipment`.`pm_cycle_days` IS NOT NULL ORDER BY `main`.`equipment`.`code` ASC LIMIT ? OFFSET ?
+ GET /equipment/pm-schedule 200 in 109ms
+ GET /equipment/pm-schedule 200 in 90ms
+ GET /api/auth/session 200 in 70ms
+ GET /api/auth/session 200 in 38ms
+ GET /api/auth/session 200 in 39ms
+ GET /api/auth/session 200 in 41ms
+ ○ Compiling /pop ...
+ ✓ Compiled /pop in 1317ms (1862 modules)
+ ✓ Compiled /api/work-orders in 499ms (1076 modules)
+prisma:query SELECT 1
+prisma:query SELECT 1
+prisma:query SELECT COUNT(*) FROM (SELECT `main`.`work_orders`.`id` FROM `main`.`work_orders` WHERE `main`.`work_orders`.`status` = ? LIMIT ? OFFSET ?) AS `sub`
+prisma:query SELECT `main`.`work_orders`.`id`, `main`.`work_orders`.`wo_no`, `main`.`work_orders`.`product_id`, `main`.`work_orders`.`customer_id`, `main`.`work_orders`.`planned_qty`, `main`.`work_orders`.`produced_qty`, `main`.`work_orders`.`defect_qty`, `main`.`work_orders`.`status`, `main`.`work_orders`.`planned_start`, `main`.`work_orders`.`planned_end`, `main`.`work_orders`.`actual_start`, `main`.`work_orders`.`actual_end`, `main`.`work_orders`.`due_date`, `main`.`work_orders`.`priority`, `main`.`work_orders`.`notes`, `main`.`work_orders`.`created_by`, `main`.`work_orders`.`created_at`, `main`.`work_orders`.`updated_at` FROM `main`.`work_orders` WHERE `main`.`work_orders`.`status` = ? ORDER BY `main`.`work_orders`.`priority` ASC, `main`.`work_orders`.`due_date` ASC LIMIT ? OFFSET ?
+ GET /api/work-orders?limit=50&status=in_progress 200 in 759ms
+ GET /api/work-orders?limit=50&status=in_progress 200 in 737ms
+prisma:query SELECT COUNT(*) FROM (SELECT `main`.`work_orders`.`id` FROM `main`.`work_orders` WHERE `main`.`work_orders`.`status` = ? LIMIT ? OFFSET ?) AS `sub`
+prisma:query SELECT `main`.`work_orders`.`id`, `main`.`work_orders`.`wo_no`, `main`.`work_orders`.`product_id`, `main`.`work_orders`.`customer_id`, `main`.`work_orders`.`planned_qty`, `main`.`work_orders`.`produced_qty`, `main`.`work_orders`.`defect_qty`, `main`.`work_orders`.`status`, `main`.`work_orders`.`planned_start`, `main`.`work_orders`.`planned_end`, `main`.`work_orders`.`actual_start`, `main`.`work_orders`.`actual_end`, `main`.`work_orders`.`due_date`, `main`.`work_orders`.`priority`, `main`.`work_orders`.`notes`, `main`.`work_orders`.`created_by`, `main`.`work_orders`.`created_at`, `main`.`work_orders`.`updated_at` FROM `main`.`work_orders` WHERE `main`.`work_orders`.`status` = ? ORDER BY `main`.`work_orders`.`priority` ASC, `main`.`work_orders`.`due_date` ASC LIMIT ? OFFSET ?
+ GET /api/work-orders?status=issued&limit=50 200 in 100ms
+ GET /api/work-orders?status=issued&limit=50 200 in 64ms
+prisma:query SELECT COUNT(*) FROM (SELECT `main`.`work_orders`.`id` FROM `main`.`work_orders` WHERE `main`.`work_orders`.`status` = ? LIMIT ? OFFSET ?) AS `sub`
+prisma:query SELECT `main`.`work_orders`.`id`, `main`.`work_orders`.`wo_no`, `main`.`work_orders`.`product_id`, `main`.`work_orders`.`customer_id`, `main`.`work_orders`.`planned_qty`, `main`.`work_orders`.`produced_qty`, `main`.`work_orders`.`defect_qty`, `main`.`work_orders`.`status`, `main`.`work_orders`.`planned_start`, `main`.`work_orders`.`planned_end`, `main`.`work_orders`.`actual_start`, `main`.`work_orders`.`actual_end`, `main`.`work_orders`.`due_date`, `main`.`work_orders`.`priority`, `main`.`work_orders`.`notes`, `main`.`work_orders`.`created_by`, `main`.`work_orders`.`created_at`, `main`.`work_orders`.`updated_at` FROM `main`.`work_orders` WHERE `main`.`work_orders`.`status` = ? ORDER BY `main`.`work_orders`.`priority` ASC, `main`.`work_orders`.`due_date` ASC LIMIT ? OFFSET ?
+ GET /api/work-orders?limit=50&status=in_progress 200 in 115ms
+ GET /api/work-orders?limit=50&status=in_progress 200 in 76ms
+prisma:query SELECT COUNT(*) FROM (SELECT `main`.`work_orders`.`id` FROM `main`.`work_orders` WHERE `main`.`work_orders`.`status` = ? LIMIT ? OFFSET ?) AS `sub`
+prisma:query SELECT `main`.`work_orders`.`id`, `main`.`work_orders`.`wo_no`, `main`.`work_orders`.`product_id`, `main`.`work_orders`.`customer_id`, `main`.`work_orders`.`planned_qty`, `main`.`work_orders`.`produced_qty`, `main`.`work_orders`.`defect_qty`, `main`.`work_orders`.`status`, `main`.`work_orders`.`planned_start`, `main`.`work_orders`.`planned_end`, `main`.`work_orders`.`actual_start`, `main`.`work_orders`.`actual_end`, `main`.`work_orders`.`due_date`, `main`.`work_orders`.`priority`, `main`.`work_orders`.`notes`, `main`.`work_orders`.`created_by`, `main`.`work_orders`.`created_at`, `main`.`work_orders`.`updated_at` FROM `main`.`work_orders` WHERE `main`.`work_orders`.`status` = ? ORDER BY `main`.`work_orders`.`priority` ASC, `main`.`work_orders`.`due_date` ASC LIMIT ? OFFSET ?
+ GET /api/work-orders?status=issued&limit=50 200 in 70ms
+ GET /api/work-orders?status=issued&limit=50 200 in 47ms
+prisma:query SELECT 1
+prisma:query SELECT 1
+prisma:query SELECT COUNT(*) FROM (SELECT `main`.`work_orders`.`id` FROM `main`.`work_orders` WHERE `main`.`work_orders`.`status` = ? LIMIT ? OFFSET ?) AS `sub`
+prisma:query SELECT `main`.`work_orders`.`id`, `main`.`work_orders`.`wo_no`, `main`.`work_orders`.`product_id`, `main`.`work_orders`.`customer_id`, `main`.`work_orders`.`planned_qty`, `main`.`work_orders`.`produced_qty`, `main`.`work_orders`.`defect_qty`, `main`.`work_orders`.`status`, `main`.`work_orders`.`planned_start`, `main`.`work_orders`.`planned_end`, `main`.`work_orders`.`actual_start`, `main`.`work_orders`.`actual_end`, `main`.`work_orders`.`due_date`, `main`.`work_orders`.`priority`, `main`.`work_orders`.`notes`, `main`.`work_orders`.`created_by`, `main`.`work_orders`.`created_at`, `main`.`work_orders`.`updated_at` FROM `main`.`work_orders` WHERE `main`.`work_orders`.`status` = ? ORDER BY `main`.`work_orders`.`priority` ASC, `main`.`work_orders`.`due_date` ASC LIMIT ? OFFSET ?
+ GET /api/work-orders?limit=50&status=in_progress 200 in 44ms
+ GET /api/work-orders?limit=50&status=in_progress 200 in 30ms
+prisma:query SELECT COUNT(*) FROM (SELECT `main`.`work_orders`.`id` FROM `main`.`work_orders` WHERE `main`.`work_orders`.`status` = ? LIMIT ? OFFSET ?) AS `sub`
+prisma:query SELECT `main`.`work_orders`.`id`, `main`.`work_orders`.`wo_no`, `main`.`work_orders`.`product_id`, `main`.`work_orders`.`customer_id`, `main`.`work_orders`.`planned_qty`, `main`.`work_orders`.`produced_qty`, `main`.`work_orders`.`defect_qty`, `main`.`work_orders`.`status`, `main`.`work_orders`.`planned_start`, `main`.`work_orders`.`planned_end`, `main`.`work_orders`.`actual_start`, `main`.`work_orders`.`actual_end`, `main`.`work_orders`.`due_date`, `main`.`work_orders`.`priority`, `main`.`work_orders`.`notes`, `main`.`work_orders`.`created_by`, `main`.`work_orders`.`created_at`, `main`.`work_orders`.`updated_at` FROM `main`.`work_orders` WHERE `main`.`work_orders`.`status` = ? ORDER BY `main`.`work_orders`.`priority` ASC, `main`.`work_orders`.`due_date` ASC LIMIT ? OFFSET ?
+ GET /api/work-orders?status=issued&limit=50 200 in 36ms
+ GET /api/work-orders?status=issued&limit=50 200 in 25ms
+ ○ Compiling /monitoring/productivity ...
+ ✓ Compiled /monitoring/productivity in 528ms (1910 modules)
+prisma:query SELECT 1
+prisma:query SELECT 1
+prisma:query SELECT 1
+prisma:query SELECT `main`.`work_orders`.`id`, `main`.`work_orders`.`status`, `main`.`work_orders`.`planned_qty`, `main`.`work_orders`.`produced_qty`, `main`.`work_orders`.`defect_qty`, `main`.`work_orders`.`due_date` FROM `main`.`work_orders` WHERE `main`.`work_orders`.`status` IN (?,?,?) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`work_orders`.`id`, `main`.`work_orders`.`planned_qty`, `main`.`work_orders`.`produced_qty`, `main`.`work_orders`.`defect_qty`, `main`.`work_orders`.`status` FROM `main`.`work_orders` WHERE `main`.`work_orders`.`created_at` >= ? LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`production_logs`.`id`, `main`.`production_logs`.`good_qty`, `main`.`production_logs`.`defect_qty`, `main`.`production_logs`.`cycle_time_sec` FROM `main`.`production_logs` WHERE `main`.`production_logs`.`start_time` >= ? LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`work_orders`.`id`, `main`.`work_orders`.`wo_no`, `main`.`work_orders`.`product_id`, `main`.`work_orders`.`customer_id`, `main`.`work_orders`.`planned_qty`, `main`.`work_orders`.`produced_qty`, `main`.`work_orders`.`defect_qty`, `main`.`work_orders`.`status`, `main`.`work_orders`.`planned_start`, `main`.`work_orders`.`planned_end`, `main`.`work_orders`.`actual_start`, `main`.`work_orders`.`actual_end`, `main`.`work_orders`.`due_date`, `main`.`work_orders`.`priority`, `main`.`work_orders`.`notes`, `main`.`work_orders`.`created_by`, `main`.`work_orders`.`created_at`, `main`.`work_orders`.`updated_at` FROM `main`.`work_orders` WHERE (`main`.`work_orders`.`created_at` >= ? AND `main`.`work_orders`.`produced_qty` > ?) ORDER BY `main`.`work_orders`.`produced_qty` DESC LIMIT ? OFFSET ?
+ GET /monitoring/productivity?_rsc=1bkc8 200 in 125ms
+ GET /monitoring/productivity?_rsc=1bkc8 200 in 104ms
+ ○ Compiling /monitoring/quality ...
+ ✓ Compiled /monitoring/quality in 558ms (1912 modules)
+prisma:query SELECT `main`.`nonconformance_reports`.`id`, `main`.`nonconformance_reports`.`status`, `main`.`nonconformance_reports`.`created_at` FROM `main`.`nonconformance_reports` WHERE `main`.`nonconformance_reports`.`created_at` >= ? LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`inspection_records`.`id`, `main`.`inspection_records`.`sample_qty`, `main`.`inspection_records`.`pass_qty`, `main`.`inspection_records`.`fail_qty`, `main`.`inspection_records`.`result`, `main`.`inspection_records`.`type` FROM `main`.`inspection_records` WHERE `main`.`inspection_records`.`inspection_date` >= ? LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`defect_logs`.`id`, `main`.`defect_logs`.`qty`, `main`.`defect_logs`.`defect_code`, `main`.`defect_logs`.`defect_name`, `main`.`defect_logs`.`disposition` FROM `main`.`defect_logs` WHERE `main`.`defect_logs`.`created_at` >= ? LIMIT ? OFFSET ?
+ GET /monitoring/quality?_rsc=mo9e5 200 in 122ms
+ GET /monitoring/quality?_rsc=mo9e5 200 in 101ms
+ ✓ Compiled /equipment in 274ms (539 modules)
+prisma:query SELECT `main`.`equipment`.`id`, `main`.`equipment`.`code`, `main`.`equipment`.`name`, `main`.`equipment`.`type`, `main`.`equipment`.`location`, `main`.`equipment`.`manufacturer`, `main`.`equipment`.`install_date`, `main`.`equipment`.`pm_cycle_days`, `main`.`equipment`.`last_pm_date`, `main`.`equipment`.`status`, `main`.`equipment`.`created_at`, `main`.`equipment`.`updated_at` FROM `main`.`equipment` WHERE 1=1 ORDER BY `main`.`equipment`.`code` ASC LIMIT ? OFFSET ?
+ ✓ Compiled /equipment/maintenance in 227ms (541 modules)
+prisma:query SELECT `main`.`maintenance_records`.`id`, `main`.`maintenance_records`.`equipment_id`, `main`.`maintenance_records`.`type`, `main`.`maintenance_records`.`description`, `main`.`maintenance_records`.`technician_id`, `main`.`maintenance_records`.`start_time`, `main`.`maintenance_records`.`end_time`, `main`.`maintenance_records`.`parts_used`, `main`.`maintenance_records`.`cost`, `main`.`maintenance_records`.`next_pm_date`, `main`.`maintenance_records`.`created_at` FROM `main`.`maintenance_records` WHERE 1=1 ORDER BY `main`.`maintenance_records`.`start_time` DESC LIMIT ? OFFSET ?
+ GET /equipment/maintenance?_rsc=1v8gt 200 in 106ms
+ GET /equipment/maintenance?_rsc=1v8gt 200 in 87ms
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 621ms (1381 modules)
+ GET /master 404 in 153ms
+ GET /master 404 in 120ms
+ ✓ Compiled /api/auth/[...nextauth] in 329ms (542 modules)
+ GET /api/auth/session 200 in 471ms
+ GET /api/auth/session 200 in 52ms
+ GET /api/auth/session 200 in 46ms
+ GET /api/auth/session 200 in 48ms
+prisma:query SELECT 1
+prisma:query SELECT `main`.`equipment`.`id`, `main`.`equipment`.`code`, `main`.`equipment`.`name`, `main`.`equipment`.`type`, `main`.`equipment`.`location`, `main`.`equipment`.`manufacturer`, `main`.`equipment`.`install_date`, `main`.`equipment`.`pm_cycle_days`, `main`.`equipment`.`last_pm_date`, `main`.`equipment`.`status`, `main`.`equipment`.`created_at`, `main`.`equipment`.`updated_at` FROM `main`.`equipment` WHERE 1=1 ORDER BY `main`.`equipment`.`code` ASC LIMIT ? OFFSET ?
+ GET /equipment 200 in 296ms
+ GET /equipment 200 in 268ms
+ GET /api/auth/session 200 in 80ms
+ GET /api/auth/session 200 in 53ms
+ GET /api/auth/session 200 in 122ms
+ GET /api/auth/session 200 in 63ms
+ GET /quality 404 in 77ms
+ GET /quality 404 in 49ms
+ GET /api/auth/session 200 in 75ms
+ GET /api/auth/session 200 in 50ms
+ GET /api/auth/session 200 in 61ms
+ GET /api/auth/session 200 in 45ms
+prisma:query SELECT `main`.`equipment`.`id`, `main`.`equipment`.`code`, `main`.`equipment`.`name`, `main`.`equipment`.`type`, `main`.`equipment`.`location`, `main`.`equipment`.`manufacturer`, `main`.`equipment`.`install_date`, `main`.`equipment`.`pm_cycle_days`, `main`.`equipment`.`last_pm_date`, `main`.`equipment`.`status`, `main`.`equipment`.`created_at`, `main`.`equipment`.`updated_at` FROM `main`.`equipment` WHERE 1=1 ORDER BY `main`.`equipment`.`code` ASC LIMIT ? OFFSET ?
+ GET /equipment 200 in 147ms
+ GET /equipment 200 in 126ms
+ GET /api/auth/session 200 in 75ms
+ GET /api/auth/session 200 in 53ms
+ GET /api/auth/session 200 in 51ms
+ GET /api/auth/session 200 in 46ms
+ ✓ Compiled in 708ms (1340 modules)
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+prisma:query SELECT 1
+prisma:query SELECT `main`.`equipment`.`id`, `main`.`equipment`.`code`, `main`.`equipment`.`name`, `main`.`equipment`.`type`, `main`.`equipment`.`location`, `main`.`equipment`.`manufacturer`, `main`.`equipment`.`install_date`, `main`.`equipment`.`pm_cycle_days`, `main`.`equipment`.`last_pm_date`, `main`.`equipment`.`status`, `main`.`equipment`.`created_at`, `main`.`equipment`.`updated_at` FROM `main`.`equipment` WHERE 1=1 ORDER BY `main`.`equipment`.`code` ASC LIMIT ? OFFSET ?
+ GET /equipment?_rsc=1tfex 200 in 142ms
+ GET /equipment?_rsc=1tfex 200 in 118ms
+prisma:query SELECT `main`.`equipment`.`id`, `main`.`equipment`.`code`, `main`.`equipment`.`name`, `main`.`equipment`.`type`, `main`.`equipment`.`location`, `main`.`equipment`.`manufacturer`, `main`.`equipment`.`install_date`, `main`.`equipment`.`pm_cycle_days`, `main`.`equipment`.`last_pm_date`, `main`.`equipment`.`status`, `main`.`equipment`.`created_at`, `main`.`equipment`.`updated_at` FROM `main`.`equipment` WHERE 1=1 ORDER BY `main`.`equipment`.`code` ASC LIMIT ? OFFSET ?
+ GET /equipment 200 in 247ms
+ GET /equipment 200 in 182ms
+ GET /api/auth/session 200 in 61ms
+ GET /api/auth/session 200 in 37ms
+ GET /api/auth/session 200 in 47ms
+ GET /api/auth/session 200 in 49ms
+ ✓ Compiled in 1231ms (1340 modules)
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+prisma:query SELECT `main`.`equipment`.`id`, `main`.`equipment`.`code`, `main`.`equipment`.`name`, `main`.`equipment`.`type`, `main`.`equipment`.`location`, `main`.`equipment`.`manufacturer`, `main`.`equipment`.`install_date`, `main`.`equipment`.`pm_cycle_days`, `main`.`equipment`.`last_pm_date`, `main`.`equipment`.`status`, `main`.`equipment`.`created_at`, `main`.`equipment`.`updated_at` FROM `main`.`equipment` WHERE 1=1 ORDER BY `main`.`equipment`.`code` ASC LIMIT ? OFFSET ?
+ GET /equipment?_rsc=1tfex 200 in 245ms
+ GET /equipment?_rsc=1tfex 200 in 211ms
+prisma:query SELECT `main`.`equipment`.`id`, `main`.`equipment`.`code`, `main`.`equipment`.`name`, `main`.`equipment`.`type`, `main`.`equipment`.`location`, `main`.`equipment`.`manufacturer`, `main`.`equipment`.`install_date`, `main`.`equipment`.`pm_cycle_days`, `main`.`equipment`.`last_pm_date`, `main`.`equipment`.`status`, `main`.`equipment`.`created_at`, `main`.`equipment`.`updated_at` FROM `main`.`equipment` WHERE 1=1 ORDER BY `main`.`equipment`.`code` ASC LIMIT ? OFFSET ?
+ GET /equipment 200 in 347ms
+ GET /equipment 200 in 281ms
+ GET /api/auth/session 200 in 75ms
+ GET /api/auth/session 200 in 52ms
+ GET /api/auth/session 200 in 52ms
+ GET /api/auth/session 200 in 53ms
+ ✓ Compiled /api/work-orders in 200ms (538 modules)
+prisma:query SELECT 1
+prisma:query SELECT COUNT(*) FROM (SELECT `main`.`work_orders`.`id` FROM `main`.`work_orders` WHERE `main`.`work_orders`.`status` = ? LIMIT ? OFFSET ?) AS `sub`
+prisma:query SELECT `main`.`work_orders`.`id`, `main`.`work_orders`.`wo_no`, `main`.`work_orders`.`product_id`, `main`.`work_orders`.`customer_id`, `main`.`work_orders`.`planned_qty`, `main`.`work_orders`.`produced_qty`, `main`.`work_orders`.`defect_qty`, `main`.`work_orders`.`status`, `main`.`work_orders`.`planned_start`, `main`.`work_orders`.`planned_end`, `main`.`work_orders`.`actual_start`, `main`.`work_orders`.`actual_end`, `main`.`work_orders`.`due_date`, `main`.`work_orders`.`priority`, `main`.`work_orders`.`notes`, `main`.`work_orders`.`created_by`, `main`.`work_orders`.`created_at`, `main`.`work_orders`.`updated_at` FROM `main`.`work_orders` WHERE `main`.`work_orders`.`status` = ? ORDER BY `main`.`work_orders`.`priority` ASC, `main`.`work_orders`.`due_date` ASC LIMIT ? OFFSET ?
+ GET /api/work-orders?limit=50&status=in_progress 200 in 372ms
+ GET /api/work-orders?limit=50&status=in_progress 200 in 349ms
+prisma:query SELECT COUNT(*) FROM (SELECT `main`.`work_orders`.`id` FROM `main`.`work_orders` WHERE `main`.`work_orders`.`status` = ? LIMIT ? OFFSET ?) AS `sub`
+prisma:query SELECT `main`.`work_orders`.`id`, `main`.`work_orders`.`wo_no`, `main`.`work_orders`.`product_id`, `main`.`work_orders`.`customer_id`, `main`.`work_orders`.`planned_qty`, `main`.`work_orders`.`produced_qty`, `main`.`work_orders`.`defect_qty`, `main`.`work_orders`.`status`, `main`.`work_orders`.`planned_start`, `main`.`work_orders`.`planned_end`, `main`.`work_orders`.`actual_start`, `main`.`work_orders`.`actual_end`, `main`.`work_orders`.`due_date`, `main`.`work_orders`.`priority`, `main`.`work_orders`.`notes`, `main`.`work_orders`.`created_by`, `main`.`work_orders`.`created_at`, `main`.`work_orders`.`updated_at` FROM `main`.`work_orders` WHERE `main`.`work_orders`.`status` = ? ORDER BY `main`.`work_orders`.`priority` ASC, `main`.`work_orders`.`due_date` ASC LIMIT ? OFFSET ?
+prisma:query SELECT COUNT(*) FROM (SELECT `main`.`work_orders`.`id` FROM `main`.`work_orders` WHERE `main`.`work_orders`.`status` = ? LIMIT ? OFFSET ?) AS `sub`
+prisma:query SELECT `main`.`work_orders`.`id`, `main`.`work_orders`.`wo_no`, `main`.`work_orders`.`product_id`, `main`.`work_orders`.`customer_id`, `main`.`work_orders`.`planned_qty`, `main`.`work_orders`.`produced_qty`, `main`.`work_orders`.`defect_qty`, `main`.`work_orders`.`status`, `main`.`work_orders`.`planned_start`, `main`.`work_orders`.`planned_end`, `main`.`work_orders`.`actual_start`, `main`.`work_orders`.`actual_end`, `main`.`work_orders`.`due_date`, `main`.`work_orders`.`priority`, `main`.`work_orders`.`notes`, `main`.`work_orders`.`created_by`, `main`.`work_orders`.`created_at`, `main`.`work_orders`.`updated_at` FROM `main`.`work_orders` WHERE `main`.`work_orders`.`status` = ? ORDER BY `main`.`work_orders`.`priority` ASC, `main`.`work_orders`.`due_date` ASC LIMIT ? OFFSET ?
+ GET /api/work-orders?limit=50&status=in_progress 200 in 117ms
+ GET /api/work-orders?limit=50&status=in_progress 200 in 81ms
+ GET /api/work-orders?status=issued&limit=50 200 in 119ms
+ GET /api/work-orders?status=issued&limit=50 200 in 80ms
+prisma:query SELECT COUNT(*) FROM (SELECT `main`.`work_orders`.`id` FROM `main`.`work_orders` WHERE `main`.`work_orders`.`status` = ? LIMIT ? OFFSET ?) AS `sub`
+prisma:query SELECT `main`.`work_orders`.`id`, `main`.`work_orders`.`wo_no`, `main`.`work_orders`.`product_id`, `main`.`work_orders`.`customer_id`, `main`.`work_orders`.`planned_qty`, `main`.`work_orders`.`produced_qty`, `main`.`work_orders`.`defect_qty`, `main`.`work_orders`.`status`, `main`.`work_orders`.`planned_start`, `main`.`work_orders`.`planned_end`, `main`.`work_orders`.`actual_start`, `main`.`work_orders`.`actual_end`, `main`.`work_orders`.`due_date`, `main`.`work_orders`.`priority`, `main`.`work_orders`.`notes`, `main`.`work_orders`.`created_by`, `main`.`work_orders`.`created_at`, `main`.`work_orders`.`updated_at` FROM `main`.`work_orders` WHERE `main`.`work_orders`.`status` = ? ORDER BY `main`.`work_orders`.`priority` ASC, `main`.`work_orders`.`due_date` ASC LIMIT ? OFFSET ?
+ GET /api/work-orders?status=issued&limit=50 200 in 79ms
+ GET /api/work-orders?status=issued&limit=50 200 in 59ms
+prisma:query SELECT COUNT(*) FROM (SELECT `main`.`work_orders`.`id` FROM `main`.`work_orders` WHERE 1=1 LIMIT ? OFFSET ?) AS `sub`
+prisma:query SELECT `main`.`work_orders`.`id`, `main`.`work_orders`.`wo_no`, `main`.`work_orders`.`product_id`, `main`.`work_orders`.`customer_id`, `main`.`work_orders`.`planned_qty`, `main`.`work_orders`.`produced_qty`, `main`.`work_orders`.`defect_qty`, `main`.`work_orders`.`status`, `main`.`work_orders`.`planned_start`, `main`.`work_orders`.`planned_end`, `main`.`work_orders`.`actual_start`, `main`.`work_orders`.`actual_end`, `main`.`work_orders`.`due_date`, `main`.`work_orders`.`priority`, `main`.`work_orders`.`notes`, `main`.`work_orders`.`created_by`, `main`.`work_orders`.`created_at`, `main`.`work_orders`.`updated_at` FROM `main`.`work_orders` WHERE 1=1 ORDER BY `main`.`work_orders`.`priority` ASC, `main`.`work_orders`.`due_date` ASC LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`products`.`id`, `main`.`products`.`name`, `main`.`products`.`code` FROM `main`.`products` WHERE `main`.`products`.`id` IN (?) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`customers`.`id`, `main`.`customers`.`name` FROM `main`.`customers` WHERE `main`.`customers`.`id` IN (?) LIMIT ? OFFSET ?
+ GET /api/work-orders?limit=50 200 in 70ms
+ GET /api/work-orders?limit=50 200 in 49ms
+prisma:query SELECT 1
+prisma:query SELECT COUNT(*) FROM (SELECT `main`.`work_orders`.`id` FROM `main`.`work_orders` WHERE `main`.`work_orders`.`status` = ? LIMIT ? OFFSET ?) AS `sub`
+prisma:query SELECT `main`.`work_orders`.`id`, `main`.`work_orders`.`wo_no`, `main`.`work_orders`.`product_id`, `main`.`work_orders`.`customer_id`, `main`.`work_orders`.`planned_qty`, `main`.`work_orders`.`produced_qty`, `main`.`work_orders`.`defect_qty`, `main`.`work_orders`.`status`, `main`.`work_orders`.`planned_start`, `main`.`work_orders`.`planned_end`, `main`.`work_orders`.`actual_start`, `main`.`work_orders`.`actual_end`, `main`.`work_orders`.`due_date`, `main`.`work_orders`.`priority`, `main`.`work_orders`.`notes`, `main`.`work_orders`.`created_by`, `main`.`work_orders`.`created_at`, `main`.`work_orders`.`updated_at` FROM `main`.`work_orders` WHERE `main`.`work_orders`.`status` = ? ORDER BY `main`.`work_orders`.`priority` ASC, `main`.`work_orders`.`due_date` ASC LIMIT ? OFFSET ?
+ GET /api/work-orders?limit=50&status=completed 200 in 60ms
+ GET /api/work-orders?limit=50&status=completed 200 in 41ms
+prisma:query SELECT `main`.`work_orders`.`id`, `main`.`work_orders`.`wo_no`, `main`.`work_orders`.`product_id`, `main`.`work_orders`.`customer_id`, `main`.`work_orders`.`planned_qty`, `main`.`work_orders`.`produced_qty`, `main`.`work_orders`.`defect_qty`, `main`.`work_orders`.`status`, `main`.`work_orders`.`planned_start`, `main`.`work_orders`.`planned_end`, `main`.`work_orders`.`actual_start`, `main`.`work_orders`.`actual_end`, `main`.`work_orders`.`due_date`, `main`.`work_orders`.`priority`, `main`.`work_orders`.`notes`, `main`.`work_orders`.`created_by`, `main`.`work_orders`.`created_at`, `main`.`work_orders`.`updated_at` FROM `main`.`work_orders` WHERE `main`.`work_orders`.`status` = ? ORDER BY `main`.`work_orders`.`priority` ASC, `main`.`work_orders`.`due_date` ASC LIMIT ? OFFSET ?
+prisma:query SELECT COUNT(*) FROM (SELECT `main`.`work_orders`.`id` FROM `main`.`work_orders` WHERE `main`.`work_orders`.`status` = ? LIMIT ? OFFSET ?) AS `sub`
+ GET /api/work-orders?limit=50&status=in_progress 200 in 75ms
+ GET /api/work-orders?limit=50&status=in_progress 200 in 50ms
+prisma:query SELECT COUNT(*) FROM (SELECT `main`.`work_orders`.`id` FROM `main`.`work_orders` WHERE `main`.`work_orders`.`status` = ? LIMIT ? OFFSET ?) AS `sub`
+prisma:query SELECT `main`.`work_orders`.`id`, `main`.`work_orders`.`wo_no`, `main`.`work_orders`.`product_id`, `main`.`work_orders`.`customer_id`, `main`.`work_orders`.`planned_qty`, `main`.`work_orders`.`produced_qty`, `main`.`work_orders`.`defect_qty`, `main`.`work_orders`.`status`, `main`.`work_orders`.`planned_start`, `main`.`work_orders`.`planned_end`, `main`.`work_orders`.`actual_start`, `main`.`work_orders`.`actual_end`, `main`.`work_orders`.`due_date`, `main`.`work_orders`.`priority`, `main`.`work_orders`.`notes`, `main`.`work_orders`.`created_by`, `main`.`work_orders`.`created_at`, `main`.`work_orders`.`updated_at` FROM `main`.`work_orders` WHERE `main`.`work_orders`.`status` = ? ORDER BY `main`.`work_orders`.`priority` ASC, `main`.`work_orders`.`due_date` ASC LIMIT ? OFFSET ?
+ GET /api/work-orders?status=issued&limit=50 200 in 74ms
+ GET /api/work-orders?status=issued&limit=50 200 in 53ms
+ ✓ Compiled /sales-orders in 241ms (543 modules)
+ ✓ Compiled /api/products in 237ms (545 modules)
+ ✓ Compiled (549 modules)
+prisma:query SELECT `main`.`customers`.`id`, `main`.`customers`.`code`, `main`.`customers`.`name`, `main`.`customers`.`contact`, `main`.`customers`.`otd_target`, `main`.`customers`.`created_at` FROM `main`.`customers` WHERE 1=1 ORDER BY `main`.`customers`.`code` ASC LIMIT ? OFFSET ?
+prisma:query SELECT 1
+prisma:query SELECT 1
+prisma:query SELECT COUNT(*) FROM (SELECT `main`.`products`.`id` FROM `main`.`products` WHERE 1=1 LIMIT ? OFFSET ?) AS `sub`
+prisma:query SELECT `main`.`products`.`id`, `main`.`products`.`code`, `main`.`products`.`name`, `main`.`products`.`category`, `main`.`products`.`unit`, `main`.`products`.`customer_id`, `main`.`products`.`drawing_no`, `main`.`products`.`std_cycle_sec`, `main`.`products`.`created_at`, `main`.`products`.`updated_at` FROM `main`.`products` WHERE 1=1 ORDER BY `main`.`products`.`code` ASC LIMIT ? OFFSET ?
+ GET /api/customers?limit=200 200 in 807ms
+ GET /api/customers?limit=200 200 in 767ms
+prisma:query SELECT COUNT(*) FROM (SELECT `main`.`sales_orders`.`id` FROM `main`.`sales_orders` WHERE 1=1 LIMIT ? OFFSET ?) AS `sub`
+prisma:query SELECT `main`.`customers`.`id`, `main`.`customers`.`name`, `main`.`customers`.`code` FROM `main`.`customers` WHERE `main`.`customers`.`id` IN (?,?,?,?,?) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`sales_orders`.`id`, `main`.`sales_orders`.`so_no`, `main`.`sales_orders`.`customer_id`, `main`.`sales_orders`.`product_id`, `main`.`sales_orders`.`ordered_qty`, `main`.`sales_orders`.`due_date`, `main`.`sales_orders`.`status`, `main`.`sales_orders`.`notes`, `main`.`sales_orders`.`created_by`, `main`.`sales_orders`.`created_at`, `main`.`sales_orders`.`updated_at` FROM `main`.`sales_orders` WHERE 1=1 ORDER BY `main`.`sales_orders`.`created_at` DESC LIMIT ? OFFSET ?
+ GET /api/sales-orders?page=1&limit=20 200 in 812ms
+ GET /api/sales-orders?page=1&limit=20 200 in 773ms
+ GET /api/products?limit=200 200 in 814ms
+ GET /api/products?limit=200 200 in 773ms
+prisma:query SELECT `main`.`customers`.`id`, `main`.`customers`.`code`, `main`.`customers`.`name`, `main`.`customers`.`contact`, `main`.`customers`.`otd_target`, `main`.`customers`.`created_at` FROM `main`.`customers` WHERE 1=1 ORDER BY `main`.`customers`.`code` ASC LIMIT ? OFFSET ?
+ GET /api/customers?limit=200 200 in 154ms
+ GET /api/customers?limit=200 200 in 110ms
+prisma:query SELECT COUNT(*) FROM (SELECT `main`.`sales_orders`.`id` FROM `main`.`sales_orders` WHERE 1=1 LIMIT ? OFFSET ?) AS `sub`
+prisma:query SELECT `main`.`sales_orders`.`id`, `main`.`sales_orders`.`so_no`, `main`.`sales_orders`.`customer_id`, `main`.`sales_orders`.`product_id`, `main`.`sales_orders`.`ordered_qty`, `main`.`sales_orders`.`due_date`, `main`.`sales_orders`.`status`, `main`.`sales_orders`.`notes`, `main`.`sales_orders`.`created_by`, `main`.`sales_orders`.`created_at`, `main`.`sales_orders`.`updated_at` FROM `main`.`sales_orders` WHERE 1=1 ORDER BY `main`.`sales_orders`.`created_at` DESC LIMIT ? OFFSET ?
+ GET /api/sales-orders?page=1&limit=20 200 in 159ms
+ GET /api/sales-orders?page=1&limit=20 200 in 113ms
+prisma:query SELECT `main`.`products`.`id`, `main`.`products`.`code`, `main`.`products`.`name`, `main`.`products`.`category`, `main`.`products`.`unit`, `main`.`products`.`customer_id`, `main`.`products`.`drawing_no`, `main`.`products`.`std_cycle_sec`, `main`.`products`.`created_at`, `main`.`products`.`updated_at` FROM `main`.`products` WHERE 1=1 ORDER BY `main`.`products`.`code` ASC LIMIT ? OFFSET ?
+prisma:query SELECT COUNT(*) FROM (SELECT `main`.`products`.`id` FROM `main`.`products` WHERE 1=1 LIMIT ? OFFSET ?) AS `sub`
+prisma:query SELECT `main`.`customers`.`id`, `main`.`customers`.`name`, `main`.`customers`.`code` FROM `main`.`customers` WHERE `main`.`customers`.`id` IN (?,?,?,?,?) LIMIT ? OFFSET ?
+ GET /api/products?limit=200 200 in 162ms
+ GET /api/products?limit=200 200 in 117ms
+ ✓ Compiled /production/work-orders in 291ms (548 modules)
+prisma:query SELECT `main`.`work_orders`.`id`, `main`.`work_orders`.`wo_no`, `main`.`work_orders`.`product_id`, `main`.`work_orders`.`customer_id`, `main`.`work_orders`.`planned_qty`, `main`.`work_orders`.`produced_qty`, `main`.`work_orders`.`defect_qty`, `main`.`work_orders`.`status`, `main`.`work_orders`.`planned_start`, `main`.`work_orders`.`planned_end`, `main`.`work_orders`.`actual_start`, `main`.`work_orders`.`actual_end`, `main`.`work_orders`.`due_date`, `main`.`work_orders`.`priority`, `main`.`work_orders`.`notes`, `main`.`work_orders`.`created_by`, `main`.`work_orders`.`created_at`, `main`.`work_orders`.`updated_at` FROM `main`.`work_orders` WHERE 1=1 ORDER BY `main`.`work_orders`.`priority` ASC, `main`.`work_orders`.`due_date` ASC LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`products`.`id`, `main`.`products`.`name`, `main`.`products`.`code` FROM `main`.`products` WHERE `main`.`products`.`id` IN (?) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`customers`.`id`, `main`.`customers`.`name` FROM `main`.`customers` WHERE `main`.`customers`.`id` IN (?) LIMIT ? OFFSET ?
+ GET /production/work-orders?_rsc=6nwg7 200 in 148ms
+ GET /production/work-orders?_rsc=6nwg7 200 in 122ms
+ ○ Compiling /production/work-orders/new ...
+ ✓ Compiled /production/work-orders/new in 614ms (1394 modules)
+prisma:query SELECT 1
+prisma:query SELECT `main`.`products`.`id`, `main`.`products`.`code`, `main`.`products`.`name`, `main`.`products`.`category`, `main`.`products`.`unit`, `main`.`products`.`customer_id`, `main`.`products`.`drawing_no`, `main`.`products`.`std_cycle_sec`, `main`.`products`.`created_at`, `main`.`products`.`updated_at` FROM `main`.`products` WHERE 1=1 ORDER BY `main`.`products`.`code` ASC LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`customers`.`id`, `main`.`customers`.`code`, `main`.`customers`.`name`, `main`.`customers`.`contact`, `main`.`customers`.`otd_target`, `main`.`customers`.`created_at` FROM `main`.`customers` WHERE 1=1 ORDER BY `main`.`customers`.`code` ASC LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`customers`.`id`, `main`.`customers`.`name` FROM `main`.`customers` WHERE `main`.`customers`.`id` IN (?,?,?,?,?) LIMIT ? OFFSET ?
+ GET /api/auth/session 200 in 108ms
+ GET /api/auth/session 200 in 67ms
+ ○ Compiling /admin/users ...
+ ✓ Compiled /admin/users in 1157ms (1337 modules)
+ ○ Compiling /api/admin/users ...
+ ✓ Compiled /api/admin/users in 523ms (503 modules)
+prisma:query SELECT 1
+prisma:query SELECT `main`.`users`.`id`, `main`.`users`.`email`, `main`.`users`.`name`, `main`.`users`.`role`, `main`.`users`.`department`, `main`.`users`.`shift`, `main`.`users`.`is_active`, `main`.`users`.`last_login_at` FROM `main`.`users` WHERE 1=1 ORDER BY `main`.`users`.`role` ASC, `main`.`users`.`name` ASC LIMIT ? OFFSET ?
+ GET /api/admin/users 200 in 764ms
+ GET /api/admin/users 200 in 735ms
+prisma:query SELECT `main`.`users`.`id`, `main`.`users`.`email`, `main`.`users`.`name`, `main`.`users`.`role`, `main`.`users`.`department`, `main`.`users`.`shift`, `main`.`users`.`is_active`, `main`.`users`.`last_login_at` FROM `main`.`users` WHERE 1=1 ORDER BY `main`.`users`.`role` ASC, `main`.`users`.`name` ASC LIMIT ? OFFSET ?
+ GET /api/admin/users 200 in 84ms
+ GET /api/admin/users 200 in 53ms
+ ✓ Compiled in 497ms (860 modules)
+ GET /admin/users?_rsc=jjk4l 200 in 97ms
+ GET /admin/users?_rsc=jjk4l 200 in 73ms
+ ✓ Compiled in 974ms (1549 modules)
+ GET /admin/users?_rsc=4af98 200 in 871ms
+ GET /admin/users?_rsc=4af98 200 in 756ms
+ GET /admin/users?_rsc=4af98 200 in 167ms
+ GET /admin/users?_rsc=4af98 200 in 47ms
+ ✓ Compiled in 655ms (1549 modules)
+ GET /admin/users?_rsc=4af98 200 in 465ms
+ GET /admin/users?_rsc=4af98 200 in 414ms
+ GET /admin/users?_rsc=4af98 200 in 75ms
+ GET /admin/users?_rsc=4af98 200 in 55ms
+ ✓ Compiled in 313ms (860 modules)
+ GET /admin/users?_rsc=4af98 200 in 84ms
+ GET /admin/users?_rsc=4af98 200 in 58ms
+ ✓ Compiled in 289ms (860 modules)
+ GET /admin/users?_rsc=4af98 200 in 99ms
+ GET /admin/users?_rsc=4af98 200 in 57ms
+ ✓ Compiled in 303ms (860 modules)
+ GET /admin/users?_rsc=4af98 200 in 73ms
+ GET /admin/users?_rsc=4af98 200 in 57ms
+ ✓ Compiled in 271ms (860 modules)
+ GET /admin/users?_rsc=4af98 200 in 108ms
+ GET /admin/users?_rsc=4af98 200 in 82ms
+ ✓ Compiled in 311ms (860 modules)
+ GET /admin/users?_rsc=4af98 200 in 98ms
+ GET /admin/users?_rsc=4af98 200 in 67ms
+ ✓ Compiled in 256ms (860 modules)
+ GET /admin/users?_rsc=4af98 200 in 65ms
+ GET /admin/users?_rsc=4af98 200 in 46ms
+ ✓ Compiled in 230ms (860 modules)
+ GET /admin/users?_rsc=4af98 200 in 65ms
+ GET /admin/users?_rsc=4af98 200 in 46ms
+ ✓ Compiled in 266ms (860 modules)
+ GET /admin/users?_rsc=4af98 200 in 88ms
+ GET /admin/users?_rsc=4af98 200 in 64ms
+ ✓ Compiled in 1070ms (1549 modules)
+ GET /admin/users?_rsc=4af98 200 in 889ms
+ GET /admin/users?_rsc=4af98 200 in 710ms
+ GET /admin/users?_rsc=4af98 200 in 73ms
+ GET /admin/users?_rsc=4af98 200 in 60ms
+ ✓ Compiled in 550ms (1345 modules)
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ GET /admin/users?_rsc=4af98 200 in 174ms
+ GET /admin/users?_rsc=4af98 200 in 149ms
+ GET /admin/users 200 in 263ms
+ GET /admin/users 200 in 227ms
+ ✓ Compiled /api/admin/users in 184ms (489 modules)
+ ✓ Compiled (501 modules)
+ GET /api/auth/session 200 in 662ms
+prisma:query SELECT 1
+prisma:query SELECT `main`.`users`.`id`, `main`.`users`.`email`, `main`.`users`.`name`, `main`.`users`.`role`, `main`.`users`.`department`, `main`.`users`.`shift`, `main`.`users`.`is_active`, `main`.`users`.`last_login_at` FROM `main`.`users` WHERE 1=1 ORDER BY `main`.`users`.`role` ASC, `main`.`users`.`name` ASC LIMIT ? OFFSET ?
+ GET /api/admin/users 200 in 679ms
+ GET /api/admin/users 200 in 638ms
+ GET /api/auth/session 200 in 60ms
+prisma:query SELECT `main`.`users`.`id`, `main`.`users`.`email`, `main`.`users`.`name`, `main`.`users`.`role`, `main`.`users`.`department`, `main`.`users`.`shift`, `main`.`users`.`is_active`, `main`.`users`.`last_login_at` FROM `main`.`users` WHERE 1=1 ORDER BY `main`.`users`.`role` ASC, `main`.`users`.`name` ASC LIMIT ? OFFSET ?
+ GET /api/admin/users 200 in 106ms
+ GET /api/admin/users 200 in 62ms
+ GET /api/auth/session 200 in 58ms
+ GET /api/auth/session 200 in 36ms
+ ✓ Compiled in 527ms (1363 modules)
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ GET /admin/users?_rsc=4af98 200 in 174ms
+ GET /admin/users?_rsc=4af98 200 in 149ms
+ GET /admin/users 200 in 271ms
+ GET /admin/users 200 in 232ms
+ GET /api/auth/session 200 in 85ms
+prisma:query SELECT `main`.`users`.`id`, `main`.`users`.`email`, `main`.`users`.`name`, `main`.`users`.`role`, `main`.`users`.`department`, `main`.`users`.`shift`, `main`.`users`.`is_active`, `main`.`users`.`last_login_at` FROM `main`.`users` WHERE 1=1 ORDER BY `main`.`users`.`role` ASC, `main`.`users`.`name` ASC LIMIT ? OFFSET ?
+ GET /api/admin/users 200 in 147ms
+ GET /api/admin/users 200 in 104ms
+ GET /api/auth/session 200 in 83ms
+prisma:query SELECT `main`.`users`.`id`, `main`.`users`.`email`, `main`.`users`.`name`, `main`.`users`.`role`, `main`.`users`.`department`, `main`.`users`.`shift`, `main`.`users`.`is_active`, `main`.`users`.`last_login_at` FROM `main`.`users` WHERE 1=1 ORDER BY `main`.`users`.`role` ASC, `main`.`users`.`name` ASC LIMIT ? OFFSET ?
+ GET /api/admin/users 200 in 114ms
+ GET /api/admin/users 200 in 81ms
+ GET /api/auth/session 200 in 82ms
+ GET /api/auth/session 200 in 39ms
+ GET /api/auth/session 200 in 85ms
+ GET /api/auth/session 200 in 61ms
+ ✓ Compiled in 472ms (861 modules)
+ GET /admin/users?_rsc=4af98 200 in 110ms
+ GET /admin/users?_rsc=4af98 200 in 76ms
+ ✓ Compiled in 936ms (1347 modules)
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ GET /admin/users?_rsc=4af98 200 in 298ms
+ GET /admin/users?_rsc=4af98 200 in 268ms
+ GET /admin/users 200 in 444ms
+ GET /admin/users 200 in 246ms
+ ✓ Compiled /api/admin/users in 169ms (490 modules)
+ ✓ Compiled (502 modules)
+ GET /api/auth/session 200 in 469ms
+prisma:query SELECT 1
+prisma:query SELECT `main`.`users`.`id`, `main`.`users`.`email`, `main`.`users`.`name`, `main`.`users`.`role`, `main`.`users`.`department`, `main`.`users`.`shift`, `main`.`users`.`is_active`, `main`.`users`.`last_login_at` FROM `main`.`users` WHERE 1=1 ORDER BY `main`.`users`.`role` ASC, `main`.`users`.`name` ASC LIMIT ? OFFSET ?
+ GET /api/admin/users 200 in 477ms
+ GET /api/admin/users 200 in 413ms
+ GET /api/auth/session 200 in 80ms
+prisma:query SELECT `main`.`users`.`id`, `main`.`users`.`email`, `main`.`users`.`name`, `main`.`users`.`role`, `main`.`users`.`department`, `main`.`users`.`shift`, `main`.`users`.`is_active`, `main`.`users`.`last_login_at` FROM `main`.`users` WHERE 1=1 ORDER BY `main`.`users`.`role` ASC, `main`.`users`.`name` ASC LIMIT ? OFFSET ?
+ GET /api/admin/users 200 in 155ms
+ GET /api/admin/users 200 in 99ms
+ GET /api/auth/session 200 in 83ms
+ GET /api/auth/session 200 in 38ms
+ GET /api/auth/session 200 in 84ms
+ GET /api/auth/session 200 in 57ms
+ ○ Compiling /admin/interfaces ...
+ ✓ Compiled /admin/interfaces in 1063ms (1361 modules)
+ ✓ Compiled /api/interfaces in 419ms (514 modules)
+[API Error] TypeError: Cannot read properties of undefined (reading 'findMany')
+    at getHandler (webpack-internal:///(rsc)/./src/app/api/interfaces/route.ts:29:91)
+    at eval (webpack-internal:///(rsc)/./src/lib/api/with-auth.ts:24:16)
+    at async eval (webpack-internal:///(rsc)/./src/lib/api/with-error-handler.ts:27:20)
+    at async C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:6:53238
+    at async e_.execute (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:6:44501)
+    at async e_.handle (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:6:54492)
+    at async doRender (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\base-server.js:1372:42)
+    at async cacheEntry.responseCache.get.routeKind (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\base-server.js:1594:28)
+    at async DevServer.renderToResponseWithComponentsImpl (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\base-server.js:1502:28)
+    at async DevServer.renderPageComponent (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\base-server.js:1919:24)
+    at async DevServer.renderToResponseImpl (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\base-server.js:1957:32)
+    at async DevServer.pipeImpl (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\base-server.js:915:25)
+    at async NextNodeServer.handleCatchallRenderRequest (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\next-server.js:272:17)
+    at async DevServer.handleRequestImpl (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\base-server.js:811:17)
+    at async C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\dev\next-dev-server.js:339:20
+    at async Span.traceAsyncFn (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\trace\trace.js:154:20)
+    at async DevServer.handleRequest (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\dev\next-dev-server.js:336:24)
+    at async invokeRender (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\lib\router-server.js:174:21)
+    at async handleRequest (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\lib\router-server.js:353:24)
+    at async requestHandlerImpl (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\lib\router-server.js:377:13)
+    at async Server.requestListener (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\lib\start-server.js:141:13)
+ GET /api/interfaces 500 in 571ms
+ GET /api/interfaces 500 in 546ms
+[API Error] TypeError: Cannot read properties of undefined (reading 'findMany')
+    at getHandler (webpack-internal:///(rsc)/./src/app/api/interfaces/route.ts:29:91)
+    at eval (webpack-internal:///(rsc)/./src/lib/api/with-auth.ts:24:16)
+    at async eval (webpack-internal:///(rsc)/./src/lib/api/with-error-handler.ts:27:20)
+    at async C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:6:53238
+    at async e_.execute (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:6:44501)
+    at async e_.handle (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:6:54492)
+    at async doRender (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\base-server.js:1372:42)
+    at async cacheEntry.responseCache.get.routeKind (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\base-server.js:1594:28)
+    at async DevServer.renderToResponseWithComponentsImpl (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\base-server.js:1502:28)
+    at async DevServer.renderPageComponent (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\base-server.js:1919:24)
+    at async DevServer.renderToResponseImpl (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\base-server.js:1957:32)
+    at async DevServer.pipeImpl (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\base-server.js:915:25)
+    at async NextNodeServer.handleCatchallRenderRequest (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\next-server.js:272:17)
+    at async DevServer.handleRequestImpl (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\base-server.js:811:17)
+    at async C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\dev\next-dev-server.js:339:20
+    at async Span.traceAsyncFn (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\trace\trace.js:154:20)
+    at async DevServer.handleRequest (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\dev\next-dev-server.js:336:24)
+    at async invokeRender (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\lib\router-server.js:174:21)
+    at async handleRequest (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\lib\router-server.js:353:24)
+    at async requestHandlerImpl (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\lib\router-server.js:377:13)
+    at async Server.requestListener (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\lib\start-server.js:141:13)
+ GET /api/interfaces 500 in 74ms
+ GET /api/interfaces 500 in 50ms
+ GET /admin/interfaces 200 in 266ms
+ GET /admin/interfaces 200 in 235ms
+ GET /api/auth/session 200 in 115ms
+[API Error] TypeError: Cannot read properties of undefined (reading 'findMany')
+    at getHandler (webpack-internal:///(rsc)/./src/app/api/interfaces/route.ts:29:91)
+    at eval (webpack-internal:///(rsc)/./src/lib/api/with-auth.ts:24:16)
+    at async eval (webpack-internal:///(rsc)/./src/lib/api/with-error-handler.ts:27:20)
+    at async C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:6:53238
+    at async e_.execute (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:6:44501)
+    at async e_.handle (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:6:54492)
+    at async doRender (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\base-server.js:1372:42)
+    at async cacheEntry.responseCache.get.routeKind (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\base-server.js:1594:28)
+    at async DevServer.renderToResponseWithComponentsImpl (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\base-server.js:1502:28)
+    at async DevServer.renderPageComponent (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\base-server.js:1919:24)
+    at async DevServer.renderToResponseImpl (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\base-server.js:1957:32)
+    at async DevServer.pipeImpl (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\base-server.js:915:25)
+    at async NextNodeServer.handleCatchallRenderRequest (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\next-server.js:272:17)
+    at async DevServer.handleRequestImpl (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\base-server.js:811:17)
+    at async C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\dev\next-dev-server.js:339:20
+    at async Span.traceAsyncFn (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\trace\trace.js:154:20)
+    at async DevServer.handleRequest (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\dev\next-dev-server.js:336:24)
+    at async invokeRender (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\lib\router-server.js:174:21)
+    at async handleRequest (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\lib\router-server.js:353:24)
+    at async requestHandlerImpl (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\lib\router-server.js:377:13)
+    at async Server.requestListener (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\lib\start-server.js:141:13)
+ GET /api/interfaces 500 in 183ms
+ GET /api/interfaces 500 in 122ms
+ GET /api/auth/session 200 in 90ms
+ GET /api/auth/session 200 in 81ms
+[API Error] TypeError: Cannot read properties of undefined (reading 'findMany')
+    at getHandler (webpack-internal:///(rsc)/./src/app/api/interfaces/route.ts:29:91)
+    at eval (webpack-internal:///(rsc)/./src/lib/api/with-auth.ts:24:16)
+    at async eval (webpack-internal:///(rsc)/./src/lib/api/with-error-handler.ts:27:20)
+    at async C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:6:53238
+    at async e_.execute (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:6:44501)
+    at async e_.handle (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:6:54492)
+    at async doRender (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\base-server.js:1372:42)
+    at async cacheEntry.responseCache.get.routeKind (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\base-server.js:1594:28)
+    at async DevServer.renderToResponseWithComponentsImpl (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\base-server.js:1502:28)
+    at async DevServer.renderPageComponent (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\base-server.js:1919:24)
+    at async DevServer.renderToResponseImpl (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\base-server.js:1957:32)
+    at async DevServer.pipeImpl (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\base-server.js:915:25)
+    at async NextNodeServer.handleCatchallRenderRequest (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\next-server.js:272:17)
+    at async DevServer.handleRequestImpl (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\base-server.js:811:17)
+    at async C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\dev\next-dev-server.js:339:20
+    at async Span.traceAsyncFn (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\trace\trace.js:154:20)
+    at async DevServer.handleRequest (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\dev\next-dev-server.js:336:24)
+    at async invokeRender (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\lib\router-server.js:174:21)
+    at async handleRequest (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\lib\router-server.js:353:24)
+    at async requestHandlerImpl (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\lib\router-server.js:377:13)
+    at async Server.requestListener (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\lib\start-server.js:141:13)
+ GET /api/interfaces 500 in 152ms
+ GET /api/interfaces 500 in 104ms
+ GET /api/auth/session 200 in 52ms
+ ✓ Compiled in 503ms (866 modules)
+ GET /admin/interfaces?_rsc=ipso8 200 in 92ms
+ GET /admin/interfaces?_rsc=ipso8 200 in 62ms
+ ✓ Compiled in 837ms (1375 modules)
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ GET /admin/interfaces?_rsc=ipso8 200 in 293ms
+ GET /admin/interfaces?_rsc=ipso8 200 in 261ms
+ GET /admin/interfaces 200 in 415ms
+ GET /admin/interfaces 200 in 364ms
+ GET /api/auth/session 200 in 124ms
+[API Error] TypeError: Cannot read properties of undefined (reading 'findMany')
+    at getHandler (webpack-internal:///(rsc)/./src/app/api/interfaces/route.ts:29:91)
+    at eval (webpack-internal:///(rsc)/./src/lib/api/with-auth.ts:24:16)
+    at async eval (webpack-internal:///(rsc)/./src/lib/api/with-error-handler.ts:27:20)
+    at async C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:6:53238
+    at async e_.execute (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:6:44501)
+    at async e_.handle (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:6:54492)
+    at async doRender (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\base-server.js:1372:42)
+    at async cacheEntry.responseCache.get.routeKind (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\base-server.js:1594:28)
+    at async DevServer.renderToResponseWithComponentsImpl (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\base-server.js:1502:28)
+    at async DevServer.renderPageComponent (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\base-server.js:1919:24)
+    at async DevServer.renderToResponseImpl (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\base-server.js:1957:32)
+    at async DevServer.pipeImpl (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\base-server.js:915:25)
+    at async NextNodeServer.handleCatchallRenderRequest (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\next-server.js:272:17)
+    at async DevServer.handleRequestImpl (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\base-server.js:811:17)
+    at async C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\dev\next-dev-server.js:339:20
+    at async Span.traceAsyncFn (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\trace\trace.js:154:20)
+    at async DevServer.handleRequest (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\dev\next-dev-server.js:336:24)
+    at async invokeRender (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\lib\router-server.js:174:21)
+    at async handleRequest (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\lib\router-server.js:353:24)
+    at async requestHandlerImpl (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\lib\router-server.js:377:13)
+    at async Server.requestListener (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\lib\start-server.js:141:13)
+ GET /api/interfaces 500 in 215ms
+ GET /api/interfaces 500 in 160ms
+ GET /api/auth/session 200 in 114ms
+[API Error] TypeError: Cannot read properties of undefined (reading 'findMany')
+    at getHandler (webpack-internal:///(rsc)/./src/app/api/interfaces/route.ts:29:91)
+    at eval (webpack-internal:///(rsc)/./src/lib/api/with-auth.ts:24:16)
+    at async eval (webpack-internal:///(rsc)/./src/lib/api/with-error-handler.ts:27:20)
+    at async C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:6:53238
+    at async e_.execute (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:6:44501)
+    at async e_.handle (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:6:54492)
+    at async doRender (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\base-server.js:1372:42)
+    at async cacheEntry.responseCache.get.routeKind (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\base-server.js:1594:28)
+    at async DevServer.renderToResponseWithComponentsImpl (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\base-server.js:1502:28)
+    at async DevServer.renderPageComponent (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\base-server.js:1919:24)
+    at async DevServer.renderToResponseImpl (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\base-server.js:1957:32)
+    at async DevServer.pipeImpl (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\base-server.js:915:25)
+    at async NextNodeServer.handleCatchallRenderRequest (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\next-server.js:272:17)
+    at async DevServer.handleRequestImpl (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\base-server.js:811:17)
+    at async C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\dev\next-dev-server.js:339:20
+    at async Span.traceAsyncFn (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\trace\trace.js:154:20)
+    at async DevServer.handleRequest (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\dev\next-dev-server.js:336:24)
+    at async invokeRender (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\lib\router-server.js:174:21)
+    at async handleRequest (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\lib\router-server.js:353:24)
+    at async requestHandlerImpl (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\lib\router-server.js:377:13)
+    at async Server.requestListener (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\lib\start-server.js:141:13)
+ GET /api/interfaces 500 in 138ms
+ GET /api/interfaces 500 in 95ms
+ GET /api/auth/session 200 in 99ms
+ GET /api/auth/session 200 in 54ms
+ ✓ Compiled in 1194ms (1579 modules)
+ GET /admin/interfaces?_rsc=ipso8 200 in 991ms
+ GET /admin/interfaces?_rsc=ipso8 200 in 836ms
+ GET /admin/interfaces?_rsc=ipso8 200 in 393ms
+ GET /admin/interfaces?_rsc=ipso8 200 in 171ms
+ ✓ Compiled in 8.2s (1593 modules)
+ GET /admin/interfaces?_rsc=ipso8 200 in 7853ms
+ GET /admin/interfaces?_rsc=ipso8 200 in 7531ms
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ GET /admin/interfaces?_rsc=ipso8 200 in 528ms
+ GET /admin/interfaces?_rsc=ipso8 200 in 483ms
+ GET /admin/interfaces 200 in 894ms
+ GET /admin/interfaces 200 in 621ms
+ GET /api/auth/session 200 in 412ms
+ ⨯ ./src/components/layout/Sidebar.tsx
+Error: 
+  [31mx[0m Unexpected token `div`. Expected jsx identifier
+     ,-[[36;1;4mC:\gerardo\01 SmallSF\Steel-MES\src\components\layout\Sidebar.tsx[0m:243:1]
+ [2m243[0m |   );
+ [2m244[0m | 
+ [2m245[0m |   return (
+ [2m246[0m |     <div id="dashboard-sidebar" className="w-52 h-full bg-slate-900 text-white flex flex-col">
+     : [31;1m     ^^^[0m
+ [2m247[0m |       <LogoBlock />
+ [2m248[0m | 
+ [2m249[0m |       {/* 네비게이션 */}
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/components/layout/Sidebar.tsx
+./src/components/layout/TabBar.tsx
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ ○ Compiling /_error ...
+ ✓ Compiled /_error in 9.8s (1583 modules)
+ GET /api/auth/session 500 in 15430ms
+ GET /api/interfaces 500 in 15878ms
+ GET /api/interfaces 500 in 15672ms
+ GET /admin/interfaces?_rsc=ipso8 200 in 4370ms
+ GET /admin/interfaces?_rsc=ipso8 200 in 4073ms
+ GET /api/auth/session 200 in 406ms
+ GET /admin/interfaces 200 in 7604ms
+ GET /admin/interfaces 200 in 7501ms
+ GET /api/auth/session 200 in 244ms
+[API Error] TypeError: Cannot read properties of undefined (reading 'findMany')
+    at getHandler (webpack-internal:///(rsc)/./src/app/api/interfaces/route.ts:29:91)
+    at eval (webpack-internal:///(rsc)/./src/lib/api/with-auth.ts:24:16)
+    at async eval (webpack-internal:///(rsc)/./src/lib/api/with-error-handler.ts:27:20)
+    at async C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:6:53238
+    at async e_.execute (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:6:44501)
+    at async e_.handle (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:6:54492)
+    at async doRender (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\base-server.js:1372:42)
+    at async cacheEntry.responseCache.get.routeKind (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\base-server.js:1594:28)
+    at async DevServer.renderToResponseWithComponentsImpl (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\base-server.js:1502:28)
+    at async DevServer.renderPageComponent (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\base-server.js:1919:24)
+    at async DevServer.renderToResponseImpl (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\base-server.js:1957:32)
+    at async DevServer.pipeImpl (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\base-server.js:915:25)
+    at async NextNodeServer.handleCatchallRenderRequest (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\next-server.js:272:17)
+    at async DevServer.handleRequestImpl (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\base-server.js:811:17)
+    at async C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\dev\next-dev-server.js:339:20
+    at async Span.traceAsyncFn (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\trace\trace.js:154:20)
+    at async DevServer.handleRequest (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\dev\next-dev-server.js:336:24)
+    at async invokeRender (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\lib\router-server.js:174:21)
+    at async handleRequest (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\lib\router-server.js:353:24)
+    at async requestHandlerImpl (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\lib\router-server.js:377:13)
+    at async Server.requestListener (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\lib\start-server.js:141:13)
+ GET /api/interfaces 500 in 436ms
+ GET /api/interfaces 500 in 301ms
+ GET /api/auth/session 200 in 240ms
+ GET /api/auth/session 200 in 164ms
+[API Error] TypeError: Cannot read properties of undefined (reading 'findMany')
+    at getHandler (webpack-internal:///(rsc)/./src/app/api/interfaces/route.ts:29:91)
+    at eval (webpack-internal:///(rsc)/./src/lib/api/with-auth.ts:24:16)
+    at async eval (webpack-internal:///(rsc)/./src/lib/api/with-error-handler.ts:27:20)
+    at async C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:6:53238
+    at async e_.execute (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:6:44501)
+    at async e_.handle (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:6:54492)
+    at async doRender (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\base-server.js:1372:42)
+    at async cacheEntry.responseCache.get.routeKind (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\base-server.js:1594:28)
+    at async DevServer.renderToResponseWithComponentsImpl (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\base-server.js:1502:28)
+    at async DevServer.renderPageComponent (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\base-server.js:1919:24)
+    at async DevServer.renderToResponseImpl (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\base-server.js:1957:32)
+    at async DevServer.pipeImpl (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\base-server.js:915:25)
+    at async NextNodeServer.handleCatchallRenderRequest (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\next-server.js:272:17)
+    at async DevServer.handleRequestImpl (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\base-server.js:811:17)
+    at async C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\dev\next-dev-server.js:339:20
+    at async Span.traceAsyncFn (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\trace\trace.js:154:20)
+    at async DevServer.handleRequest (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\dev\next-dev-server.js:336:24)
+    at async invokeRender (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\lib\router-server.js:174:21)
+    at async handleRequest (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\lib\router-server.js:353:24)
+    at async requestHandlerImpl (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\lib\router-server.js:377:13)
+    at async Server.requestListener (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\lib\start-server.js:141:13)
+ GET /api/interfaces 500 in 304ms
+ GET /api/interfaces 500 in 183ms
+ GET /api/auth/session 200 in 106ms
+ ✓ Compiled in 1418ms (1597 modules)
+ GET /admin/interfaces?_rsc=ipso8 200 in 189ms
+ GET /admin/interfaces?_rsc=ipso8 200 in 153ms
+ ✓ Compiled in 1394ms (1801 modules)
+ GET /admin/interfaces?_rsc=ipso8 200 in 1175ms
+ GET /admin/interfaces?_rsc=ipso8 200 in 1058ms
+ GET /admin/interfaces?_rsc=ipso8 200 in 104ms
+ GET /admin/interfaces?_rsc=ipso8 200 in 82ms
+ ✓ Compiled in 1030ms (1780 modules)
+ GET /admin/interfaces?_rsc=ipso8 200 in 841ms
+ GET /admin/interfaces?_rsc=ipso8 200 in 722ms
+ GET /admin/interfaces?_rsc=ipso8 200 in 59ms
+ GET /admin/interfaces?_rsc=ipso8 200 in 46ms
+ ✓ Compiled in 1078ms (1780 modules)
+ GET /admin/interfaces?_rsc=ipso8 200 in 910ms
+ GET /admin/interfaces?_rsc=ipso8 200 in 790ms
+ GET /admin/interfaces?_rsc=ipso8 200 in 103ms
+ GET /admin/interfaces?_rsc=ipso8 200 in 74ms
+ ✓ Compiled in 1740ms (1780 modules)
+ GET /admin/interfaces?_rsc=ipso8 200 in 1505ms
+ GET /admin/interfaces?_rsc=ipso8 200 in 1287ms
+ GET /admin/interfaces?_rsc=ipso8 200 in 123ms
+ GET /admin/interfaces?_rsc=ipso8 200 in 84ms
+ ✓ Compiled in 488ms (1052 modules)
+ GET /admin/interfaces?_rsc=ipso8 200 in 109ms
+ GET /admin/interfaces?_rsc=ipso8 200 in 79ms
+ ✓ Compiled in 920ms (1576 modules)
+ GET /admin/interfaces?_rsc=ipso8 200 in 180ms
+ GET /admin/interfaces?_rsc=ipso8 200 in 136ms
+ ✓ Compiled in 534ms (1052 modules)
+ GET /admin/interfaces?_rsc=ipso8 200 in 133ms
+ GET /admin/interfaces?_rsc=ipso8 200 in 100ms
+ ✓ Compiled in 1044ms (1584 modules)
+ GET /admin/interfaces?_rsc=ipso8 200 in 220ms
+ GET /admin/interfaces?_rsc=ipso8 200 in 176ms
+ ✓ Compiled /api/auth/[...nextauth] in 396ms (532 modules)
+ GET /api/auth/session 200 in 726ms
+ GET /api/auth/session 200 in 75ms
+ ✓ Compiled in 1800ms (1588 modules)
+ GET /admin/interfaces?_rsc=ipso8 200 in 230ms
+ GET /admin/interfaces?_rsc=ipso8 200 in 183ms
+ ✓ Compiled in 621ms (1056 modules)
+ GET /admin/interfaces?_rsc=ipso8 200 in 123ms
+ GET /admin/interfaces?_rsc=ipso8 200 in 85ms
+ ✓ Compiled in 511ms (1056 modules)
+ GET /admin/interfaces?_rsc=ipso8 200 in 130ms
+ GET /admin/interfaces?_rsc=ipso8 200 in 95ms
+ GET /api/auth/session 200 in 151ms
+ GET /api/auth/session 200 in 87ms
+ ✓ Compiled in 684ms (1584 modules)
+ GET /admin/interfaces?_rsc=ipso8 200 in 180ms
+ GET /admin/interfaces?_rsc=ipso8 200 in 153ms
+ ✓ Compiled /api/auth/[...nextauth] in 223ms (532 modules)
+[31m[auth][error][0m MissingCSRF: CSRF token was missing during an action signout. Read more at https://errors.authjs.dev#missingcsrf
+    at validateCSRF (webpack-internal:///(rsc)/./node_modules/@auth/core/lib/actions/callback/oauth/csrf-token.js:45:11)
+    at AuthInternal (webpack-internal:///(rsc)/./node_modules/@auth/core/lib/index.js:78:100)
+    at async Auth (webpack-internal:///(rsc)/./node_modules/@auth/core/index.js:130:34)
+    at async C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:6:53238
+    at async e_.execute (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:6:44501)
+    at async e_.handle (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:6:54492)
+    at async doRender (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\base-server.js:1372:42)
+    at async cacheEntry.responseCache.get.routeKind (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\base-server.js:1582:40)
+    at async DevServer.renderToResponseWithComponentsImpl (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\base-server.js:1502:28)
+    at async DevServer.renderPageComponent (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\base-server.js:1919:24)
+    at async DevServer.renderToResponseImpl (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\base-server.js:1957:32)
+    at async DevServer.pipeImpl (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\base-server.js:915:25)
+    at async NextNodeServer.handleCatchallRenderRequest (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\next-server.js:272:17)
+    at async DevServer.handleRequestImpl (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\base-server.js:811:17)
+    at async C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\dev\next-dev-server.js:339:20
+    at async Span.traceAsyncFn (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\trace\trace.js:154:20)
+    at async DevServer.handleRequest (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\dev\next-dev-server.js:336:24)
+    at async invokeRender (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\lib\router-server.js:174:21)
+    at async handleRequest (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\lib\router-server.js:353:24)
+    at async requestHandlerImpl (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\lib\router-server.js:377:13)
+    at async Server.requestListener (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\lib\start-server.js:141:13)
+ POST /api/auth/signout 302 in 453ms
+ ○ Compiling /dashboard ...
+ ✓ Compiled /dashboard in 670ms (553 modules)
+prisma:query SELECT 1
+prisma:query SELECT 1
+prisma:query SELECT 1
+prisma:query SELECT 1
+prisma:query SELECT 1
+prisma:query SELECT COUNT(`main`.`equipment`.`status`), `main`.`equipment`.`status` FROM `main`.`equipment` WHERE 1=1 GROUP BY `main`.`equipment`.`status` LIMIT ? OFFSET ?
+prisma:query SELECT SUM(`good_qty`), SUM(`defect_qty`), SUM(`planned_qty`) FROM (SELECT `main`.`production_logs`.`good_qty`, `main`.`production_logs`.`defect_qty`, `main`.`production_logs`.`planned_qty` FROM `main`.`production_logs` WHERE (`main`.`production_logs`.`created_at` >= ? AND `main`.`production_logs`.`created_at` <= ?) LIMIT ? OFFSET ?) AS `sub`
+prisma:query SELECT `main`.`nonconformance_reports`.`id`, `main`.`nonconformance_reports`.`ncr_no`, `main`.`nonconformance_reports`.`disposition`, `main`.`nonconformance_reports`.`status` FROM `main`.`nonconformance_reports` WHERE `main`.`nonconformance_reports`.`status` IN (?,?) ORDER BY `main`.`nonconformance_reports`.`created_at` DESC LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`work_orders`.`id`, `main`.`work_orders`.`wo_no`, `main`.`work_orders`.`product_id`, `main`.`work_orders`.`customer_id`, `main`.`work_orders`.`planned_qty`, `main`.`work_orders`.`produced_qty`, `main`.`work_orders`.`defect_qty`, `main`.`work_orders`.`status`, `main`.`work_orders`.`planned_start`, `main`.`work_orders`.`planned_end`, `main`.`work_orders`.`actual_start`, `main`.`work_orders`.`actual_end`, `main`.`work_orders`.`due_date`, `main`.`work_orders`.`priority`, `main`.`work_orders`.`notes`, `main`.`work_orders`.`created_by`, `main`.`work_orders`.`created_at`, `main`.`work_orders`.`updated_at` FROM `main`.`work_orders` WHERE `main`.`work_orders`.`status` = ? ORDER BY `main`.`work_orders`.`priority` ASC LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`equipment`.`id`, `main`.`equipment`.`code`, `main`.`equipment`.`name`, `main`.`equipment`.`last_pm_date`, `main`.`equipment`.`pm_cycle_days` FROM `main`.`equipment` WHERE (`main`.`equipment`.`pm_cycle_days` IS NOT NULL AND `main`.`equipment`.`last_pm_date` < ?) ORDER BY `main`.`equipment`.`id` ASC LIMIT ? OFFSET ?
+ GET /dashboard 200 in 1104ms
+ GET /dashboard 200 in 1078ms
+[31m[auth][error][0m MissingCSRF: CSRF token was missing during an action signout. Read more at https://errors.authjs.dev#missingcsrf
+    at validateCSRF (webpack-internal:///(rsc)/./node_modules/@auth/core/lib/actions/callback/oauth/csrf-token.js:45:11)
+    at AuthInternal (webpack-internal:///(rsc)/./node_modules/@auth/core/lib/index.js:78:100)
+    at async Auth (webpack-internal:///(rsc)/./node_modules/@auth/core/index.js:130:34)
+    at async C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:6:53238
+    at async e_.execute (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:6:44501)
+    at async e_.handle (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:6:54492)
+    at async doRender (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\base-server.js:1372:42)
+    at async cacheEntry.responseCache.get.routeKind (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\base-server.js:1582:40)
+    at async DevServer.renderToResponseWithComponentsImpl (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\base-server.js:1502:28)
+    at async DevServer.renderPageComponent (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\base-server.js:1919:24)
+    at async DevServer.renderToResponseImpl (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\base-server.js:1957:32)
+    at async DevServer.pipeImpl (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\base-server.js:915:25)
+    at async NextNodeServer.handleCatchallRenderRequest (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\next-server.js:272:17)
+    at async DevServer.handleRequestImpl (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\base-server.js:811:17)
+    at async C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\dev\next-dev-server.js:339:20
+    at async Span.traceAsyncFn (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\trace\trace.js:154:20)
+    at async DevServer.handleRequest (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\dev\next-dev-server.js:336:24)
+    at async invokeRender (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\lib\router-server.js:174:21)
+    at async handleRequest (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\lib\router-server.js:353:24)
+    at async requestHandlerImpl (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\lib\router-server.js:377:13)
+    at async Server.requestListener (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\lib\start-server.js:141:13)
+ POST /api/auth/signout 302 in 146ms
+ GET /admin/interfaces?_rsc=ipso8 200 in 498ms
+ GET /admin/interfaces?_rsc=ipso8 200 in 237ms
+prisma:query SELECT `main`.`equipment`.`id`, `main`.`equipment`.`code`, `main`.`equipment`.`name`, `main`.`equipment`.`last_pm_date`, `main`.`equipment`.`pm_cycle_days` FROM `main`.`equipment` WHERE (`main`.`equipment`.`pm_cycle_days` IS NOT NULL AND `main`.`equipment`.`last_pm_date` < ?) ORDER BY `main`.`equipment`.`id` ASC LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`work_orders`.`id`, `main`.`work_orders`.`wo_no`, `main`.`work_orders`.`product_id`, `main`.`work_orders`.`customer_id`, `main`.`work_orders`.`planned_qty`, `main`.`work_orders`.`produced_qty`, `main`.`work_orders`.`defect_qty`, `main`.`work_orders`.`status`, `main`.`work_orders`.`planned_start`, `main`.`work_orders`.`planned_end`, `main`.`work_orders`.`actual_start`, `main`.`work_orders`.`actual_end`, `main`.`work_orders`.`due_date`, `main`.`work_orders`.`priority`, `main`.`work_orders`.`notes`, `main`.`work_orders`.`created_by`, `main`.`work_orders`.`created_at`, `main`.`work_orders`.`updated_at` FROM `main`.`work_orders` WHERE `main`.`work_orders`.`status` = ? ORDER BY `main`.`work_orders`.`priority` ASC LIMIT ? OFFSET ?
+prisma:query SELECT COUNT(`main`.`equipment`.`status`), `main`.`equipment`.`status` FROM `main`.`equipment` WHERE 1=1 GROUP BY `main`.`equipment`.`status` LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`nonconformance_reports`.`id`, `main`.`nonconformance_reports`.`ncr_no`, `main`.`nonconformance_reports`.`disposition`, `main`.`nonconformance_reports`.`status` FROM `main`.`nonconformance_reports` WHERE `main`.`nonconformance_reports`.`status` IN (?,?) ORDER BY `main`.`nonconformance_reports`.`created_at` DESC LIMIT ? OFFSET ?
+prisma:query SELECT SUM(`good_qty`), SUM(`defect_qty`), SUM(`planned_qty`) FROM (SELECT `main`.`production_logs`.`good_qty`, `main`.`production_logs`.`defect_qty`, `main`.`production_logs`.`planned_qty` FROM `main`.`production_logs` WHERE (`main`.`production_logs`.`created_at` >= ? AND `main`.`production_logs`.`created_at` <= ?) LIMIT ? OFFSET ?) AS `sub`
+ GET /dashboard 200 in 171ms
+ GET /dashboard 200 in 148ms
+ GET /api/auth/session 200 in 70ms
+ GET /api/auth/session 200 in 64ms
+ GET /api/auth/session 200 in 91ms
+ GET /api/auth/session 200 in 66ms
+[31m[auth][error][0m MissingCSRF: CSRF token was missing during an action signout. Read more at https://errors.authjs.dev#missingcsrf
+    at validateCSRF (webpack-internal:///(rsc)/./node_modules/@auth/core/lib/actions/callback/oauth/csrf-token.js:45:11)
+    at AuthInternal (webpack-internal:///(rsc)/./node_modules/@auth/core/lib/index.js:78:100)
+    at async Auth (webpack-internal:///(rsc)/./node_modules/@auth/core/index.js:130:34)
+    at async C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:6:53238
+    at async e_.execute (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:6:44501)
+    at async e_.handle (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:6:54492)
+    at async doRender (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\base-server.js:1372:42)
+    at async cacheEntry.responseCache.get.routeKind (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\base-server.js:1582:40)
+    at async DevServer.renderToResponseWithComponentsImpl (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\base-server.js:1502:28)
+    at async DevServer.renderPageComponent (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\base-server.js:1919:24)
+    at async DevServer.renderToResponseImpl (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\base-server.js:1957:32)
+    at async DevServer.pipeImpl (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\base-server.js:915:25)
+    at async NextNodeServer.handleCatchallRenderRequest (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\next-server.js:272:17)
+    at async DevServer.handleRequestImpl (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\base-server.js:811:17)
+    at async C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\dev\next-dev-server.js:339:20
+    at async Span.traceAsyncFn (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\trace\trace.js:154:20)
+    at async DevServer.handleRequest (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\dev\next-dev-server.js:336:24)
+    at async invokeRender (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\lib\router-server.js:174:21)
+    at async handleRequest (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\lib\router-server.js:353:24)
+    at async requestHandlerImpl (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\lib\router-server.js:377:13)
+    at async Server.requestListener (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\lib\start-server.js:141:13)
+ POST /api/auth/signout 302 in 85ms
+prisma:query SELECT SUM(`good_qty`), SUM(`defect_qty`), SUM(`planned_qty`) FROM (SELECT `main`.`production_logs`.`good_qty`, `main`.`production_logs`.`defect_qty`, `main`.`production_logs`.`planned_qty` FROM `main`.`production_logs` WHERE (`main`.`production_logs`.`created_at` >= ? AND `main`.`production_logs`.`created_at` <= ?) LIMIT ? OFFSET ?) AS `sub`
+prisma:query SELECT COUNT(`main`.`equipment`.`status`), `main`.`equipment`.`status` FROM `main`.`equipment` WHERE 1=1 GROUP BY `main`.`equipment`.`status` LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`nonconformance_reports`.`id`, `main`.`nonconformance_reports`.`ncr_no`, `main`.`nonconformance_reports`.`disposition`, `main`.`nonconformance_reports`.`status` FROM `main`.`nonconformance_reports` WHERE `main`.`nonconformance_reports`.`status` IN (?,?) ORDER BY `main`.`nonconformance_reports`.`created_at` DESC LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`work_orders`.`id`, `main`.`work_orders`.`wo_no`, `main`.`work_orders`.`product_id`, `main`.`work_orders`.`customer_id`, `main`.`work_orders`.`planned_qty`, `main`.`work_orders`.`produced_qty`, `main`.`work_orders`.`defect_qty`, `main`.`work_orders`.`status`, `main`.`work_orders`.`planned_start`, `main`.`work_orders`.`planned_end`, `main`.`work_orders`.`actual_start`, `main`.`work_orders`.`actual_end`, `main`.`work_orders`.`due_date`, `main`.`work_orders`.`priority`, `main`.`work_orders`.`notes`, `main`.`work_orders`.`created_by`, `main`.`work_orders`.`created_at`, `main`.`work_orders`.`updated_at` FROM `main`.`work_orders` WHERE `main`.`work_orders`.`status` = ? ORDER BY `main`.`work_orders`.`priority` ASC LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`equipment`.`id`, `main`.`equipment`.`code`, `main`.`equipment`.`name`, `main`.`equipment`.`last_pm_date`, `main`.`equipment`.`pm_cycle_days` FROM `main`.`equipment` WHERE (`main`.`equipment`.`pm_cycle_days` IS NOT NULL AND `main`.`equipment`.`last_pm_date` < ?) ORDER BY `main`.`equipment`.`id` ASC LIMIT ? OFFSET ?
+ GET /dashboard 200 in 207ms
+ GET /dashboard 200 in 172ms
+ GET /api/auth/session 200 in 72ms
+ GET /api/auth/session 200 in 65ms
+ GET /api/auth/session 200 in 66ms
+ GET /api/auth/session 200 in 67ms
+prisma:query SELECT SUM(`good_qty`), SUM(`defect_qty`), SUM(`planned_qty`) FROM (SELECT `main`.`production_logs`.`good_qty`, `main`.`production_logs`.`defect_qty`, `main`.`production_logs`.`planned_qty` FROM `main`.`production_logs` WHERE (`main`.`production_logs`.`created_at` >= ? AND `main`.`production_logs`.`created_at` <= ?) LIMIT ? OFFSET ?) AS `sub`
+prisma:query SELECT COUNT(`main`.`equipment`.`status`), `main`.`equipment`.`status` FROM `main`.`equipment` WHERE 1=1 GROUP BY `main`.`equipment`.`status` LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`equipment`.`id`, `main`.`equipment`.`code`, `main`.`equipment`.`name`, `main`.`equipment`.`last_pm_date`, `main`.`equipment`.`pm_cycle_days` FROM `main`.`equipment` WHERE (`main`.`equipment`.`pm_cycle_days` IS NOT NULL AND `main`.`equipment`.`last_pm_date` < ?) ORDER BY `main`.`equipment`.`id` ASC LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`work_orders`.`id`, `main`.`work_orders`.`wo_no`, `main`.`work_orders`.`product_id`, `main`.`work_orders`.`customer_id`, `main`.`work_orders`.`planned_qty`, `main`.`work_orders`.`produced_qty`, `main`.`work_orders`.`defect_qty`, `main`.`work_orders`.`status`, `main`.`work_orders`.`planned_start`, `main`.`work_orders`.`planned_end`, `main`.`work_orders`.`actual_start`, `main`.`work_orders`.`actual_end`, `main`.`work_orders`.`due_date`, `main`.`work_orders`.`priority`, `main`.`work_orders`.`notes`, `main`.`work_orders`.`created_by`, `main`.`work_orders`.`created_at`, `main`.`work_orders`.`updated_at` FROM `main`.`work_orders` WHERE `main`.`work_orders`.`status` = ? ORDER BY `main`.`work_orders`.`priority` ASC LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`nonconformance_reports`.`id`, `main`.`nonconformance_reports`.`ncr_no`, `main`.`nonconformance_reports`.`disposition`, `main`.`nonconformance_reports`.`status` FROM `main`.`nonconformance_reports` WHERE `main`.`nonconformance_reports`.`status` IN (?,?) ORDER BY `main`.`nonconformance_reports`.`created_at` DESC LIMIT ? OFFSET ?
+ GET /dashboard 200 in 185ms
+ GET /dashboard 200 in 161ms
+ GET /api/auth/session 200 in 88ms
+ GET /api/auth/session 200 in 60ms
+ GET /api/auth/session 200 in 66ms
+ GET /api/auth/session 200 in 58ms
+prisma:query SELECT COUNT(`main`.`equipment`.`status`), `main`.`equipment`.`status` FROM `main`.`equipment` WHERE 1=1 GROUP BY `main`.`equipment`.`status` LIMIT ? OFFSET ?
+prisma:query SELECT SUM(`good_qty`), SUM(`defect_qty`), SUM(`planned_qty`) FROM (SELECT `main`.`production_logs`.`good_qty`, `main`.`production_logs`.`defect_qty`, `main`.`production_logs`.`planned_qty` FROM `main`.`production_logs` WHERE (`main`.`production_logs`.`created_at` >= ? AND `main`.`production_logs`.`created_at` <= ?) LIMIT ? OFFSET ?) AS `sub`
+prisma:query SELECT `main`.`nonconformance_reports`.`id`, `main`.`nonconformance_reports`.`ncr_no`, `main`.`nonconformance_reports`.`disposition`, `main`.`nonconformance_reports`.`status` FROM `main`.`nonconformance_reports` WHERE `main`.`nonconformance_reports`.`status` IN (?,?) ORDER BY `main`.`nonconformance_reports`.`created_at` DESC LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`work_orders`.`id`, `main`.`work_orders`.`wo_no`, `main`.`work_orders`.`product_id`, `main`.`work_orders`.`customer_id`, `main`.`work_orders`.`planned_qty`, `main`.`work_orders`.`produced_qty`, `main`.`work_orders`.`defect_qty`, `main`.`work_orders`.`status`, `main`.`work_orders`.`planned_start`, `main`.`work_orders`.`planned_end`, `main`.`work_orders`.`actual_start`, `main`.`work_orders`.`actual_end`, `main`.`work_orders`.`due_date`, `main`.`work_orders`.`priority`, `main`.`work_orders`.`notes`, `main`.`work_orders`.`created_by`, `main`.`work_orders`.`created_at`, `main`.`work_orders`.`updated_at` FROM `main`.`work_orders` WHERE `main`.`work_orders`.`status` = ? ORDER BY `main`.`work_orders`.`priority` ASC LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`equipment`.`id`, `main`.`equipment`.`code`, `main`.`equipment`.`name`, `main`.`equipment`.`last_pm_date`, `main`.`equipment`.`pm_cycle_days` FROM `main`.`equipment` WHERE (`main`.`equipment`.`pm_cycle_days` IS NOT NULL AND `main`.`equipment`.`last_pm_date` < ?) ORDER BY `main`.`equipment`.`id` ASC LIMIT ? OFFSET ?
+ GET /dashboard 200 in 184ms
+ GET /dashboard 200 in 159ms
+ GET /api/auth/session 200 in 88ms
+ GET /api/auth/session 200 in 72ms
+ GET /api/auth/session 200 in 64ms
+ GET /api/auth/session 200 in 67ms
+ ✓ Compiled in 567ms (1056 modules)
+prisma:query SELECT 1
+prisma:query SELECT 1
+prisma:query SELECT 1
+prisma:query SELECT 1
+prisma:query SELECT 1
+prisma:query SELECT COUNT(`main`.`equipment`.`status`), `main`.`equipment`.`status` FROM `main`.`equipment` WHERE 1=1 GROUP BY `main`.`equipment`.`status` LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`equipment`.`id`, `main`.`equipment`.`code`, `main`.`equipment`.`name`, `main`.`equipment`.`last_pm_date`, `main`.`equipment`.`pm_cycle_days` FROM `main`.`equipment` WHERE (`main`.`equipment`.`pm_cycle_days` IS NOT NULL AND `main`.`equipment`.`last_pm_date` < ?) ORDER BY `main`.`equipment`.`id` ASC LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`nonconformance_reports`.`id`, `main`.`nonconformance_reports`.`ncr_no`, `main`.`nonconformance_reports`.`disposition`, `main`.`nonconformance_reports`.`status` FROM `main`.`nonconformance_reports` WHERE `main`.`nonconformance_reports`.`status` IN (?,?) ORDER BY `main`.`nonconformance_reports`.`created_at` DESC LIMIT ? OFFSET ?
+prisma:query SELECT SUM(`good_qty`), SUM(`defect_qty`), SUM(`planned_qty`) FROM (SELECT `main`.`production_logs`.`good_qty`, `main`.`production_logs`.`defect_qty`, `main`.`production_logs`.`planned_qty` FROM `main`.`production_logs` WHERE (`main`.`production_logs`.`created_at` >= ? AND `main`.`production_logs`.`created_at` <= ?) LIMIT ? OFFSET ?) AS `sub`
+prisma:query SELECT `main`.`work_orders`.`id`, `main`.`work_orders`.`wo_no`, `main`.`work_orders`.`product_id`, `main`.`work_orders`.`customer_id`, `main`.`work_orders`.`planned_qty`, `main`.`work_orders`.`produced_qty`, `main`.`work_orders`.`defect_qty`, `main`.`work_orders`.`status`, `main`.`work_orders`.`planned_start`, `main`.`work_orders`.`planned_end`, `main`.`work_orders`.`actual_start`, `main`.`work_orders`.`actual_end`, `main`.`work_orders`.`due_date`, `main`.`work_orders`.`priority`, `main`.`work_orders`.`notes`, `main`.`work_orders`.`created_by`, `main`.`work_orders`.`created_at`, `main`.`work_orders`.`updated_at` FROM `main`.`work_orders` WHERE `main`.`work_orders`.`status` = ? ORDER BY `main`.`work_orders`.`priority` ASC LIMIT ? OFFSET ?
+ GET /dashboard?_rsc=1yjjz 200 in 102ms
+ GET /dashboard?_rsc=1yjjz 200 in 66ms
+ ✓ Compiled in 626ms (1056 modules)
+prisma:query SELECT SUM(`good_qty`), SUM(`defect_qty`), SUM(`planned_qty`) FROM (SELECT `main`.`production_logs`.`good_qty`, `main`.`production_logs`.`defect_qty`, `main`.`production_logs`.`planned_qty` FROM `main`.`production_logs` WHERE (`main`.`production_logs`.`created_at` >= ? AND `main`.`production_logs`.`created_at` <= ?) LIMIT ? OFFSET ?) AS `sub`
+prisma:query SELECT COUNT(`main`.`equipment`.`status`), `main`.`equipment`.`status` FROM `main`.`equipment` WHERE 1=1 GROUP BY `main`.`equipment`.`status` LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`nonconformance_reports`.`id`, `main`.`nonconformance_reports`.`ncr_no`, `main`.`nonconformance_reports`.`disposition`, `main`.`nonconformance_reports`.`status` FROM `main`.`nonconformance_reports` WHERE `main`.`nonconformance_reports`.`status` IN (?,?) ORDER BY `main`.`nonconformance_reports`.`created_at` DESC LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`work_orders`.`id`, `main`.`work_orders`.`wo_no`, `main`.`work_orders`.`product_id`, `main`.`work_orders`.`customer_id`, `main`.`work_orders`.`planned_qty`, `main`.`work_orders`.`produced_qty`, `main`.`work_orders`.`defect_qty`, `main`.`work_orders`.`status`, `main`.`work_orders`.`planned_start`, `main`.`work_orders`.`planned_end`, `main`.`work_orders`.`actual_start`, `main`.`work_orders`.`actual_end`, `main`.`work_orders`.`due_date`, `main`.`work_orders`.`priority`, `main`.`work_orders`.`notes`, `main`.`work_orders`.`created_by`, `main`.`work_orders`.`created_at`, `main`.`work_orders`.`updated_at` FROM `main`.`work_orders` WHERE `main`.`work_orders`.`status` = ? ORDER BY `main`.`work_orders`.`priority` ASC LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`equipment`.`id`, `main`.`equipment`.`code`, `main`.`equipment`.`name`, `main`.`equipment`.`last_pm_date`, `main`.`equipment`.`pm_cycle_days` FROM `main`.`equipment` WHERE (`main`.`equipment`.`pm_cycle_days` IS NOT NULL AND `main`.`equipment`.`last_pm_date` < ?) ORDER BY `main`.`equipment`.`id` ASC LIMIT ? OFFSET ?
+ GET /dashboard?_rsc=1yjjz 200 in 152ms
+ GET /dashboard?_rsc=1yjjz 200 in 115ms
+prisma:query SELECT 1
+prisma:query SELECT 1
+prisma:query SELECT 1
+prisma:query SELECT 1
+prisma:query SELECT 1
+prisma:query SELECT `main`.`work_orders`.`id`, `main`.`work_orders`.`wo_no`, `main`.`work_orders`.`product_id`, `main`.`work_orders`.`customer_id`, `main`.`work_orders`.`planned_qty`, `main`.`work_orders`.`produced_qty`, `main`.`work_orders`.`defect_qty`, `main`.`work_orders`.`status`, `main`.`work_orders`.`planned_start`, `main`.`work_orders`.`planned_end`, `main`.`work_orders`.`actual_start`, `main`.`work_orders`.`actual_end`, `main`.`work_orders`.`due_date`, `main`.`work_orders`.`priority`, `main`.`work_orders`.`notes`, `main`.`work_orders`.`created_by`, `main`.`work_orders`.`created_at`, `main`.`work_orders`.`updated_at` FROM `main`.`work_orders` WHERE `main`.`work_orders`.`status` = ? ORDER BY `main`.`work_orders`.`priority` ASC LIMIT ? OFFSET ?
+prisma:query SELECT COUNT(`main`.`equipment`.`status`), `main`.`equipment`.`status` FROM `main`.`equipment` WHERE 1=1 GROUP BY `main`.`equipment`.`status` LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`nonconformance_reports`.`id`, `main`.`nonconformance_reports`.`ncr_no`, `main`.`nonconformance_reports`.`disposition`, `main`.`nonconformance_reports`.`status` FROM `main`.`nonconformance_reports` WHERE `main`.`nonconformance_reports`.`status` IN (?,?) ORDER BY `main`.`nonconformance_reports`.`created_at` DESC LIMIT ? OFFSET ?
+prisma:query SELECT SUM(`good_qty`), SUM(`defect_qty`), SUM(`planned_qty`) FROM (SELECT `main`.`production_logs`.`good_qty`, `main`.`production_logs`.`defect_qty`, `main`.`production_logs`.`planned_qty` FROM `main`.`production_logs` WHERE (`main`.`production_logs`.`created_at` >= ? AND `main`.`production_logs`.`created_at` <= ?) LIMIT ? OFFSET ?) AS `sub`
+prisma:query SELECT `main`.`equipment`.`id`, `main`.`equipment`.`code`, `main`.`equipment`.`name`, `main`.`equipment`.`last_pm_date`, `main`.`equipment`.`pm_cycle_days` FROM `main`.`equipment` WHERE (`main`.`equipment`.`pm_cycle_days` IS NOT NULL AND `main`.`equipment`.`last_pm_date` < ?) ORDER BY `main`.`equipment`.`id` ASC LIMIT ? OFFSET ?
+ GET /dashboard 200 in 190ms
+ GET /dashboard 200 in 158ms
+ GET /api/auth/session 200 in 114ms
+ GET /api/auth/session 200 in 86ms
+ GET /api/auth/session 200 in 81ms
+ GET /api/auth/session 200 in 83ms
+[31m[auth][error][0m MissingCSRF: CSRF token was missing during an action signout. Read more at https://errors.authjs.dev#missingcsrf
+    at validateCSRF (webpack-internal:///(rsc)/./node_modules/@auth/core/lib/actions/callback/oauth/csrf-token.js:45:11)
+    at AuthInternal (webpack-internal:///(rsc)/./node_modules/@auth/core/lib/index.js:78:100)
+    at async Auth (webpack-internal:///(rsc)/./node_modules/@auth/core/index.js:130:34)
+    at async C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:6:53238
+    at async e_.execute (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:6:44501)
+    at async e_.handle (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:6:54492)
+    at async doRender (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\base-server.js:1372:42)
+    at async cacheEntry.responseCache.get.routeKind (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\base-server.js:1582:40)
+    at async DevServer.renderToResponseWithComponentsImpl (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\base-server.js:1502:28)
+    at async DevServer.renderPageComponent (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\base-server.js:1919:24)
+    at async DevServer.renderToResponseImpl (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\base-server.js:1957:32)
+    at async DevServer.pipeImpl (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\base-server.js:915:25)
+    at async NextNodeServer.handleCatchallRenderRequest (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\next-server.js:272:17)
+    at async DevServer.handleRequestImpl (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\base-server.js:811:17)
+    at async C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\dev\next-dev-server.js:339:20
+    at async Span.traceAsyncFn (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\trace\trace.js:154:20)
+    at async DevServer.handleRequest (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\dev\next-dev-server.js:336:24)
+    at async invokeRender (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\lib\router-server.js:174:21)
+    at async handleRequest (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\lib\router-server.js:353:24)
+    at async requestHandlerImpl (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\lib\router-server.js:377:13)
+    at async Server.requestListener (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\lib\start-server.js:141:13)
+ POST /api/auth/signout 302 in 99ms
+prisma:query SELECT COUNT(`main`.`equipment`.`status`), `main`.`equipment`.`status` FROM `main`.`equipment` WHERE 1=1 GROUP BY `main`.`equipment`.`status` LIMIT ? OFFSET ?
+prisma:query SELECT SUM(`good_qty`), SUM(`defect_qty`), SUM(`planned_qty`) FROM (SELECT `main`.`production_logs`.`good_qty`, `main`.`production_logs`.`defect_qty`, `main`.`production_logs`.`planned_qty` FROM `main`.`production_logs` WHERE (`main`.`production_logs`.`created_at` >= ? AND `main`.`production_logs`.`created_at` <= ?) LIMIT ? OFFSET ?) AS `sub`
+prisma:query SELECT `main`.`equipment`.`id`, `main`.`equipment`.`code`, `main`.`equipment`.`name`, `main`.`equipment`.`last_pm_date`, `main`.`equipment`.`pm_cycle_days` FROM `main`.`equipment` WHERE (`main`.`equipment`.`pm_cycle_days` IS NOT NULL AND `main`.`equipment`.`last_pm_date` < ?) ORDER BY `main`.`equipment`.`id` ASC LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`nonconformance_reports`.`id`, `main`.`nonconformance_reports`.`ncr_no`, `main`.`nonconformance_reports`.`disposition`, `main`.`nonconformance_reports`.`status` FROM `main`.`nonconformance_reports` WHERE `main`.`nonconformance_reports`.`status` IN (?,?) ORDER BY `main`.`nonconformance_reports`.`created_at` DESC LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`work_orders`.`id`, `main`.`work_orders`.`wo_no`, `main`.`work_orders`.`product_id`, `main`.`work_orders`.`customer_id`, `main`.`work_orders`.`planned_qty`, `main`.`work_orders`.`produced_qty`, `main`.`work_orders`.`defect_qty`, `main`.`work_orders`.`status`, `main`.`work_orders`.`planned_start`, `main`.`work_orders`.`planned_end`, `main`.`work_orders`.`actual_start`, `main`.`work_orders`.`actual_end`, `main`.`work_orders`.`due_date`, `main`.`work_orders`.`priority`, `main`.`work_orders`.`notes`, `main`.`work_orders`.`created_by`, `main`.`work_orders`.`created_at`, `main`.`work_orders`.`updated_at` FROM `main`.`work_orders` WHERE `main`.`work_orders`.`status` = ? ORDER BY `main`.`work_orders`.`priority` ASC LIMIT ? OFFSET ?
+ GET /dashboard 200 in 204ms
+ GET /dashboard 200 in 177ms
+ GET /api/auth/session 200 in 78ms
+ GET /api/auth/session 200 in 82ms
+ GET /api/auth/session 200 in 148ms
+[31m[auth][error][0m MissingCSRF: CSRF token was missing during an action signout. Read more at https://errors.authjs.dev#missingcsrf
+    at validateCSRF (webpack-internal:///(rsc)/./node_modules/@auth/core/lib/actions/callback/oauth/csrf-token.js:45:11)
+    at AuthInternal (webpack-internal:///(rsc)/./node_modules/@auth/core/lib/index.js:78:100)
+    at async Auth (webpack-internal:///(rsc)/./node_modules/@auth/core/index.js:130:34)
+    at async C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:6:53238
+    at async e_.execute (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:6:44501)
+    at async e_.handle (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:6:54492)
+    at async doRender (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\base-server.js:1372:42)
+    at async cacheEntry.responseCache.get.routeKind (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\base-server.js:1582:40)
+    at async DevServer.renderToResponseWithComponentsImpl (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\base-server.js:1502:28)
+    at async DevServer.renderPageComponent (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\base-server.js:1919:24)
+    at async DevServer.renderToResponseImpl (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\base-server.js:1957:32)
+    at async DevServer.pipeImpl (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\base-server.js:915:25)
+    at async NextNodeServer.handleCatchallRenderRequest (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\next-server.js:272:17)
+    at async DevServer.handleRequestImpl (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\base-server.js:811:17)
+    at async C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\dev\next-dev-server.js:339:20
+    at async Span.traceAsyncFn (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\trace\trace.js:154:20)
+    at async DevServer.handleRequest (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\dev\next-dev-server.js:336:24)
+    at async invokeRender (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\lib\router-server.js:174:21)
+    at async handleRequest (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\lib\router-server.js:353:24)
+    at async requestHandlerImpl (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\lib\router-server.js:377:13)
+    at async Server.requestListener (C:\gerardo\01 SmallSF\Steel-MES\node_modules\next\dist\server\lib\start-server.js:141:13)
+ POST /api/auth/signout 302 in 121ms
+ GET /api/auth/session 200 in 132ms
+prisma:query SELECT SUM(`good_qty`), SUM(`defect_qty`), SUM(`planned_qty`) FROM (SELECT `main`.`production_logs`.`good_qty`, `main`.`production_logs`.`defect_qty`, `main`.`production_logs`.`planned_qty` FROM `main`.`production_logs` WHERE (`main`.`production_logs`.`created_at` >= ? AND `main`.`production_logs`.`created_at` <= ?) LIMIT ? OFFSET ?) AS `sub`
+prisma:query SELECT `main`.`equipment`.`id`, `main`.`equipment`.`code`, `main`.`equipment`.`name`, `main`.`equipment`.`last_pm_date`, `main`.`equipment`.`pm_cycle_days` FROM `main`.`equipment` WHERE (`main`.`equipment`.`pm_cycle_days` IS NOT NULL AND `main`.`equipment`.`last_pm_date` < ?) ORDER BY `main`.`equipment`.`id` ASC LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`work_orders`.`id`, `main`.`work_orders`.`wo_no`, `main`.`work_orders`.`product_id`, `main`.`work_orders`.`customer_id`, `main`.`work_orders`.`planned_qty`, `main`.`work_orders`.`produced_qty`, `main`.`work_orders`.`defect_qty`, `main`.`work_orders`.`status`, `main`.`work_orders`.`planned_start`, `main`.`work_orders`.`planned_end`, `main`.`work_orders`.`actual_start`, `main`.`work_orders`.`actual_end`, `main`.`work_orders`.`due_date`, `main`.`work_orders`.`priority`, `main`.`work_orders`.`notes`, `main`.`work_orders`.`created_by`, `main`.`work_orders`.`created_at`, `main`.`work_orders`.`updated_at` FROM `main`.`work_orders` WHERE `main`.`work_orders`.`status` = ? ORDER BY `main`.`work_orders`.`priority` ASC LIMIT ? OFFSET ?
+prisma:query SELECT COUNT(`main`.`equipment`.`status`), `main`.`equipment`.`status` FROM `main`.`equipment` WHERE 1=1 GROUP BY `main`.`equipment`.`status` LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`nonconformance_reports`.`id`, `main`.`nonconformance_reports`.`ncr_no`, `main`.`nonconformance_reports`.`disposition`, `main`.`nonconformance_reports`.`status` FROM `main`.`nonconformance_reports` WHERE `main`.`nonconformance_reports`.`status` IN (?,?) ORDER BY `main`.`nonconformance_reports`.`created_at` DESC LIMIT ? OFFSET ?
+ GET /dashboard 200 in 222ms
+ GET /dashboard 200 in 194ms
+ GET /api/auth/session 200 in 86ms
+ GET /api/auth/session 200 in 88ms
+ GET /api/auth/session 200 in 77ms
+ GET /api/auth/session 200 in 74ms
+[?25h
