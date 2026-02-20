@@ -148,7 +148,7 @@ export default function CustomerRequirementsPage() {
       </div>
 
       {/* 등록 모달 */}
-      <Modal isOpen={modal} onClose={() => setModal(false)} title="고객요구사항 등록">
+      <Modal open={modal} onClose={() => setModal(false)} title="고객요구사항 등록">
         <div className="space-y-4">
           {error && <p className="text-sm text-red-600 bg-red-50 px-3 py-2 rounded-lg">{error}</p>}
 
