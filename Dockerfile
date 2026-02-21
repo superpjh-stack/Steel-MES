@@ -28,7 +28,11 @@ COPY --from=builder /app/node_modules/.prisma ./node_modules/.prisma
 # Prisma CLI (migrate deploy)
 COPY --from=builder /app/node_modules/prisma ./node_modules/prisma
 COPY --from=builder /app/node_modules/@prisma ./node_modules/@prisma
+# bcryptjs for seed script
+COPY --from=builder /app/node_modules/bcryptjs ./node_modules/bcryptjs
 
 EXPOSE 3000
-# Run migrations; if failed migration state (P3009), reset schema and retry; then start server
-CMD ["sh", "-c", "out=$(node node_modules/prisma/build/index.js migrate deploy 2>&1); if echo \"$out\" | grep -q 'P3009'; then echo 'Resetting failed migration state...'; printf 'DROP SCHEMA IF EXISTS public CASCADE;\\nCREATE SCHEMA public;\\n' | node node_modules/prisma/build/index.js db execute --schema prisma/schema.prisma --stdin; node node_modules/prisma/build/index.js migrate deploy; else echo \"$out\"; fi && node server.js"]
+# 1) migrate deploy (P3009 시 스키마 리셋 후 재시도)
+# 2) seed-init (사용자 0명일 때만 초기 계정 생성)
+# 3) 서버 시작
+CMD ["sh", "-c", "out=$(node node_modules/prisma/build/index.js migrate deploy 2>&1); if echo \"$out\" | grep -q 'P3009'; then echo 'Resetting failed migration state...'; printf 'DROP SCHEMA IF EXISTS public CASCADE;\\nCREATE SCHEMA public;\\n' | node node_modules/prisma/build/index.js db execute --schema prisma/schema.prisma --stdin; node node_modules/prisma/build/index.js migrate deploy; else echo \"$out\"; fi && node prisma/seed-init.mjs && node server.js"]
