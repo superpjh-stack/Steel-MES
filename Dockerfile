@@ -14,6 +14,8 @@ RUN npm run build
 
 FROM base AS runner
 ENV NODE_ENV=production
+# Prisma schema engine requires OpenSSL on Alpine
+RUN apk add --no-cache openssl
 
 COPY --from=builder /app/.next/standalone ./
 COPY --from=builder /app/.next/static ./.next/static
