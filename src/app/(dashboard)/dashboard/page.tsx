@@ -6,7 +6,6 @@ import Link from 'next/link';
 import {
   Target, CheckCircle2, TrendingDown, Percent,
   Cpu, AlertTriangle, ClipboardList,
-  ShieldCheck, SprayCan, Clock, Activity,
 } from 'lucide-react';
 
 const PM_DUE_THRESHOLD_DAYS = 7;
@@ -15,9 +14,7 @@ async function getDashboardData() {
   const today = new Date();
   const pmCutoff = new Date(Date.now() - PM_DUE_THRESHOLD_DAYS * 24 * 60 * 60 * 1000);
 
-  const monthStart = startOfDay(new Date(today.getFullYear(), today.getMonth(), 1));
-
-  const [todayLogs, activeOrders, equipStatus, pmDue, recentNcr, haccpCount, hygieneCount, expiryAlertCount, ccpPassCount, ccpTotalCount] = await Promise.all([
+  const [todayLogs, activeOrders, equipStatus, pmDue, recentNcr] = await Promise.all([
     prisma.productionLog.aggregate({
       where: { createdAt: { gte: startOfDay(today), lte: endOfDay(today) } },
       _sum: { goodQty: true, defectQty: true, plannedQty: true },
@@ -43,13 +40,6 @@ async function getDashboardData() {
       take: 4,
       select: { ncrNo: true, disposition: true, status: true },
     }),
-    // Food KPIs
-    prisma.haccpPlan.count({ where: { status: 'active' } }),
-    prisma.hygieneCheck.count({ where: { checkDate: { gte: monthStart } } }),
-    prisma.material.count({ where: { expiryDays: { not: null, lte: 30 } } }),
-    // CCP monitoring pass rate
-    prisma.ccpMonitoring.count({ where: { result: 'pass', monitoredAt: { gte: monthStart } } }),
-    prisma.ccpMonitoring.count({ where: { monitoredAt: { gte: monthStart } } }),
   ]);
 
   const planned  = Number(todayLogs._sum.plannedQty ?? 0);
@@ -59,9 +49,7 @@ async function getDashboardData() {
     equipStatus.map((e: { status: string; _count: { status: number } }) => [e.status, e._count.status]),
   );
 
-  const ccpPassRate = ccpTotalCount > 0 ? Math.round((ccpPassCount / ccpTotalCount) * 100) : 0;
-
-  return { planned, produced, defects, activeOrders, statusMap, pmDue, recentNcr, haccpCount, hygieneCount, expiryAlertCount, ccpPassRate, ccpTotalCount };
+  return { planned, produced, defects, activeOrders, statusMap, pmDue, recentNcr };
 }
 
 const EQUIP_STATUS = [
@@ -79,7 +67,7 @@ const NCR_STATUS_COLOR: Record<string, string> = {
 
 export default async function DashboardPage() {
   await auth();
-  const { planned, produced, defects, activeOrders, statusMap, pmDue, recentNcr, haccpCount, hygieneCount, expiryAlertCount, ccpPassRate, ccpTotalCount } =
+  const { planned, produced, defects, activeOrders, statusMap, pmDue, recentNcr } =
     await getDashboardData();
 
   const achievementRate = planned > 0 ? Math.round((produced / planned) * 100) : 0;
@@ -137,43 +125,6 @@ export default async function DashboardPage() {
           color={parseFloat(defectRate) > 2 ? 'red' : parseFloat(defectRate) > 0.5 ? 'yellow' : 'green'}
           icon={TrendingDown}
           sub={`불량 ${defects.toLocaleString()} EA`}
-        />
-      </div>
-
-      {/* 식품안전 KPI */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <KpiCard
-          label="HACCP 관리"
-          value={haccpCount}
-          unit="건"
-          color="green"
-          icon={ShieldCheck}
-          sub="활성 HACCP 계획"
-        />
-        <KpiCard
-          label="CCP 합격률"
-          value={ccpTotalCount > 0 ? `${ccpPassRate}` : '-'}
-          unit={ccpTotalCount > 0 ? '%' : ''}
-          color={ccpPassRate >= 95 ? 'green' : ccpPassRate >= 80 ? 'yellow' : 'red'}
-          icon={Activity}
-          progress={ccpTotalCount > 0 ? ccpPassRate : undefined}
-          sub={`이번 달 ${ccpTotalCount}건 모니터링`}
-        />
-        <KpiCard
-          label="위생점검"
-          value={hygieneCount}
-          unit="건"
-          color="indigo"
-          icon={SprayCan}
-          sub="이번 달 점검 완료"
-        />
-        <KpiCard
-          label="유통기한 임박"
-          value={expiryAlertCount}
-          unit="건"
-          color={expiryAlertCount > 0 ? 'red' : 'green'}
-          icon={Clock}
-          sub="30일 이내 만료 원료"
         />
       </div>
 

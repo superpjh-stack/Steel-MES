@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
-import { Leaf, Eye, EyeOff, Zap, Shield, User } from 'lucide-react';
+import { Factory, Eye, EyeOff, Zap, Shield, User } from 'lucide-react';
 
 // ─── 빠른 로그인 3종 ──────────────────────────────────────────────────────────
 
@@ -105,38 +105,38 @@ export default function LoginPage() {
 
         {/* 로고 */}
         <div className="relative z-10 flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-green-600 flex items-center justify-center shadow-lg shadow-green-600/30">
-            <Leaf size={20} className="text-white" />
+          <div className="w-10 h-10 rounded-xl bg-blue-600 flex items-center justify-center shadow-lg shadow-blue-600/30">
+            <Factory size={20} className="text-white" />
           </div>
           <div>
-            <span className="text-white font-bold text-lg tracking-tight">니즈푸드 MES</span>
-            <span className="block text-green-400/60 text-xs">Food Manufacturing Execution System</span>
+            <span className="text-white font-bold text-lg tracking-tight">Metal-MES</span>
+            <span className="block text-blue-400/60 text-xs">Manufacturing Execution System</span>
           </div>
         </div>
 
         {/* 메인 카피 */}
         <div className="relative z-10 space-y-6">
           <div>
-            <p className="text-green-400 text-sm font-medium tracking-widest uppercase mb-4">
-              Food Safety & Smart Factory
+            <p className="text-blue-400 text-sm font-medium tracking-widest uppercase mb-4">
+              Smart Factory Solution
             </p>
             <h2 className="text-4xl font-bold text-white leading-tight">
-              식품 제조의<br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-300">
-                안전한 실행
+              자동차 부품산업의<br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">
+                스마트 실행
               </span>
             </h2>
             <p className="text-slate-400 text-base mt-4 leading-relaxed max-w-xs">
-              HACCP 관리부터 배합비, 이력추적, 품질검사까지 — 식품 생산 현장의 모든 데이터를 하나로.
+              생산 계획부터 품질 관리, 설비 모니터링까지 — 현장의 모든 데이터를 하나의 시스템으로.
             </p>
           </div>
 
           {/* 기능 하이라이트 */}
           <ul className="space-y-3">
             {[
-              { dot: 'bg-green-500',   text: 'HACCP/CCP 실시간 모니터링' },
-              { dot: 'bg-emerald-500', text: '배합비(레시피) 및 LOT 추적 관리' },
-              { dot: 'bg-teal-500',    text: '유통기한·원산지·알레르기 통합 관리' },
+              { dot: 'bg-blue-500',   text: '실시간 생산 모니터링 & KPI 대시보드' },
+              { dot: 'bg-violet-500', text: '바코드·PLC 인터페이스 연동 관리' },
+              { dot: 'bg-cyan-500',   text: '품질 검사 · NCR · SPC 통합 관리' },
             ].map(({ dot, text }) => (
               <li key={text} className="flex items-center gap-3">
                 <span className={`w-1.5 h-1.5 rounded-full shrink-0 ${dot}`} />
@@ -148,7 +148,7 @@ export default function LoginPage() {
 
         {/* 하단 */}
         <div className="relative z-10">
-          <p className="text-slate-600 text-xs">© 2026 니즈푸드 MES. All rights reserved.</p>
+          <p className="text-slate-600 text-xs">© 2026 Metal-MES. All rights reserved.</p>
         </div>
       </div>
 
@@ -157,12 +157,12 @@ export default function LoginPage() {
 
         {/* 모바일 로고 */}
         <div className="lg:hidden flex items-center gap-3 mb-10">
-          <div className="w-10 h-10 rounded-xl bg-green-600 flex items-center justify-center">
-            <Leaf size={20} className="text-white" />
+          <div className="w-10 h-10 rounded-xl bg-blue-600 flex items-center justify-center">
+            <Factory size={20} className="text-white" />
           </div>
           <div>
-            <span className="text-white font-bold text-lg">니즈푸드 MES</span>
-            <span className="block text-slate-400 text-xs">Food Manufacturing Execution System</span>
+            <span className="text-white font-bold text-lg">Metal-MES</span>
+            <span className="block text-slate-400 text-xs">Manufacturing Execution System</span>
           </div>
         </div>
 

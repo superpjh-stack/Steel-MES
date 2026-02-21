@@ -7,21 +7,21 @@ const BACKUP_TYPES = [
     type:     '자동 일일 백업',
     schedule: '매일 오전 02:00',
     retain:   '7일',
-    target:   'Cloud SQL PostgreSQL 자동 백업',
+    target:   'SQLite DB 전체 + 업로드 파일',
     color:    'border-l-4 border-blue-500',
   },
   {
     type:     '자동 주간 백업',
     schedule: '매주 일요일 03:00',
     retain:   '4주',
-    target:   'Cloud SQL PostgreSQL 스냅샷',
+    target:   'SQLite DB 전체 + 업로드 파일',
     color:    'border-l-4 border-green-500',
   },
   {
     type:     '수동 백업',
     schedule: '관리자 수동 실행',
     retain:   '무제한',
-    target:   'Cloud SQL 내보내기 (GCS)',
+    target:   'SQLite DB 스냅샷',
     color:    'border-l-4 border-orange-400',
   },
 ];
@@ -42,9 +42,9 @@ export default async function BackupPage() {
         <div className="text-sm text-blue-700">
           <p className="font-medium mb-1">백업 구성 안내</p>
           <p className="text-xs text-blue-600">
-            니즈푸드 MES는 Google Cloud SQL (PostgreSQL) 기반으로 운영됩니다. 아래 백업 정책에 따라
-            Cloud SQL 자동 백업이 수행되며, 수동 백업은 GCS(Google Cloud Storage) 내보내기로 실행됩니다.
-            실제 백업 이력은 Cloud SQL 콘솔에서 확인할 수 있습니다.
+            Metal-MES는 SQLite 기반으로 운영됩니다. 아래 백업 정책에 따라 운영 서버에서 자동 수행되며,
+            수동 백업은 관리자가 직접 실행할 수 있습니다. 실제 백업 이력은 운영 환경 설정 완료 후
+            자동으로 기록됩니다.
           </p>
         </div>
       </div>

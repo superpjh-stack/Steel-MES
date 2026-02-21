@@ -8,18 +8,14 @@ RUN npm ci
 FROM base AS builder
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
-RUN mkdir -p public
 RUN npx prisma generate
 RUN npm run build
 
 FROM base AS runner
 ENV NODE_ENV=production
-# Prisma schema engine requires OpenSSL on Alpine
-RUN apk add --no-cache openssl
 
 COPY --from=builder /app/.next/standalone ./
 COPY --from=builder /app/.next/static ./.next/static
-RUN mkdir -p public
 COPY --from=builder /app/public ./public
 COPY --from=builder /app/prisma ./prisma
 
@@ -28,12 +24,7 @@ COPY --from=builder /app/node_modules/.prisma ./node_modules/.prisma
 # Prisma CLI (migrate deploy)
 COPY --from=builder /app/node_modules/prisma ./node_modules/prisma
 COPY --from=builder /app/node_modules/@prisma ./node_modules/@prisma
-# bcryptjs for seed script
-COPY --from=builder /app/node_modules/bcryptjs ./node_modules/bcryptjs
 
 EXPOSE 3000
-# 1) migrate deploy (P3009 시 스키마 리셋 후 재시도)
-# 2) seed-kwangsung (기본 마스터: 계정·고객·설비·제품·공정·원자재 — upsert)
-# 3) seed-full (전 메뉴 데이터 — upsert)
-# 4) 서버 시작
-CMD ["sh", "-c", "out=$(node node_modules/prisma/build/index.js migrate deploy 2>&1); if echo \"$out\" | grep -q 'P3009'; then echo 'Resetting failed migration state...'; printf 'DROP SCHEMA IF EXISTS public CASCADE;\\nCREATE SCHEMA public;\\n' | node node_modules/prisma/build/index.js db execute --schema prisma/schema.prisma --stdin; node node_modules/prisma/build/index.js migrate deploy; else echo \"$out\"; fi && node prisma/seed-kwangsung.mjs && node prisma/seed-full.mjs && node server.js"]
+# Run migrations then start server
+CMD ["sh", "-c", "node node_modules/prisma/build/index.js migrate deploy && node server.js"]

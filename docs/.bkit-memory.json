@@ -1,14 +1,14 @@
 {
-  "sessionCount": 23,
+  "sessionCount": 17,
   "lastSession": {
-    "startedAt": "2026-02-22T00:00:00.000Z",
+    "startedAt": "2026-02-20T18:57:57.952Z",
     "platform": "claude",
     "level": "Enterprise"
   },
-  "primaryFeature": "food-mes-full",
+  "primaryFeature": "responsive-web",
   "phase": "completed",
-  "matchRate": 100,
-  "previousFeature": "food-mes-conversion",
+  "matchRate": 90,
+  "previousFeature": "automotive-parts-mes",
   "previousPhase": "archived",
-  "previousMatchRate": 100
+  "previousMatchRate": 95
 }

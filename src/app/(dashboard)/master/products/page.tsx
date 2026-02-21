@@ -14,16 +14,15 @@ interface Product {
 }
 
 const CATEGORIES = [
-  { value: '장류',    label: '장류' },
-  { value: '소스류',  label: '소스류' },
-  { value: '드레싱류', label: '드레싱류' },
-  { value: '즉석식품', label: '즉석식품(레토르트)' },
-  { value: '음료',    label: '음료류' },
-  { value: '기타',    label: '기타' },
+  { value: 'brake',         label: '제동부품' },
+  { value: 'steering',      label: '조향부품' },
+  { value: 'fine_blanking', label: 'Fine Blanking' },
+  { value: 'assembly',      label: '조립완제품' },
+  { value: 'other',         label: '기타' },
 ];
 
 const emptyForm = () => ({
-  code: '', name: '', category: '장류', unit: '병',
+  code: '', name: '', category: 'brake', unit: 'EA',
   customerId: '', drawingNo: '', stdCycleSec: '',
 });
 

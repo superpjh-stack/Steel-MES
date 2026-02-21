@@ -1,13 +1,11 @@
-# Gap Detector Memory - Food-MES (니즈푸드)
+# Gap Detector Memory - Steel-MES
 
 ## Project Structure
 - **Level**: Dynamic (Next.js 14 App Router + Prisma + PostgreSQL)
-- **Design Doc (base)**: `docs/02-design/features/automotive-parts-mes.design.md`
-- **Plan Doc (food)**: `docs/01-plan/features/food-mes-conversion.plan.md`
-- **Schema**: `prisma/schema.prisma` - 24 models (17 base + 7 food domain)
+- **Design Doc**: `docs/02-design/features/automotive-parts-mes.design.md`
+- **Schema**: `prisma/schema.prisma` - 17 models, 7 enums (fully implemented)
 - **Route Groups**: `(dashboard)` for admin/QC/supervisor, `(operator)` for touch UI
 - **Components folder**: `src/components/` with ui/, charts/, operator/, work-orders/ subdirs
-- **Branding**: 니즈푸드 MES, green theme (Leaf icon), food manufacturing focus
 
 ## Last Analysis (2026-02-20, v2)
 - Overall Match Rate: 95%
@@ -34,12 +32,3 @@
 - Modal: 60% (bottom sheet pattern missing) | FR: 70% | Accessibility: 100%
 - GAPs: Modal bottom sheet, 2x KPI grid breakpoints (monitor/quality), TabBar lg:block vs lg:flex
 - Immediate fixes: production/monitor + quality/reports KPI grid classes
-
-## food-mes-conversion Analysis (2026-02-21, v3 FINAL)
-- Overall Match Rate: 100% (32/32 items) -- up from 91% in v2
-- Report: `docs/03-analysis/food-mes-conversion.analysis.md`
-- Phase 1 Branding: 100% | Phase 2 Schema: 100% | Phase 3 Pages: 100% | Phase 4 Seed: 100%
-- All gaps resolved: origin page, batch production page, dashboard food KPI
-- New files: inventory/origin/page.tsx, production/batch/page.tsx, api/inventory/origin/route.ts, api/production/batch/route.ts
-- Dashboard food KPI: HACCP count, hygiene count, expiry alert (lines 138-164)
-- 7 food models, seed-kwangsung.mjs, food-safety RBAC all confirmed

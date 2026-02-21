@@ -38,30 +38,7 @@
       "Bash(git init:*)",
       "Bash(git add:*)",
       "Bash(gcloud projects list:*)",
-      "Bash(node:*)",
-      "Bash(git commit:*)",
-      "Bash(git push:*)",
-      "Bash(npm run build:*)",
-      "Bash(cmd.exe /c \"netstat -ano | findstr \"\":300\"\"\")",
-      "Bash(for pid in 13736 14628 18592 21400 35176)",
-      "Bash(do kill -9 $pid)",
-      "Bash(powershell.exe -Command \"Get-Process -Id 35176,13736,14628,21400 | Stop-Process -Force\")",
-      "Bash(find:*)",
-      "Bash(docker-compose ps:*)",
-      "Bash(pg_isready:*)",
-      "Bash(powershell.exe -Command \"Start-Process ''C:\\\\Program Files\\\\Docker\\\\Docker\\\\Docker Desktop.exe''\")",
-      "Bash(gcloud version:*)",
-      "Bash(gcloud config get-value:*)",
-      "Bash(gcloud services list:*)",
-      "Bash(gcloud services enable:*)",
-      "Bash(gcloud sql instances create:*)",
-      "Bash(gcloud builds list:*)",
-      "Bash(gcloud builds log:*)",
-      "Bash(gcloud run deploy:*)",
-      "Bash(gcloud logging read:*)",
-      "Bash(gcloud sql connect:*)",
-      "Bash(gcloud run services update:*)",
-      "Bash(head:*)"
+      "Bash(node:*)"
     ]
   }
 }
