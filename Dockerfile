@@ -33,6 +33,7 @@ COPY --from=builder /app/node_modules/bcryptjs ./node_modules/bcryptjs
 
 EXPOSE 3000
 # 1) migrate deploy (P3009 시 스키마 리셋 후 재시도)
-# 2) seed-init (사용자 0명일 때만 초기 계정 생성)
-# 3) 서버 시작
-CMD ["sh", "-c", "out=$(node node_modules/prisma/build/index.js migrate deploy 2>&1); if echo \"$out\" | grep -q 'P3009'; then echo 'Resetting failed migration state...'; printf 'DROP SCHEMA IF EXISTS public CASCADE;\\nCREATE SCHEMA public;\\n' | node node_modules/prisma/build/index.js db execute --schema prisma/schema.prisma --stdin; node node_modules/prisma/build/index.js migrate deploy; else echo \"$out\"; fi && node prisma/seed-init.mjs && node server.js"]
+# 2) seed-kwangsung (기본 마스터: 계정·고객·설비·제품·공정·원자재 — upsert)
+# 3) seed-full (전 메뉴 데이터 — upsert)
+# 4) 서버 시작
+CMD ["sh", "-c", "out=$(node node_modules/prisma/build/index.js migrate deploy 2>&1); if echo \"$out\" | grep -q 'P3009'; then echo 'Resetting failed migration state...'; printf 'DROP SCHEMA IF EXISTS public CASCADE;\\nCREATE SCHEMA public;\\n' | node node_modules/prisma/build/index.js db execute --schema prisma/schema.prisma --stdin; node node_modules/prisma/build/index.js migrate deploy; else echo \"$out\"; fi && node prisma/seed-kwangsung.mjs && node prisma/seed-full.mjs && node server.js"]
