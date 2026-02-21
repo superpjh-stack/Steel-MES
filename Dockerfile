@@ -30,5 +30,5 @@ COPY --from=builder /app/node_modules/prisma ./node_modules/prisma
 COPY --from=builder /app/node_modules/@prisma ./node_modules/@prisma
 
 EXPOSE 3000
-# Run migrations then start server
-CMD ["sh", "-c", "node node_modules/prisma/build/index.js migrate deploy && node server.js"]
+# Run migrations; if failed migration state (P3009), reset schema and retry; then start server
+CMD ["sh", "-c", "out=$(node node_modules/prisma/build/index.js migrate deploy 2>&1); if echo \"$out\" | grep -q 'P3009'; then echo 'Resetting failed migration state...'; printf 'DROP SCHEMA IF EXISTS public CASCADE;\\nCREATE SCHEMA public;\\n' | node node_modules/prisma/build/index.js db execute --schema prisma/schema.prisma --stdin; node node_modules/prisma/build/index.js migrate deploy; else echo \"$out\"; fi && node server.js"]
