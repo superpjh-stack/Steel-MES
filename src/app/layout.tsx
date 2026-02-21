@@ -6,8 +6,8 @@ import { SessionProvider } from 'next-auth/react';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: '자동차부품 MES',
-  description: 'Manufacturing Execution System for Automotive Parts',
+  title: '니즈푸드 MES',
+  description: 'Food Manufacturing Execution System — 니즈푸드(주)',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

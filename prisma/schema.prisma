@@ -56,24 +56,31 @@ model Customer {
 }
 
 model Product {
-  id          String   @id @default(uuid())
-  code        String   @unique
-  name        String
-  category    String
-  unit        String   @default("EA")
-  customerId  String   @map("customer_id")
-  drawingNo   String?  @map("drawing_no")
-  stdCycleSec Int?     @map("std_cycle_sec")
-  createdAt   DateTime @default(now()) @map("created_at")
-  updatedAt   DateTime @updatedAt @map("updated_at")
+  id             String   @id @default(uuid())
+  code           String   @unique
+  name           String
+  category       String
+  unit           String   @default("EA")
+  customerId     String   @map("customer_id")
+  drawingNo      String?  @map("drawing_no")   // 도면번호 (식품: 레시피번호)
+  stdCycleSec    Int?     @map("std_cycle_sec")
+  // 식품 전용 필드
+  shelfLifeDays  Int?     @map("shelf_life_days")   // 유통기한(일)
+  storageTemp    String?  @map("storage_temp")       // 보관온도 (예: "0~5℃", "상온")
+  allergenInfo   String?  @map("allergen_info")      // 알레르기 유발물질 (JSON list)
+  isHaccp        Boolean  @default(false) @map("is_haccp") // HACCP 적용 품목
+  netWeight      Float?   @map("net_weight")          // 내용량 (g 또는 ml)
+  createdAt      DateTime @default(now()) @map("created_at")
+  updatedAt      DateTime @updatedAt @map("updated_at")
 
-  customer    Customer          @relation(fields: [customerId], references: [id])
-  processes   Process[]
-  workOrders  WorkOrder[]
-  inventory   Inventory[]
-  shipments   Shipment[]
-  lots        LotTraceability[]
-  salesOrders SalesOrder[]
+  customer        Customer          @relation(fields: [customerId], references: [id])
+  processes       Process[]
+  workOrders      WorkOrder[]
+  inventory       Inventory[]
+  shipments       Shipment[]
+  lots            LotTraceability[]
+  salesOrders     SalesOrder[]
+  recipes         Recipe[]
 
   @@map("products")
 }
@@ -121,17 +128,24 @@ model Process {
 }
 
 model Material {
-  id          String   @id @default(uuid())
-  code        String   @unique
-  name        String
-  unit        String   @default("KG")
-  spec        String?
-  supplier    String?
-  safetyStock Float    @default(0) @map("safety_stock")
-  createdAt   DateTime @default(now()) @map("created_at")
+  id              String   @id @default(uuid())
+  code            String   @unique
+  name            String
+  unit            String   @default("KG")
+  spec            String?
+  supplier        String?
+  safetyStock     Float    @default(0) @map("safety_stock")
+  // 식품 원료 전용 필드
+  originCountry   String?  @map("origin_country")  // 원산지
+  expiryDays      Int?     @map("expiry_days")      // 원료 유효기간(일)
+  storageTemp     String?  @map("storage_temp")     // 보관온도
+  allergenFlag    String?  @map("allergen_flag")    // 알레르기 유발물질 여부 (JSON)
+  isOrganic       Boolean  @default(false) @map("is_organic") // 유기농 여부
+  createdAt       DateTime @default(now()) @map("created_at")
 
-  lots      LotTraceability[]
-  inventory Inventory[]
+  lots              LotTraceability[]
+  inventory         Inventory[]
+  recipeIngredients RecipeIngredient[]
 
   @@map("materials")
 }
@@ -499,4 +513,139 @@ model Sequence {
   lastDate   String @map("last_date")
 
   @@map("sequences")
+}
+
+// ─── 식품 전용 모델 ────────────────────────────────────────────────────────────
+
+// 배합비 (레시피/BOM) — 제품별 원료 구성
+// RecipeStatus: draft | approved | obsolete
+model Recipe {
+  id          String   @id @default(uuid())
+  productId   String   @map("product_id")
+  version     String   @default("1.0")     // 버전 관리
+  batchSizeKg Float    @map("batch_size_kg") // 배치 생산량 (kg)
+  status      String   @default("draft")   // RecipeStatus
+  approvedById String? @map("approved_by")
+  approvedAt  DateTime? @map("approved_at")
+  notes       String?
+  createdById String   @map("created_by")
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  product     Product            @relation(fields: [productId], references: [id])
+  ingredients RecipeIngredient[]
+
+  @@map("recipes")
+}
+
+// 배합비 원료 상세
+model RecipeIngredient {
+  id         String  @id @default(uuid())
+  recipeId   String  @map("recipe_id")
+  materialId String  @map("material_id")
+  ratio      Float                       // 배합 비율 (%)
+  amountKg   Float   @map("amount_kg")  // 배치당 투입량 (kg)
+  sortOrder  Int     @default(0) @map("sort_order")
+  notes      String?
+
+  recipe   Recipe   @relation(fields: [recipeId], references: [id])
+  material Material @relation(fields: [materialId], references: [id])
+
+  @@map("recipe_ingredients")
+}
+
+// HACCP 계획 — 위해요소 중요관리점 계획
+// HaccpStatus: active | under_review | suspended
+model HaccpPlan {
+  id            String   @id @default(uuid())
+  productId     String?  @map("product_id")   // null이면 공장 전체 적용
+  processCode   String?  @map("process_code") // 대상 공정
+  ccpNo         String   @unique @map("ccp_no") // CCP 번호 (예: CCP-1, CCP-2)
+  hazardType    String   @map("hazard_type")  // biological | chemical | physical
+  hazardDesc    String   @map("hazard_desc")  // 위해요소 설명
+  criticalLimit String   @map("critical_limit") // 한계기준 (예: "85℃ 이상/30분")
+  monitoringFreq String  @map("monitoring_freq") // 모니터링 주기
+  correctiveAction String @map("corrective_action") // 개선조치
+  verifyMethod  String?  @map("verify_method")
+  status        String   @default("active")   // HaccpStatus
+  effectiveDate DateTime @map("effective_date")
+  createdById   String   @map("created_by")
+  createdAt     DateTime @default(now()) @map("created_at")
+  updatedAt     DateTime @updatedAt @map("updated_at")
+
+  monitoringLogs CcpMonitoring[]
+
+  @@map("haccp_plans")
+}
+
+// CCP 모니터링 — 실시간 한계기준 모니터링 기록
+// CcpResult: pass | fail | deviation
+model CcpMonitoring {
+  id            String   @id @default(uuid())
+  haccpPlanId   String   @map("haccp_plan_id")
+  workOrderId   String?  @map("work_order_id")
+  lotNo         String?  @map("lot_no")
+  monitoredAt   DateTime @map("monitored_at")
+  measuredValue String   @map("measured_value") // 실측값
+  result        String                           // CcpResult
+  deviationNote String?  @map("deviation_note") // 이탈 시 조치내용
+  operatorId    String   @map("operator_id")
+  createdAt     DateTime @default(now()) @map("created_at")
+
+  haccpPlan HaccpPlan @relation(fields: [haccpPlanId], references: [id])
+
+  @@map("ccp_monitoring")
+}
+
+// 위생점검 관리
+// HygieneArea: production | storage | restroom | equipment | personnel
+// HygieneResult: pass | fail | conditional_pass
+model HygieneCheck {
+  id            String   @id @default(uuid())
+  checkDate     DateTime @map("check_date")
+  shift         String                          // 1st | 2nd | 3rd
+  area          String                          // HygieneArea
+  checkedById   String   @map("checked_by")
+  items         String   @map("items")          // JSON: 점검 항목별 결과
+  result        String                          // HygieneResult
+  failItems     String?  @map("fail_items")     // 불합격 항목
+  correctiveAction String? @map("corrective_action")
+  notes         String?
+  createdAt     DateTime @default(now()) @map("created_at")
+
+  @@map("hygiene_checks")
+}
+
+// 이물검출 관리
+// ForeignBodyType: metal | glass | rubber | plastic | hair | insect | other
+// ForeignBodyDisp: recall | rework | scrap | use_as_is
+model ForeignBodyReport {
+  id             String   @id @default(uuid())
+  reportNo       String   @unique @map("report_no")
+  detectedAt     DateTime @map("detected_at")
+  lotNo          String?  @map("lot_no")
+  productId      String?  @map("product_id")
+  detectionPoint String   @map("detection_point") // 검출 지점 (금속검출기, X-RAY, 육안 등)
+  foreignType    String   @map("foreign_type")     // ForeignBodyType
+  size           String?                           // 크기 (mm)
+  disposition    String                            // ForeignBodyDisp
+  rootCause      String?  @map("root_cause")
+  correctiveAction String? @map("corrective_action")
+  affectedQty    Int      @default(0) @map("affected_qty")
+  reportedById   String   @map("reported_by")
+  status         String   @default("open")         // open | closed
+  createdAt      DateTime @default(now()) @map("created_at")
+
+  @@map("foreign_body_reports")
+}
+
+// 알레르기 코드 마스터 (식품위생법 21종)
+model AllergenCode {
+  id       String  @id @default(uuid())
+  code     String  @unique
+  name     String                     // 알레르기 유발 식품명
+  nameEn   String? @map("name_en")   // 영문명 (수출용)
+  isActive Boolean @default(true) @map("is_active")
+
+  @@map("allergen_codes")
 }

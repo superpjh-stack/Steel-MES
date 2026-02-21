@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "lastUpdated": "2026-02-20T18:41:53.852Z",
+  "lastUpdated": "2026-02-21T15:15:57.316Z",
   "activeFeatures": [
     "responsive-web",
     "automotive-parts-mes",
@@ -72,7 +72,22 @@
     "contracts",
     "sales",
     "inquiry",
-    "requirements"
+    "requirements",
+    "deploy",
+    "recipes",
+    "haccp",
+    "ccp",
+    "hygiene",
+    "foreign",
+    "expiry",
+    "monitoring",
+    "foreign-body",
+    "allergens",
+    "Food-MES",
+    "food-mes-conversion",
+    "batch",
+    "origin",
+    "food-mes-full — Gap 분석"
   ],
   "primaryFeature": "responsive-web",
   "features": {
@@ -138,7 +153,7 @@
       "documents": {},
       "timestamps": {
         "started": "2026-02-20T00:47:09.699Z",
-        "lastUpdated": "2026-02-20T17:28:24.117Z"
+        "lastUpdated": "2026-02-21T07:43:14.112Z"
       },
       "lastFile": "C:\\gerardo\\01 SmallSF\\Steel-MES\\src\\auth.ts"
     },
@@ -190,9 +205,9 @@
       "documents": {},
       "timestamps": {
         "started": "2026-02-20T00:48:26.647Z",
-        "lastUpdated": "2026-02-20T01:51:24.986Z"
+        "lastUpdated": "2026-02-20T19:25:38.383Z"
       },
-      "lastFile": "C:\\gerardo\\01 SmallSF\\Steel-MES\\src\\app\\api\\reports\\production\\route.ts"
+      "lastFile": "C:\\gerardo\\01 SmallSF\\Steel-MES\\src\\app\\api\\events\\production\\route.ts"
     },
     "inspections": {
       "phase": "do",
@@ -242,9 +257,9 @@
       "documents": {},
       "timestamps": {
         "started": "2026-02-20T00:49:16.753Z",
-        "lastUpdated": "2026-02-20T17:29:42.608Z"
+        "lastUpdated": "2026-02-21T13:03:41.334Z"
       },
-      "lastFile": "C:\\gerardo\\01 SmallSF\\Steel-MES\\src\\app\\login\\page.tsx"
+      "lastFile": "C:\\gerardo\\01 SmallSF\\Food-MES\\src\\app\\login\\page.tsx"
     },
     "(dashboard)": {
       "phase": "do",
@@ -268,9 +283,9 @@
       "documents": {},
       "timestamps": {
         "started": "2026-02-20T00:50:08.142Z",
-        "lastUpdated": "2026-02-20T16:55:15.002Z"
+        "lastUpdated": "2026-02-21T14:20:21.016Z"
       },
-      "lastFile": "C:\\gerardo\\01 SmallSF\\Steel-MES\\src\\app\\(dashboard)\\dashboard\\page.tsx"
+      "lastFile": "C:\\gerardo\\01 SmallSF\\Food-MES\\src\\app\\(dashboard)\\dashboard\\page.tsx"
     },
     "(operator)": {
       "phase": "do",
@@ -359,9 +374,9 @@
       "documents": {},
       "timestamps": {
         "started": "2026-02-20T01:38:48.998Z",
-        "lastUpdated": "2026-02-20T16:03:01.276Z"
+        "lastUpdated": "2026-02-21T13:02:40.671Z"
       },
-      "lastFile": "C:\\gerardo\\01 SmallSF\\Steel-MES\\src\\app\\(dashboard)\\master\\products\\page.tsx"
+      "lastFile": "C:\\gerardo\\01 SmallSF\\Food-MES\\src\\app\\(dashboard)\\master\\products\\page.tsx"
     },
     "[id]": {
       "phase": "do",
@@ -411,9 +426,9 @@
       "documents": {},
       "timestamps": {
         "started": "2026-02-20T01:39:19.413Z",
-        "lastUpdated": "2026-02-20T16:03:37.323Z"
+        "lastUpdated": "2026-02-20T19:18:12.343Z"
       },
-      "lastFile": "C:\\gerardo\\01 SmallSF\\Steel-MES\\src\\app\\(dashboard)\\master\\materials\\page.tsx"
+      "lastFile": "C:\\gerardo\\01 SmallSF\\Steel-MES\\src\\app\\api\\materials\\route.ts"
     },
     "charts": {
       "phase": "do",
@@ -645,9 +660,9 @@
       "documents": {},
       "timestamps": {
         "started": "2026-02-20T02:04:27.700Z",
-        "lastUpdated": "2026-02-20T02:04:27.700Z"
+        "lastUpdated": "2026-02-21T15:15:57.315Z"
       },
-      "lastFile": "C:\\gerardo\\01 SmallSF\\Steel-MES\\src\\app\\api\\lot\\[lot_no]\\trace\\route.ts"
+      "lastFile": "C:\\gerardo\\01 SmallSF\\Food-MES\\src\\app\\(dashboard)\\inventory\\lot\\trace\\page.tsx"
     },
     "shipments": {
       "phase": "do",
@@ -788,9 +803,9 @@
       "documents": {},
       "timestamps": {
         "started": "2026-02-20T09:35:14.220Z",
-        "lastUpdated": "2026-02-20T17:41:44.163Z"
+        "lastUpdated": "2026-02-21T12:53:31.319Z"
       },
-      "lastFile": "C:\\gerardo\\01 SmallSF\\Steel-MES\\src\\components\\layout\\Sidebar.tsx"
+      "lastFile": "C:\\gerardo\\01 SmallSF\\Food-MES\\src\\components\\layout\\Sidebar.tsx"
     },
     "sales-orders": {
       "phase": "do",
@@ -814,7 +829,7 @@
       "documents": {},
       "timestamps": {
         "started": "2026-02-20T16:23:56.972Z",
-        "lastUpdated": "2026-02-20T18:41:53.851Z"
+        "lastUpdated": "2026-02-20T19:26:37.681Z"
       },
       "lastFile": "C:\\gerardo\\01 SmallSF\\Steel-MES\\src\\app\\(dashboard)\\pop\\page.tsx"
     },
@@ -879,9 +894,9 @@
       "documents": {},
       "timestamps": {
         "started": "2026-02-20T16:54:55.018Z",
-        "lastUpdated": "2026-02-20T17:30:22.354Z"
+        "lastUpdated": "2026-02-21T15:15:33.928Z"
       },
-      "lastFile": "C:\\gerardo\\01 SmallSF\\Steel-MES\\src\\app\\(dashboard)\\admin\\backup\\page.tsx"
+      "lastFile": "C:\\gerardo\\01 SmallSF\\Food-MES\\src\\app\\(dashboard)\\admin\\backup\\page.tsx"
     },
     "responsive-web — Gap Analysis": {
       "phase": "act",
@@ -919,7 +934,7 @@
       "documents": {},
       "timestamps": {
         "started": "2026-02-20T17:21:34.266Z",
-        "lastUpdated": "2026-02-20T17:52:35.979Z"
+        "lastUpdated": "2026-02-20T19:03:41.186Z"
       },
       "lastFile": "C:\\gerardo\\01 SmallSF\\Steel-MES\\src\\app\\(dashboard)\\sales\\customer-requirements\\page.tsx"
     },
@@ -971,7 +986,7 @@
       "documents": {},
       "timestamps": {
         "started": "2026-02-20T17:22:01.091Z",
-        "lastUpdated": "2026-02-20T17:53:11.632Z"
+        "lastUpdated": "2026-02-20T19:03:15.021Z"
       },
       "lastFile": "C:\\gerardo\\01 SmallSF\\Steel-MES\\src\\app\\(dashboard)\\sales\\contracts\\page.tsx"
     },
@@ -1013,6 +1028,197 @@
         "lastUpdated": "2026-02-20T17:51:44.323Z"
       },
       "lastFile": "C:\\gerardo\\01 SmallSF\\Steel-MES\\src\\app\\api\\sales\\requirements\\route.ts"
+    },
+    "deploy": {
+      "phase": "do",
+      "phaseNumber": 3,
+      "matchRate": null,
+      "iterationCount": 0,
+      "requirements": [],
+      "documents": {},
+      "timestamps": {
+        "started": "2026-02-20T19:37:35.948Z",
+        "lastUpdated": "2026-02-20T19:37:35.948Z"
+      },
+      "lastFile": "C:\\gerardo\\01 SmallSF\\Steel-MES\\deploy\\gcp-setup.sh"
+    },
+    "recipes": {
+      "phase": "do",
+      "phaseNumber": 3,
+      "matchRate": null,
+      "iterationCount": 0,
+      "requirements": [],
+      "documents": {},
+      "timestamps": {
+        "started": "2026-02-21T12:58:42.954Z",
+        "lastUpdated": "2026-02-21T13:01:19.827Z"
+      },
+      "lastFile": "C:\\gerardo\\01 SmallSF\\Food-MES\\src\\app\\api\\recipes\\route.ts"
+    },
+    "haccp": {
+      "phase": "do",
+      "phaseNumber": 3,
+      "matchRate": null,
+      "iterationCount": 0,
+      "requirements": [],
+      "documents": {},
+      "timestamps": {
+        "started": "2026-02-21T12:59:16.243Z",
+        "lastUpdated": "2026-02-21T13:04:04.347Z"
+      },
+      "lastFile": "C:\\gerardo\\01 SmallSF\\Food-MES\\src\\app\\(dashboard)\\food-safety\\haccp\\page.tsx"
+    },
+    "ccp": {
+      "phase": "do",
+      "phaseNumber": 3,
+      "matchRate": null,
+      "iterationCount": 0,
+      "requirements": [],
+      "documents": {},
+      "timestamps": {
+        "started": "2026-02-21T12:59:43.920Z",
+        "lastUpdated": "2026-02-21T12:59:43.920Z"
+      },
+      "lastFile": "C:\\gerardo\\01 SmallSF\\Food-MES\\src\\app\\(dashboard)\\food-safety\\ccp\\page.tsx"
+    },
+    "hygiene": {
+      "phase": "do",
+      "phaseNumber": 3,
+      "matchRate": null,
+      "iterationCount": 0,
+      "requirements": [],
+      "documents": {},
+      "timestamps": {
+        "started": "2026-02-21T13:00:11.077Z",
+        "lastUpdated": "2026-02-21T13:01:47.303Z"
+      },
+      "lastFile": "C:\\gerardo\\01 SmallSF\\Food-MES\\src\\app\\api\\hygiene\\route.ts"
+    },
+    "foreign": {
+      "phase": "do",
+      "phaseNumber": 3,
+      "matchRate": null,
+      "iterationCount": 0,
+      "requirements": [],
+      "documents": {},
+      "timestamps": {
+        "started": "2026-02-21T13:00:37.610Z",
+        "lastUpdated": "2026-02-21T13:00:37.610Z"
+      },
+      "lastFile": "C:\\gerardo\\01 SmallSF\\Food-MES\\src\\app\\(dashboard)\\food-safety\\foreign\\page.tsx"
+    },
+    "expiry": {
+      "phase": "do",
+      "phaseNumber": 3,
+      "matchRate": null,
+      "iterationCount": 0,
+      "requirements": [],
+      "documents": {},
+      "timestamps": {
+        "started": "2026-02-21T13:01:06.934Z",
+        "lastUpdated": "2026-02-21T13:01:06.934Z"
+      },
+      "lastFile": "C:\\gerardo\\01 SmallSF\\Food-MES\\src\\app\\(dashboard)\\inventory\\expiry\\page.tsx"
+    },
+    "monitoring": {
+      "phase": "do",
+      "phaseNumber": 3,
+      "matchRate": null,
+      "iterationCount": 0,
+      "requirements": [],
+      "documents": {},
+      "timestamps": {
+        "started": "2026-02-21T13:01:38.712Z",
+        "lastUpdated": "2026-02-21T13:01:38.712Z"
+      },
+      "lastFile": "C:\\gerardo\\01 SmallSF\\Food-MES\\src\\app\\api\\haccp\\monitoring\\route.ts"
+    },
+    "foreign-body": {
+      "phase": "do",
+      "phaseNumber": 3,
+      "matchRate": null,
+      "iterationCount": 0,
+      "requirements": [],
+      "documents": {},
+      "timestamps": {
+        "started": "2026-02-21T13:01:59.558Z",
+        "lastUpdated": "2026-02-21T13:01:59.558Z"
+      },
+      "lastFile": "C:\\gerardo\\01 SmallSF\\Food-MES\\src\\app\\api\\foreign-body\\route.ts"
+    },
+    "allergens": {
+      "phase": "do",
+      "phaseNumber": 3,
+      "matchRate": null,
+      "iterationCount": 0,
+      "requirements": [],
+      "documents": {},
+      "timestamps": {
+        "started": "2026-02-21T13:02:05.218Z",
+        "lastUpdated": "2026-02-21T13:02:20.222Z"
+      },
+      "lastFile": "C:\\gerardo\\01 SmallSF\\Food-MES\\src\\app\\(dashboard)\\master\\allergens\\page.tsx"
+    },
+    "Food-MES": {
+      "phase": "do",
+      "phaseNumber": 3,
+      "matchRate": null,
+      "iterationCount": 0,
+      "requirements": [],
+      "documents": {},
+      "timestamps": {
+        "started": "2026-02-21T13:02:30.568Z",
+        "lastUpdated": "2026-02-21T13:05:16.905Z"
+      },
+      "lastFile": "C:\\gerardo\\01 SmallSF\\Food-MES\\src\\app\\layout.tsx"
+    },
+    "food-mes-conversion": {
+      "phase": "archived",
+      "matchRate": 100,
+      "iterationCount": 3,
+      "startedAt": "2026-02-21T13:13:47.559Z",
+      "archivedAt": "2026-02-21T00:00:00.000Z",
+      "archivedTo": "docs/archive/2026-02/food-mes-conversion/"
+    },
+    "batch": {
+      "phase": "do",
+      "phaseNumber": 3,
+      "matchRate": null,
+      "iterationCount": 0,
+      "requirements": [],
+      "documents": {},
+      "timestamps": {
+        "started": "2026-02-21T13:26:15.569Z",
+        "lastUpdated": "2026-02-21T14:19:02.366Z"
+      },
+      "lastFile": "C:\\gerardo\\01 SmallSF\\Food-MES\\src\\app\\(dashboard)\\production\\batch\\page.tsx"
+    },
+    "origin": {
+      "phase": "do",
+      "phaseNumber": 3,
+      "matchRate": null,
+      "iterationCount": 0,
+      "requirements": [],
+      "documents": {},
+      "timestamps": {
+        "started": "2026-02-21T13:26:23.346Z",
+        "lastUpdated": "2026-02-21T14:19:38.264Z"
+      },
+      "lastFile": "C:\\gerardo\\01 SmallSF\\Food-MES\\src\\app\\api\\inventory\\origin\\route.ts"
+    },
+    "food-mes-full — Gap 분석": {
+      "phase": "act",
+      "phaseNumber": 5,
+      "matchRate": null,
+      "iterationCount": 0,
+      "requirements": [],
+      "documents": {},
+      "timestamps": {
+        "started": "2026-02-21T15:05:23.289Z",
+        "lastUpdated": "2026-02-21T15:05:23.291Z"
+      },
+      "previousPhase": "check",
+      "autoAdvanced": true
     }
   },
   "pipeline": {
@@ -1026,7 +1232,7 @@
   "session": {
     "startedAt": "2026-02-20T00:06:31.571Z",
     "onboardingCompleted": true,
-    "lastActivity": "2026-02-20T18:41:53.852Z"
+    "lastActivity": "2026-02-21T15:15:57.316Z"
   },
   "history": [
     {
@@ -2992,6 +3198,384 @@
     {
       "timestamp": "2026-02-20T18:41:53.851Z",
       "feature": "pop",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-20T19:03:15.021Z",
+      "feature": "contracts",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-20T19:03:41.186Z",
+      "feature": "customer-requirements",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-20T19:18:06.973Z",
+      "feature": "products",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-20T19:18:12.343Z",
+      "feature": "materials",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-20T19:25:38.383Z",
+      "feature": "production",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-20T19:26:37.681Z",
+      "feature": "pop",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-20T19:28:39.398Z",
+      "feature": "layout",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-20T19:28:47.366Z",
+      "feature": "layout",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-20T19:28:55.920Z",
+      "feature": "layout",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-20T19:29:04.995Z",
+      "feature": "layout",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-20T19:36:06.940Z",
+      "feature": "Steel-MES",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-20T19:37:35.948Z",
+      "feature": "deploy",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-21T07:43:14.112Z",
+      "feature": "Steel-MES",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-21T12:52:44.622Z",
+      "feature": "layout",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-21T12:53:20.632Z",
+      "feature": "layout",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-21T12:53:27.264Z",
+      "feature": "layout",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-21T12:53:31.319Z",
+      "feature": "layout",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-21T12:58:42.954Z",
+      "feature": "recipes",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-21T12:59:16.243Z",
+      "feature": "haccp",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-21T12:59:43.920Z",
+      "feature": "ccp",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-21T13:00:11.077Z",
+      "feature": "hygiene",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-21T13:00:37.610Z",
+      "feature": "foreign",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-21T13:01:06.934Z",
+      "feature": "expiry",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-21T13:01:19.827Z",
+      "feature": "recipes",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-21T13:01:28.549Z",
+      "feature": "haccp",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-21T13:01:38.712Z",
+      "feature": "monitoring",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-21T13:01:47.303Z",
+      "feature": "hygiene",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-21T13:01:59.558Z",
+      "feature": "foreign-body",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-21T13:02:05.218Z",
+      "feature": "allergens",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-21T13:02:20.222Z",
+      "feature": "allergens",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-21T13:02:30.568Z",
+      "feature": "Food-MES",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-21T13:02:40.671Z",
+      "feature": "products",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-21T13:03:09.009Z",
+      "feature": "login",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-21T13:03:15.597Z",
+      "feature": "login",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-21T13:03:29.884Z",
+      "feature": "login",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-21T13:03:34.227Z",
+      "feature": "login",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-21T13:03:41.334Z",
+      "feature": "login",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-21T13:04:04.347Z",
+      "feature": "haccp",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-21T13:05:16.905Z",
+      "feature": "Food-MES",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-21T13:13:47.561Z",
+      "feature": "food-mes-conversion",
+      "phase": "act",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-21T13:26:15.570Z",
+      "feature": "batch",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-21T13:26:23.346Z",
+      "feature": "origin",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-21T13:26:29.825Z",
+      "feature": "batch",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-21T13:26:30.766Z",
+      "feature": "dashboard",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-21T13:26:42.799Z",
+      "feature": "origin",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-21T13:26:46.258Z",
+      "feature": "dashboard",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-21T13:26:51.619Z",
+      "feature": "dashboard",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-21T13:26:57.488Z",
+      "feature": "dashboard",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-21T13:27:05.923Z",
+      "feature": "dashboard",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-21T14:18:26.918Z",
+      "feature": "batch",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-21T14:19:02.366Z",
+      "feature": "batch",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-21T14:19:30.017Z",
+      "feature": "origin",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-21T14:19:38.264Z",
+      "feature": "origin",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-21T14:19:44.470Z",
+      "feature": "dashboard",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-21T14:19:50.489Z",
+      "feature": "dashboard",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-21T14:19:56.348Z",
+      "feature": "dashboard",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-21T14:20:01.329Z",
+      "feature": "dashboard",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-21T14:20:09.429Z",
+      "feature": "dashboard",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-21T14:20:21.016Z",
+      "feature": "dashboard",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-21T15:05:23.291Z",
+      "feature": "food-mes-full — Gap 분석",
+      "phase": "act",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-21T15:15:26.859Z",
+      "feature": "backup",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-21T15:15:33.928Z",
+      "feature": "backup",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-21T15:15:57.315Z",
+      "feature": "trace",
       "phase": "do",
       "action": "updated"
     }

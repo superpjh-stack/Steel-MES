@@ -6,12 +6,14 @@ import { useEffect, useState } from 'react';
 import {
   LayoutDashboard, ClipboardList, CheckSquare,
   Settings, Package, Truck, Wrench, SlidersHorizontal, X,
-  ChevronDown, ChevronRight, Monitor, FileBarChart, AlertTriangle,
+  ChevronDown, Monitor, FileBarChart, AlertTriangle,
   ArrowLeftRight, Bell, Calendar, Users, Building2, Box, Layers,
-  FlaskConical, GitBranch, Factory, ShoppingCart, Database,
+  FlaskConical, GitBranch, ShoppingCart, Database,
   MonitorCheck, BarChart2, Cpu,
   Shield, Tag, ScrollText, HardDrive,
   History, CalendarDays, FileText, ClipboardCheck,
+  Thermometer, Leaf, BookOpen, ShieldCheck, Microscope,
+  UtensilsCrossed, Soup,
 } from 'lucide-react';
 
 export interface SubItem {
@@ -38,12 +40,14 @@ export const NAV_ITEMS: NavItem[] = [
     label: '기준정보관리',
     icon: Database,
     children: [
-      { href: '/master/customers',    label: '고객사',   icon: Building2 },
-      { href: '/master/products',     label: '품목',     icon: Box },
-      { href: '/master/materials',    label: '원자재',   icon: Layers },
-      { href: '/master/equipment',    label: '설비',     icon: Wrench },
-      { href: '/master/processes',    label: '공정',     icon: GitBranch },
-      { href: '/master/defect-codes', label: '불량코드', icon: AlertTriangle },
+      { href: '/master/customers',    label: '거래처관리',          icon: Building2 },
+      { href: '/master/products',     label: '품목마스터관리',      icon: Box },
+      { href: '/master/materials',    label: '원료/원자재관리',     icon: Layers },
+      { href: '/master/recipes',      label: '배합비(레시피)관리',  icon: BookOpen },
+      { href: '/master/equipment',    label: '설비마스터관리',      icon: Wrench },
+      { href: '/master/processes',    label: '공정관리',            icon: GitBranch },
+      { href: '/master/allergens',    label: '알레르기코드관리',    icon: Leaf },
+      { href: '/master/defect-codes', label: '불량코드관리',        icon: AlertTriangle },
     ],
   },
   {
@@ -51,23 +55,23 @@ export const NAV_ITEMS: NavItem[] = [
     label: '영업관리',
     icon: ShoppingCart,
     children: [
-      { href: '/sales-orders',                 label: '수주등록조회',        icon: ShoppingCart },
-      { href: '/sales/project-schedule',      label: '프로젝트일정관리',    icon: Calendar },
-      { href: '/sales/customer-requirements', label: '고객요구사항관리',    icon: ClipboardCheck },
-      { href: '/sales/change-history',        label: '수주변경이력관리',    icon: History },
-      { href: '/sales/delivery-calendar',     label: '납기캘린더조회',      icon: CalendarDays },
-      { href: '/sales/shipment-status',       label: '수주대비출고현황',    icon: BarChart2 },
-      { href: '/sales/contracts',             label: '견적/계약문서첨부관리', icon: FileText },
+      { href: '/sales-orders',                label: '수주등록조회',      icon: ShoppingCart },
+      { href: '/sales/customer-requirements', label: '고객요구사항관리',  icon: ClipboardCheck },
+      { href: '/sales/delivery-calendar',     label: '납기캘린더조회',    icon: CalendarDays },
+      { href: '/sales/shipment-status',       label: '수주대비출고현황',  icon: BarChart2 },
+      { href: '/sales/contracts',             label: '견적/계약문서관리', icon: FileText },
     ],
   },
   {
     href: '/inventory',
-    label: '재고관리',
+    label: '자재관리',
     icon: Package,
     children: [
-      { href: '/inventory',           label: '재고 현황',   icon: Package },
-      { href: '/inventory/movements', label: '입출고 이력', icon: ArrowLeftRight },
-      { href: '/inventory/alerts',    label: '재고 알림',   icon: Bell },
+      { href: '/inventory',                   label: '재고현황',        icon: Package },
+      { href: '/inventory/movements',         label: '입출고이력',      icon: ArrowLeftRight },
+      { href: '/inventory/expiry',            label: '유통기한관리',    icon: Calendar },
+      { href: '/inventory/origin',            label: '원산지관리',      icon: Leaf },
+      { href: '/inventory/alerts',            label: '재고알림',        icon: Bell },
     ],
   },
   {
@@ -75,9 +79,10 @@ export const NAV_ITEMS: NavItem[] = [
     label: '생산관리',
     icon: ClipboardList,
     children: [
-      { href: '/production/work-orders', label: '작업지시',    icon: ClipboardList },
-      { href: '/production/monitor',     label: '생산 모니터', icon: Monitor },
-      { href: '/production/reports',     label: '생산 보고서', icon: FileBarChart },
+      { href: '/production/work-orders', label: '작업지시',       icon: ClipboardList },
+      { href: '/production/batch',       label: '배치생산관리',   icon: Soup },
+      { href: '/production/monitor',     label: '생산모니터',     icon: Monitor },
+      { href: '/production/reports',     label: '생산보고서',     icon: FileBarChart },
     ],
   },
   {
@@ -85,11 +90,22 @@ export const NAV_ITEMS: NavItem[] = [
     label: '품질관리',
     icon: CheckSquare,
     children: [
-      { href: '/quality/inspections', label: '검사 관리',   icon: CheckSquare },
-      { href: '/quality/defects',     label: '불량 관리',   icon: AlertTriangle },
-      { href: '/quality/ncr',         label: 'NCR',         icon: FileBarChart },
-      { href: '/quality/spc',         label: 'SPC',         icon: FlaskConical },
-      { href: '/quality/reports',     label: '품질 보고서', icon: FileBarChart },
+      { href: '/quality/inspections', label: '수입/공정/완제품검사', icon: CheckSquare },
+      { href: '/quality/defects',     label: '불량관리',             icon: AlertTriangle },
+      { href: '/quality/ncr',         label: 'NCR',                  icon: FileBarChart },
+      { href: '/quality/spc',         label: 'SPC',                  icon: FlaskConical },
+      { href: '/quality/reports',     label: '품질보고서',           icon: FileBarChart },
+    ],
+  },
+  {
+    href: '/food-safety',
+    label: '식품안전관리',
+    icon: ShieldCheck,
+    children: [
+      { href: '/food-safety/haccp',    label: 'HACCP 계획관리',  icon: ShieldCheck },
+      { href: '/food-safety/ccp',      label: 'CCP 모니터링',    icon: Thermometer },
+      { href: '/food-safety/hygiene',  label: '위생점검관리',    icon: Microscope },
+      { href: '/food-safety/foreign',  label: '이물검출관리',    icon: AlertTriangle },
     ],
   },
   {
@@ -97,8 +113,9 @@ export const NAV_ITEMS: NavItem[] = [
     label: '출하관리',
     icon: Truck,
     children: [
-      { href: '/shipments',                 label: '출하 목록', icon: Truck },
-      { href: '/shipments/delivery-status', label: '배송 현황', icon: Monitor },
+      { href: '/shipments',                 label: '출하목록',     icon: Truck },
+      { href: '/shipments/delivery-status', label: '배송현황',     icon: Monitor },
+      { href: '/inventory/lot/trace',       label: 'LOT 추적조회', icon: UtensilsCrossed },
     ],
   },
   {
@@ -111,8 +128,8 @@ export const NAV_ITEMS: NavItem[] = [
     label: '모니터링/KPI',
     icon: BarChart2,
     children: [
-      { href: '/monitoring/productivity', label: '생산성', icon: FileBarChart },
-      { href: '/monitoring/quality',      label: '품질',   icon: CheckSquare },
+      { href: '/monitoring/productivity', label: '생산실적/현황', icon: FileBarChart },
+      { href: '/monitoring/quality',      label: '품질현황',      icon: CheckSquare },
     ],
   },
   {
@@ -120,7 +137,7 @@ export const NAV_ITEMS: NavItem[] = [
     label: '설비관리',
     icon: Wrench,
     children: [
-      { href: '/equipment',             label: '설비 현황', icon: Wrench },
+      { href: '/equipment',             label: '설비현황', icon: Wrench },
       { href: '/equipment/maintenance', label: '유지보수',  icon: Settings },
       { href: '/equipment/pm-schedule', label: 'PM 일정',   icon: Calendar },
     ],
@@ -130,15 +147,15 @@ export const NAV_ITEMS: NavItem[] = [
     label: '시스템관리',
     icon: Settings,
     children: [
-      { href: '/admin/users',          label: '사용자계정등록',    icon: Users      },
-      { href: '/admin/users/inquiry',  label: '사용자계정조회',    icon: Users      },
-      { href: '/admin/roles',          label: '권한역할등록',      icon: Shield     },
-      { href: '/admin/roles/inquiry',  label: '권한역할조회',      icon: Shield     },
-      { href: '/admin/codes',          label: '공통코드등록',      icon: Tag        },
-      { href: '/admin/codes/inquiry',  label: '공통코드조회',      icon: Tag        },
-      { href: '/admin/logs',           label: '시스템로그조회',    icon: ScrollText },
+      { href: '/admin/users',          label: '사용자계정등록',     icon: Users      },
+      { href: '/admin/users/inquiry',  label: '사용자계정조회',     icon: Users      },
+      { href: '/admin/roles',          label: '권한역할등록',       icon: Shield     },
+      { href: '/admin/roles/inquiry',  label: '권한역할조회',       icon: Shield     },
+      { href: '/admin/codes',          label: '공통코드등록',       icon: Tag        },
+      { href: '/admin/codes/inquiry',  label: '공통코드조회',       icon: Tag        },
+      { href: '/admin/logs',           label: '시스템로그조회',     icon: ScrollText },
       { href: '/admin/backup',         label: '데이터백업이력조회', icon: HardDrive  },
-      { href: '/admin/interfaces',     label: '인터페이스관리',    icon: Cpu        },
+      { href: '/admin/interfaces',     label: '인터페이스관리',     icon: Cpu        },
     ],
   },
 ];
@@ -231,11 +248,12 @@ export default function Sidebar({ userName, role, onClose }: Props) {
   const LogoBlock = () => (
     <div className="px-4 py-4 border-b border-slate-700/60">
       <div className="flex items-center gap-2.5 mb-3">
-        <div className="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center shrink-0">
-          <Factory size={16} className="text-white" />
+        <div className="w-8 h-8 rounded-lg bg-green-600 flex items-center justify-center shrink-0">
+          <Leaf size={16} className="text-white" />
         </div>
         <div className="flex-1 min-w-0">
-          <h1 className="font-bold text-sm text-white leading-tight">Metal-MES</h1>
+          <h1 className="font-bold text-sm text-white leading-tight">니즈푸드 MES</h1>
+          <p className="text-[10px] text-slate-400 leading-tight">Food Manufacturing</p>
         </div>
         {onClose && (
           <button
@@ -292,7 +310,7 @@ export default function Sidebar({ userName, role, onClose }: Props) {
                     href={item.href}
                     className={`flex items-center gap-2.5 px-3 py-2 rounded-md text-sm transition-colors ${
                       isParentActive
-                        ? 'bg-blue-600 text-white'
+                        ? 'bg-green-600 text-white'
                         : 'text-slate-300 hover:bg-slate-700/60 hover:text-white'
                     }`}
                   >
@@ -369,7 +387,7 @@ export default function Sidebar({ userName, role, onClose }: Props) {
                         href={child.href}
                         className={`flex items-center px-2 py-1.5 rounded text-xs transition-colors ${
                           active
-                            ? 'bg-blue-600 text-white font-medium'
+                            ? 'bg-green-600 text-white font-medium'
                             : 'text-slate-400 hover:bg-slate-700/50 hover:text-white'
                         }`}
                       >
@@ -389,7 +407,7 @@ export default function Sidebar({ userName, role, onClose }: Props) {
         <button
           onClick={() => setEditMode((v) => !v)}
           className={`w-full flex items-center gap-2 px-3 py-2 rounded-md text-xs transition-colors ${
-            editMode ? 'bg-blue-600 text-white' : 'text-slate-400 hover:bg-slate-700/60 hover:text-white'
+            editMode ? 'bg-green-600 text-white' : 'text-slate-400 hover:bg-slate-700/60 hover:text-white'
           }`}
         >
           {editMode ? <X size={13} /> : <SlidersHorizontal size={13} />}
